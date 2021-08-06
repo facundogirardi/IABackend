@@ -6,7 +6,7 @@ var UserSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    date: Date
+    date: Date 
 })
 
 UserSchema.plugin(mongoosePaginate)
