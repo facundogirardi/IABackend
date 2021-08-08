@@ -24,7 +24,8 @@ const swaggerOptions = {
   swaggerDefinition: {
     info: {
       title: "Swagger para API Banco",
-      version: "1.0.0",
+      description: "Enpoints para API Banco, realizada por el grupo 1, Integracion de aplicaciones | Segundo Cuatrimestre 2021",
+      version: "v1.0.0",
     },
   },
   apis: ["app.js"],
