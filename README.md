@@ -13,6 +13,8 @@
 * [Tecnologia](#Tecnologia)
 * [Instalacion](#Instalacion)
 * [Base de datos](#Base-de-datos)
+* [Endpoints](#EndPoints)
+
 * [Recursos](#Recursos)
 
 ## Integrantes Grupo 1
@@ -35,7 +37,7 @@
 * Ejecutar <b>npm start</b>
 * Se levantará en local http://localhost:3000/
 
-Para apuntar al Backend de Heroku (proximamente) :
+Para apuntar al Backend de Heroku :
 * Ingresar a ./src/controller/webServices.js
 * comentar la linea <b>const urlApi = "http://localhost:4000/";</b>
 
@@ -44,17 +46,19 @@ Para apuntar al Backend de Heroku (proximamente) :
 * El backend de la aplicacion se encuesta en ek siguiente repositorio https://github.com/facundogirardi/IA-Grupo1-Backend
 * En la carpeta del proyecto ejecutar <b>npm install</b>
 * <b>cd</b> .\IA-Grupo1-Backend\
-* Ejecutar <b>npm start</b> o <b>nodemon --exec npm start</b> (Requiere tener instalado el nodemon*)
-* Se levantará en local http://localhost:4000/
-* Proximamente se encontrara hosteado en Heroku <b>https://URL.herokuapp.com/<b>
+* Ejecutar <b>npm start</b> o <b>nodemon ./app.js </b> (Requiere tener instalado el nodemon*)
+* Se levantará en local <b>http://localhost:4000/</b>
+* Tambien se encuentra hosteado en Heroku <b>https://iabackend.herokuapp.com/</b>
 
 ## Base de Datos
 
-<p>Para la base de datos utilizamos MongoDB</p>
-<p>Poseemos el siguiente Cluster configurado <b>cluster0.pfxg4.mongodb.net</b></p>
-<p>En la ruta /IA-Grupo1-Backend/models, se encuentran los modelos de datos para los documentos</p>
+* Para la base de datos utilizamos MongoDB
+* Poseemos el siguiente Cluster configurado <b>cluster0.pfxg4.mongodb.net</b>
+* En la ruta <b>/IA-Grupo1-Backend/models</b>, se encuentran los modelos de datos para los documentos
 
+## EndPoints
 
+* Los endpoints se encuentran en el Swagger <b>http://localhost:4000/endpoints/#/</b> o <b>https://iabackend.herokuapp.com/endpoints/#/</b>
 
 ## Recursos
 
