@@ -14,11 +14,11 @@ exports.getUsers = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: Users,
-      message: "Succesfully Users Recieved",
+      message: "Usuarios obtenidos correctamente",
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
-    return res.status(400).json({ status: 400, message: e.message });
+    return res.status(400).json({ status: 400, message: "Error al querer obtener los usuarios"});
   }
 };
 exports.getUsersByMail = async function (req, res, next) {
@@ -56,16 +56,38 @@ exports.createUser = async function (req, res, next) {
     var createdUser = await UserService.createUser(User);
     return res
       .status(201)
-      .json({ createdUser, message: "Succesfully Created User" });
+      .json({ createdUser, message: "Usuario generado correctamente" });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     console.log(e);
     return res
       .status(400)
-      .json({ status: 400, message: "User Creation was Unsuccesfull" });
+      .json({ status: 400, message: "Error al querer generar el usuario" });
   }
 };
 
+// Traigo Usuario por ID
+exports.getUsuarioID = async function (req, res, next) {
+
+  var page = req.query.page ? req.query.page : 1
+  var limit = req.query.limit ? req.query.limit : 1000;
+
+  var filtro = {
+      _id: req.body._id
+  }
+  try {
+      var Users = await UserService.getUsers(filtro, page, limit)
+
+      if (Users.total === 0)
+          return res.status(201).json({ status: 201, data: Users, message: "Error al querer obtener el usuario" });
+      else
+          return res.status(200).json({ status: 200, data: Users, message: "Usuario obtenido correctamente" });
+  } catch (e) {
+
+      console.log(e)
+      return res.status(400).json({ status: 400, message: e.message });
+  }
+} 
 exports.updateUser = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.name) {
@@ -85,10 +107,10 @@ exports.updateUser = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: updatedUser,
-      message: "Succesfully Updated User",
+      message: "Usuario actualizado correctamente",
     });
   } catch (e) {
-    return res.status(400).json({ status: 400, message: e.message });
+    return res.status(400).json({ status: 400, message: "Error al querer actualizar el usuario"  });
   }
 };
 
@@ -96,9 +118,9 @@ exports.removeUser = async function (req, res, next) {
   var id = req.params.id;
   try {
     var deleted = await UserService.deleteUser(id);
-    res.status(200).send("Succesfully Deleted... ");
+    res.status(200).send("Usuario eliminado correctamente");
   } catch (e) {
-    return res.status(400).json({ status: 400, message: e.message });
+    return res.status(400).json({ status: 400, message: "Error al querer eliminar el usuario" });
   }
 };
 
@@ -112,11 +134,11 @@ exports.loginUser = async function (req, res, next) {
   try {
     // Calling the Service function with the new object from the Request Body
     var loginUser = await UserService.loginUser(User);
-    return res.status(201).json({ loginUser, message: "Succesfully login" });
+    return res.status(201).json({ loginUser, message: "Usuario loggeado correctamente" });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res
       .status(400)
-      .json({ status: 400, message: "Invalid username or password" });
+      .json({ status: 400, message: "Error al querer loggear el usuario" });
   }
 };
