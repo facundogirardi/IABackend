@@ -5,7 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var bluebird = require("bluebird");
 var fs = require("fs");
-
+var Swagger = require("./swagger.json");
 //incorporo cors
 var cors = require("cors");
 
@@ -31,209 +31,7 @@ const swaggerOptions = {
   apis: ["app.js"],
 };
 
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/endpoints", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
-
-
-
-/**
- * @swagger
- * /api/users/registration:
- *   post:
- *     summary: Generacion de usuarios nuevos
- *     tags: [Endpoints Usuarios]
- *     parameters:
- *       - name: nombre
- *         in: formData
- *         description: Nombre de usuario
- *         required: true
- *         schema:
- *           type: string
- *           format: string 
- *       - name: apellido
- *         in: formData
- *         description: Apellido de usuario
- *         required: true
- *         schema:
- *           type: string
- *           format: string 
- *       - name: email
- *         in: formData
- *         description: Email de usuario
- *         required: true
- *         schema:
- *           type: string
- *           format: string 
- *       - name: usuario
- *         in: formData
- *         description: Nombre de usuario
- *         required: true
- *         schema:
- *           type: string
- *           format: string 
- *       - name: password
- *         in: formData
- *         description: Contraseña de usuario
- *         required: true
- *         schema:
- *           type: string
- *           format: string 
- *       - name: usuariotipo
- *         in: formData
- *         description: Tipo de usuario
- *         required: true
- *         schema:
- *           type: string
- *           format: string 
- * 
- *     responses:
- *       201:
- *         description: Usuario generado correctamente
- *       400:
- *         description: Error al querer generar el usuario
- */
-
-/**
- * @swagger
- * /api/users/login:
- *   post:
- *     summary: Login de usuarios
- *     tags: [Endpoints Usuarios]
- *     parameters:
- *       - name: usuario
- *         in: formData
- *         description: Nombre de usuario
- *         required: true
- *         schema:
- *           type: string
- *           format: string 
- *       - name: password
- *         in: formData
- *         description: Contraseña de usuario
- *         required: true
- *         schema:
- *           type: string
- *           format: string 
- * 
- *     responses:
- *       201:
- *         description: Usuario loggeado correctamente
- *       400:
- *         description: Error al querer loggear el usuario
- */
-
-/**
- * @swagger
- * /api/users/delete/{_id}:
- *   delete:
- *     summary: Elimina usuario
- *     tags: [Endpoints Usuarios]
- *     parameters:
- *       - in: path
- *         name: _id
- *         schema:
- *           type: string
- *         required: true
- *         description: id del usuario a eliminar
- * 
- *     responses:
- *       200:
- *         description: Usuario eliminado correctamente
- *       404:
- *         description: Error al querer eliminar el usuario
- */
-
-/**
- * @swagger
- * /api/users/userid/{_id}:
- *   get:
- *     summary: Obtengo usuario especifico
- *     tags: [Endpoints Usuarios]
- *     parameters:
- *       - in: path
- *         name: _id
- *         schema:
- *           type: string
- *         required: true
- *         description: id del usuario a obtener
- * 
- *     responses:
- *       200:
- *         description: Usuario obtenido correctamente
- *       201:
- *         description: Error al querer obtener el usuario
- */
-
-/**
- * @swagger
- * /api/users/getusers/:
- *   put:
- *     summary: Obtencion de usuarios
- *     tags: [Endpoints Usuarios]
- * 
- *     responses:
- *       200:
- *         description: Usuarios obtenidos correctamente
- *       400:
- *         description: Error al querer obtener los usuarios
- */
-
-/**
- * @swagger
- * /api/users/updateusers/:
- *   put:
- *     summary: Actualizacion de usuarios
- *     tags: [Endpoints Usuarios]
- *     parameters:
- *      - name: nombre
- *        in: formData
- *        description: Nombre de usuario
- *        required: false
- *        schema:
- *          type: string
- *          format: string 
- *      - name: apellido
- *        in: formData
- *        description: Apellido de usuario
- *        required: false
- *        schema:
- *          type: string
- *          format: string 
- *      - name: email
- *        in: formData
- *        description: Email de usuario
- *        required: false
- *        schema:
- *          type: string
- *          format: string 
- *      - name: usuario
- *        in: formData
- *        description: Nombre de usuario
- *        required: true
- *        schema:
- *          type: string
- *          format: string 
- *      - name: password
- *        in: formData
- *        description: Contraseña de usuario
- *        required: false
- *        schema:
- *          type: string
- *          format: string 
- *      - name: usuariotipo
- *        in: formData
- *        description: Tipo de usuario
- *        required: false
- *        schema:
- *          type: string
- *          format: string 
- * 
- *     responses:
- *       200:
- *         description: Usuario actualizado correctamente
- *       400:
- *         description: Error al querer actualizar el usuario
- */
+app.use("/endpoints", swaggerUI.serve, swaggerUI.setup(Swagger));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -266,8 +64,8 @@ if (process.env.NODE_ENV === "Development") {
 //Database connection --
 var mongoose = require("mongoose");
 mongoose.Promise = bluebird;
-let url = `${process.env.DATABASE1}${process.env.DATABASE2}=${process.env.DATABASE3}=${process.env.DATABASE4}`;
-console.log("BD", url);
+let url = `${process.env.DATABASE1}`;
+console.log("Base de datos utilizada : ", url);
 let opts = {
   useNewUrlParser: true,
   connectTimeoutMS: 20000,

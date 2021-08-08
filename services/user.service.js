@@ -26,23 +26,6 @@ exports.getUsers = async function (query, page, limit) {
   }
 };
 
-// Recupero Usuario por ID
-exports.getUsuarioID = async function (query, page, limit) {
-  var options = {
-      page,
-      limit
-  }
-
-  try {
-      var Users = await User.paginate(query, options)
-      return Users;
-
-  } catch (e) {
-      console.log("error servicio", e)
-      throw Error('Error en el paginado de las Usuario por ID');
-  }
-}
-
 exports.createUser = async function (user) {
   // Creating a new Mongoose Object by using the new keyword
   var hashedPassword = bcrypt.hashSync(user.password, 8);
@@ -108,6 +91,23 @@ exports.updateUser = async function (user) {
     throw Error("And Error occured while updating the User");
   }
 };
+
+// Recupero Usuario por ID
+exports.getUsuarioID = async function (query, page, limit) {
+  var options = {
+      page,
+      limit
+  }
+
+  try {
+      var Users = await User.paginate(query, options)
+      return Users;
+
+  } catch (e) {
+      console.log("error servicio", e)
+      throw Error('Error en el paginado de las Usuario por ID');
+  }
+}
 
 exports.deleteUser = async function (id) {
   // Delete the User

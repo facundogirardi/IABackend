@@ -73,7 +73,7 @@ exports.getUsuarioID = async function (req, res, next) {
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
-      _id: req.body._id
+      _id: req.params.id
   }
   try {
       var Users = await UserService.getUsers(filtro, page, limit)
@@ -88,9 +88,10 @@ exports.getUsuarioID = async function (req, res, next) {
       return res.status(400).json({ status: 400, message: e.message });
   }
 } 
+
 exports.updateUser = async function (req, res, next) {
   // Id is necessary for the update
-  if (!req.body.name) {
+  if (!req.body.nombre) {
     return res.status(400).json({ status: 400, message: "Name be present" });
   }
 

@@ -1,0 +1,309 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "v1.0.0",
+        "title": "Swagger para API Banco",
+        "description": "Enpoints para API Banco, realizada por el Grupo 1, Integracion de aplicaciones | Segundo Cuatrimestre 2021 ",
+        "license": {
+            "name": "UADE",
+            "url": "https://www.uade.edu.ar/"
+        }
+    },
+    "servers": [
+        {
+            "url": "/api/users/",
+            "description": "Servidor localhost o heroku"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Token",
+            "description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMGQzZjNhZTU2NGRhMjUwOGZiMDFlNSIsImlhdCI6MTYyODI1ODEwNiwiZXhwIjoxNjQzODEwMTA2fQ.tsv_8Yo7TMi0hxBGMtQ_1ltRFd4Sbtaf8HDKKepHtwY"
+        },
+        {
+            "name": "Usuarios",
+            "description": "Endpoints para manejo de usuarios"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+
+    "paths": {
+        "/registration": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Generacion de usuarios nuevos",
+                "parameters": [
+                    {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "type": "string"
+                    }],
+                "requestBody": {
+                    "description": "Registro de usuarios nuevos - (usuariotipo : 1 no juridico, 2 juridico, 3 operador)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Usuario"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Usuario generado correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Error al querer generar el usuario"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Login de usuarios",
+                "parameters": [
+                    {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "type": "string"
+                    }],
+                "requestBody": {
+                    "description": "El usuario debe existir primero",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Login"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Usuario loggeado correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Error al querer loggear el usuario"
+                    }
+                }
+            }
+        },
+        "/getusers": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Obtencion de usuarios",
+                "description": "Recupero todos los usuarios, utiliza token de seguridad",
+                "parameters": [
+                    {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "type": "string"
+                    }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuarios obtenidos correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Error al querer obtener los usuarios"
+                    }
+                }
+            }
+        },
+        "/updateusers": {
+            "put": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Actualizacion de usuarios",
+                "parameters": [
+                    {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "type": "string"
+                    }],
+                "requestBody": {
+                    "description": "El campo Usuario el indice de busqueda",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Usuario"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario actualizado correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Error al querer actualizar el usuario"
+                    }
+                }
+            }
+        },
+        "/delete/{id}": {
+            "parameters": [
+                {
+                    "name": "x-access-token",
+                    "in": "header",
+                    "required": true,
+                    "type": "string"
+                  },
+                {     
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID del usuario que quiero eliminar",
+                    "type": "string"
+                }
+            ],
+            "delete": {
+                "summary": "Elimina usuario",
+                "tags": [
+                    "Usuarios"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Elimina usuario por id",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario eliminado correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "404": {
+                        "description": "Error al querer eliminar el usuario"
+                    }
+                }
+            }
+        },
+        "/userid/{id}": {
+            "post": {
+                "summary": "Obtengo usuario especifico",
+                "tags": [
+                    "Usuarios"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                      },
+                    {     
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del usuario que quiero obtener",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario obtenido correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "201": {
+                        "description": "Error al querer obtener el usuario"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "Usuario": {
+            "type": "object",
+            "properties": {
+                "nombre": {
+                    "type": "string"
+                },
+                "apellido": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "usuario": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "usuariotipo": {
+                    "type": "string"
+                }
+            }
+        },
+        "Login": {
+            "type": "object",
+            "properties": {
+                "usuario": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
