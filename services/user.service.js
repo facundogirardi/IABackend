@@ -27,8 +27,6 @@ exports.getUsers = async function (query, page, limit) {
   }
 };
 
-console.log("ramdom",random.int((min = 0), (max = 9999999999)) )
-
 exports.createUser = async function (user) {
   // Creating a new Mongoose Object by using the new keyword
   var hashedPassword = bcrypt.hashSync(user.password, 8);
