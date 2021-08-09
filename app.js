@@ -64,7 +64,7 @@ if (process.env.NODE_ENV === "Development") {
 //Database connection --
 var mongoose = require("mongoose");
 mongoose.Promise = bluebird;
-let url = `${process.env.DATABASE1}`;
+let url = `${process.env.DATABASE1}${process.env.DATABASE2}=${process.env.DATABASE3}=${process.env.DATABASE4}`
 console.log("Base de datos utilizada : ", url);
 let opts = {
   useNewUrlParser: true,

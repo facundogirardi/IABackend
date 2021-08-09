@@ -47,9 +47,33 @@ exports.createUser = async function (req, res, next) {
     nombre: req.body.nombre,
     apellido: req.body.apellido,
     email: req.body.email,
+    dni: req.body.dni,
     usuario: req.body.usuario,
     usuariotipo: req.body.usuariotipo,
     password: req.body.password,
+    tipodni: req.body.tipodni,
+    estadocuenta: req.body.estadocuenta,
+    empresa: req.body.empresa,
+    nacimiento: req.body.nacimiento,
+    telefono: req.body.telefono,
+    cuit: req.body.cuit,
+    calle: req.body.calle,
+    altura: req.body.altura,
+    cuidad: req.body.cuidad,
+    piso: req.body.piso,
+    cbu: req.body.cbu,
+    nrocuenta: req.body.nrocuenta,
+    numerocajacc: req.body.numerocajacc,
+    balancecc: req.body.balancecc,
+    numerocajaca: req.body.numerocajaca,
+    balanceca: req.body.balanceca,
+    numerocajadls: req.body.numerocajadls,
+    balancedls: req.body.balancedls,
+    numerocajaeu: req.body.numerocajaeu,
+    balanceeu: req.body.balanceeu,
+    flageuro: req.body.flageuro,
+    flagdolar: req.body.flagdolar,
+
   };
   try {
     // Calling the Service function with the new object from the Request Body
@@ -100,8 +124,32 @@ exports.updateUser = async function (req, res, next) {
     apellido: req.body.apellido ? req.body.apellido : null,
     email: req.body.email ? req.body.email : null,
     usuario: req.body.usuario ? req.body.usuario : null,
+    dni: req.body.dni ? req.body.dni : null,
     password: req.body.password ? req.body.password : null,
     usuariotipo: req.body.usuariotipo ? req.body.usuariotipo : null,
+    tipodni: req.body.tipodni ? req.body.tipodni : null,
+    estadocuenta: req.body.estadocuenta ? req.body.estadocuenta : null,
+    empresa: req.body.empresa ? req.body.empresa : null,
+    nacimiento: req.body.nacimiento ? req.body.nacimiento : null,
+    telefono: req.body.telefono ? req.body.telefono : null,
+    cuit: req.body.cuit ? req.body.cuit : null,
+    calle: req.body.calle ? req.body.calle : null,
+    altura: req.body.altura ? req.body.altura : null,
+    cuidad: req.body.cuidad ? req.body.cuidad : null,
+    piso: req.body.piso ? req.body.piso : null,
+    cbu: req.body.cbu ? req.body.cbu : null,
+    nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
+    numerocajacc : req.body.numerocajacc ? req.body.numerocajacc : null,
+    balancecc : req.body.balancecc ? req.body.balancecc : null,
+    numerocajaca : req.body.nnumerocajaca ? req.body.numerocajaca : null,
+    balanceca : req.body.balanceca ? req.body.balanceca : null,
+    numerocajadls : req.body.numerocajadls ? req.body.numerocajadls : null,
+    balancedls : req.body.balancedls ? req.body.balancedls : null,
+    numerocajaeu : req.body.numerocajaeu ? req.body.numerocajaeu : null,
+    balanceeu : req.body.balanceeu ? req.body.balanceeu : null,
+    flagdolar : req.body.flagdolar ? req.body.flagdolar : null,
+    flageuro : req.body.flageuro ? req.body.flageuro : null,
+
   };
   try {
     var updatedUser = await UserService.updateUser(User);
@@ -136,6 +184,25 @@ exports.loginUser = async function (req, res, next) {
     // Calling the Service function with the new object from the Request Body
     var loginUser = await UserService.loginUser(User);
     return res.status(201).json({ loginUser, message: "Usuario loggeado correctamente" });
+  } catch (e) {
+    //Return an Error Response Message with Code and the Error Message.
+    return res
+      .status(400)
+      .json({ status: 400, message: "Error al querer loggear el usuario" });
+  }
+};
+
+exports.loginUserATM = async function (req, res, next) {
+  // Req.Body contains the form submit values.
+  console.log("body", req.body);
+  var User = {
+    dni: req.body.dni,
+    password: req.body.password,
+  };
+  try {
+    // Calling the Service function with the new object from the Request Body
+    var loginUserATM = await UserService.loginUserATM(User);
+    return res.status(201).json({ loginUserATM, message: "Usuario loggeado correctamente" });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res

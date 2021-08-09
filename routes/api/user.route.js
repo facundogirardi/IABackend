@@ -12,6 +12,7 @@ router.get('/test', function(req, res, next) {
   });
 router.post('/registration',Authorization, UserController.createUser)
 router.post('/login/',Authorization, UserController.loginUser)
+router.post('/loginATM/',Authorization, UserController.loginUserATM)
 router.get('/getusers',Authorization, UserController.getUsers)
 router.post('/userByMail', Authorization, UserController.getUsersByMail)
 router.put('/updateusers', Authorization, UserController.updateUser)

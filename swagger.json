@@ -47,7 +47,7 @@
                       "type": "string"
                     }],
                 "requestBody": {
-                    "description": "Registro de usuarios nuevos - (usuariotipo : 1 no juridico, 2 juridico, 3 operador)",
+                    "description": "Registro de usuarios nuevos - (usuariotipo : 1 no juridico, 2 juridico, 3 operador) - (flags de cuenta 1 : activa, 2 no activa)",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -93,6 +93,46 @@
                         "application/json": {
                             "schema": {
                                 "$ref": "#/definitions/Login"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Usuario loggeado correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Error al querer loggear el usuario"
+                    }
+                }
+            }
+        },
+        "/loginATM": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Login de usuarios en ATM",
+                "parameters": [
+                    {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "type": "string"
+                    }],
+                "requestBody": {
+                    "description": "El usuario debe existir primero",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/LoginATM"
                             }
                         }
                     }
@@ -291,13 +331,63 @@
                 },
                 "usuariotipo": {
                     "type": "string"
-                }
+                },
+                "tipodni": {
+                    "type": "string"
+                    },
+                "dni": {
+                    "type": "string"
+                    },
+                "estadocuenta": {
+                    "type": "string"
+                    },
+                "empresa": {
+                    "type": "string"
+                    },
+                "nacimiento": {
+                    "type": "string"
+                    },
+                "telefono": {
+                    "type": "string"
+                    },
+                "cuit": {
+                    "type": "string"
+                    },
+                "calle": {
+                    "type": "string"
+                    },
+                "altura": {
+                    "type": "string"
+                    },
+                "cuidad": {
+                    "type": "string"
+                    },
+                "piso": {
+                    "type": "string"
+                    },
+                "flagdolar": {
+                    "type": "integer"
+                    },
+                "flageuro": {
+                    "type": "integer"
+                    }
             }
         },
         "Login": {
             "type": "object",
             "properties": {
                 "usuario": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "LoginATM": {
+            "type": "object",
+            "properties": {
+                "dni": {
                     "type": "string"
                 },
                 "password": {

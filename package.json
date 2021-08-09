@@ -19,6 +19,7 @@
     "morgan": "~1.9.0",
     "nanoid": "^3.1.23",
     "nodemailer": "^6.6.3",
+    "random": "^3.0.6",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6"
   }
