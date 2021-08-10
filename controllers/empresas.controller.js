@@ -24,7 +24,6 @@ exports.getEmpresas = async function (req, res, next) {
 
 exports.createEmpresa = async function (req, res, next) {
   // Req.Body contains the form submit values.
-  console.log("llegue al controller", req.body);
   var Empresa = {
     nombre: req.body.nombre,
     codigopago : req.body.codigopago,
@@ -91,8 +90,8 @@ exports.updateEmpresa = async function (req, res, next) {
   };
 
   try {
-
     var updatedEmpresa = await EmpresaService.updateEmpresa(Empresa);
+    console.log("error", updatedEmpresa)
     return res.status(200).json({
       status: 200,
       data: updatedEmpresa,

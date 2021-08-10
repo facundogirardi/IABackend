@@ -16,7 +16,6 @@ exports.getEmpresas = async function (query, page, limit) {
   };
   // Try Catch the awaited promise to handle the error
   try {
-    console.log("Query", query);
     var Empresas = await Empresa.paginate(query, options);
     // Return the Empresas list that was retured by the mongoose promise
     return Empresas;
@@ -62,27 +61,25 @@ exports.createEmpresa = async function (empresa) {
 
 exports.updateEmpresa = async function (empresa) {
   var id = { nombre: empresa.nombre };
-  console.log("ID : ", id);
 
   try {
     //Find the old Empresa Object by the Id
     var oldEmpresa = await Empresa.findOne(id);
-  } catch (e) {
-    throw Error("Error occured while Finding the Empresa");
-  }
-  // If no old Empresa Object exists return false
-  if (!oldEmpresa) {
-    console.log("viejo :", oldEmpresa);
+} catch (e) {
+    throw Error("Error occured while Finding the Empresa")
+}
+// If no old Empresa Object exists return false
+if (!oldEmpresa) {
     return false;
-  }
+}
   //Edit the Empresa Object
-  OldEmpresa.nombre = empresa.nombre
-  OldEmpresa.codigopago = empresa.codigopago
-  OldEmpresa.importe = empresa.importe
-  OldEmpresa.mes = empresa.mes
-  OldEmpresa.fechaVencimiento = empresa.fechaVencimiento
-  OldEmpresa.estado = empresa.estado
-  OldEmpresa.cuit = empresa.cuit
+  oldEmpresa.nombre = empresa.nombre
+  oldEmpresa.codigopago = empresa.codigopago
+  oldEmpresa.importe = empresa.importe
+  oldEmpresa.mes = empresa.mes
+  oldEmpresa.fechaVencimiento = empresa.fechaVencimiento
+  oldEmpresa.estado = empresa.estado
+  oldEmpresa.cuit = empresa.cuit
 
   try {
 

@@ -43,7 +43,6 @@ exports.getUsersByMail = async function (req, res, next) {
 
 exports.createUser = async function (req, res, next) {
   // Req.Body contains the form submit values.
-  console.log("llegue al controller", req.body);
   var User = {
     nombre: req.body.nombre,
     apellido: req.body.apellido,
@@ -199,7 +198,6 @@ exports.removeUser = async function (req, res, next) {
 
 exports.loginUser = async function (req, res, next) {
   // Req.Body contains the form submit values.
-  console.log("body", req.body);
   var User = {
     usuario: req.body.usuario,
     password: req.body.password,
@@ -218,7 +216,6 @@ exports.loginUser = async function (req, res, next) {
 
 exports.loginUserATM = async function (req, res, next) {
   // Req.Body contains the form submit values.
-  console.log("body", req.body);
   var User = {
     dni: req.body.dni,
     password: req.body.password,
