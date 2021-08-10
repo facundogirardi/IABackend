@@ -23,6 +23,10 @@
         {
             "name": "Usuarios",
             "description": "Endpoints para manejo de usuarios"
+        },
+        {
+            "name": "Empresas",
+            "description": "Endpoints para manejo de empresas"
         }
     ],
     "consumes": [
@@ -197,7 +201,7 @@
                       "type": "string"
                     }],
                 "requestBody": {
-                    "description": "El campo Usuario el indice de busqueda",
+                    "description": "El campo CBU el indice de busqueda",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -301,13 +305,199 @@
                     }
                 }
             }
+        },
+        "/getusers/{cbu}": {
+            "post": {
+                "summary": "Obtengo usuario especifico",
+                "tags": [
+                    "Usuarios"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                      },
+                    {     
+                        "name": "cbu",
+                        "in": "path",
+                        "required": true,
+                        "description": "CBU del usuario que quiero obtener",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario obtenido correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "201": {
+                        "description": "Error al querer obtener el usuario"
+                    }
+                }
+            }
+        },
+"/altaempresa": {
+            "post": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Generacion de empresas nuevas",
+                "parameters": [
+                    {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "type": "string"
+                    }],
+                "requestBody": {
+                    "description": "Registro de empresas nuevas",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Empresa"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Usuario generado correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Error al querer generar el usuario"
+                    }
+                }
+            }
+        },
+        "/getempresas": {
+            "get": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Obtencion de empresas",
+                "description": "Recupero todos los usuarios, utiliza token de seguridad",
+                "parameters": [
+                    {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "type": "string"
+                    }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Empresas obtenidas correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Error al querer obtener las empresas"
+                    }
+                }
+            }
+        },
+        "/updateEmpresa": {
+            "put": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Actualizacion de empresas",
+                "parameters": [
+                    {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "type": "string"
+                    }],
+                "requestBody": {
+                    "description": "El campo nombre el indice de busqueda",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Empresaupdate"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario actualizado correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Error al querer actualizar el usuario"
+                    }
+                }
+            }
+        },
+        "/empresaid/{id}": {
+            "post": {
+                "summary": "Obtengo usuario especifico",
+                "tags": [
+                    "Empresas"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                      },
+                    {     
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la empresa que quiero obtener",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Empresa obtenida correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "201": {
+                        "description": "Error al querer obtener la empresa"
+                    }
+                }
+            }
         }
     },
+    
     "definitions": {
         "id": {
             "properties": {
                 "uuid": {
                     "type": "string"
+                }
+            }
+        },
+        "cbu": {
+            "properties": {
+                "uuid": {
+                    "type": "integer"
                 }
             }
         },
@@ -454,6 +644,58 @@
                     "type": "string"
                 },
                 "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Empresa": {
+            "type": "object",
+            "properties": {
+                "nombre": {
+                    "type": "string"
+                },
+                "codigopago": {
+                    "type": "string"
+                },
+                "importe": {
+                    "type": "integer"
+                },
+                "mes": {
+                    "type": "integer"
+                },
+                "fechavencimiento": {
+                    "type": "integer"
+                },
+                "estado": {
+                    "type": "string"
+                },
+                "cuit": {
+                    "type": "string"
+                }   
+            }
+        },
+        "Empresaupdate": {
+            "type": "object",
+            "properties": {
+                "nombre": {
+                    "type": "string"
+                },
+                "codigopago": {
+                    "type": "string"
+                },
+                "importe": {
+                    "type": "integer"
+                },
+                "mes": {
+                    "type": "integer"
+                },
+                "fechavencimiento": {
+                    "type": "integer"
+                },
+                "estado": {
+                    "type": "string"
+                },
+                "cuit": {
                     "type": "string"
                 }
             }

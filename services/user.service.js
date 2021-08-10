@@ -86,12 +86,13 @@ exports.createUser = async function (user) {
 };
 
 exports.updateUser = async function (user) {
-  var id = { usuario: user.usuario };
+  var id = { cbu: user.cbu };
   console.log("ID : ", id);
 
   try {
     //Find the old User Object by the Id
     var oldUser = await User.findOne(id);
+    console.log(oldUser)
   } catch (e) {
     throw Error("Error occured while Finding the User");
   }
@@ -102,37 +103,38 @@ exports.updateUser = async function (user) {
   }
   //Edit the User Object
   var hashedPassword = bcrypt.hashSync(user.password, 8);
-  oldUser.nombre = user.nombre;
-  oldUser.apellido = user.apellido;
-  oldUser.email = user.email;
-  oldUser.dni = user.dni;
-  oldUser.usuariotipo = user.usuariotipo;
-  oldUser.usuario = user.usuario;
-  oldUser.password = hashedPassword;
-  oldUser.tipodni = user.tipodni;
-  oldUser.estadocuenta = user.estadocuenta;
-  oldUser.empresa = user.empresa;
-  oldUser.nacimiento = user.nacimiento;
-  oldUser.telefono = user.telefono;
-  oldUser.cuit = user.cuit;
-  oldUser.calle = user.calle;
-  oldUser.altura = user.altura;
-  oldUser.cuidad = user.cuidad;
-  oldUser.piso = user.piso;
-  oldUser.cbu = user.cbu;
-  oldUser.nrocuenta = user.nrocuenta;
-  oldUser.numerocajacc = user.numerocajacc;
-  oldUser.balancecc = user.balancecc;
-  oldUser.numerocajaca = user.numerocajaca;
-  oldUser.balanceca = user.balanceca;
-  oldUser.nnumerocajadls = user.numerocajadls;
-  oldUser.balancedls = user.balancedls;
-  oldUser.numerocajaeu = user.numerocajaeu;
-  oldUser.flageuro = user.flageuro;
-  oldUser.flagdolar = user.flagdolar;
-  oldUser.balanceeu = user.balanceeu;
-  
+  oldUser.nombre = user.nombre
+  oldUser.apellido = user.apellido
+  oldUser.email = user.email
+  oldUser.dni = user.dni
+  oldUser.usuariotipo = user.usuariotipo
+  oldUser.usuario = user.usuario
+  oldUser.password = hashedPassword
+  oldUser.tipodni = user.tipodni
+  oldUser.estadocuenta = user.estadocuenta
+  oldUser.empresa = user.empresa
+  oldUser.nacimiento = user.nacimiento
+  oldUser.telefono = user.telefono
+  oldUser.cuit = user.cuit
+  oldUser.calle = user.calle
+  oldUser.altura = user.altura
+  oldUser.cuidad = user.cuidad
+  oldUser.piso = user.piso
+  oldUser.cbu = user.cbu
+  oldUser.nrocuenta = user.nrocuenta
+  oldUser.numerocajacc = user.numerocajacc
+  oldUser.balancecc = user.balancecc
+  oldUser.numerocajaca = user.numerocajaca
+  oldUser.balanceca = user.balanceca
+  oldUser.numerocajadls = user.numerocajadls
+  oldUser.balancedls = user.balancedls
+  oldUser.numerocajaeu = user.numerocajaeu
+  oldUser.flageuro = user.flageuro
+  oldUser.flagdolar = user.flagdolar
+  oldUser.balanceeu = user.balanceeu
+
   try {
+
     var savedUser = await oldUser.save();
     return savedUser;
   } catch (e) {
@@ -154,6 +156,23 @@ exports.getUsuarioID = async function (query, page, limit) {
   } catch (e) {
       console.log("error servicio", e)
       throw Error('Error en el paginado de las Usuario por ID');
+  }
+}
+
+// Recupero Usuario por CBU
+exports.getUsuarioCBU = async function (query, page, limit) {
+  var options = {
+      page,
+      limit
+  }
+
+  try {
+      var Users = await User.paginate(query, options)
+      return Users;
+
+  } catch (e) {
+      console.log("error servicio", e)
+      throw Error('Error en el paginado de las Usuario por CBU');
   }
 }
 

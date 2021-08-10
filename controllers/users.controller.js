@@ -21,6 +21,7 @@ exports.getUsers = async function (req, res, next) {
     return res.status(400).json({ status: 400, message: "Error al querer obtener los usuarios"});
   }
 };
+
 exports.getUsersByMail = async function (req, res, next) {
   // Check the existence of the query parameters, If doesn't exists assign a default value
   var page = req.query.page ? req.query.page : 1;
@@ -113,10 +114,33 @@ exports.getUsuarioID = async function (req, res, next) {
   }
 } 
 
+// Traigo Usuario por CBU
+exports.getUsuarioCBU = async function (req, res, next) {
+
+  var page = req.query.page ? req.query.page : 1
+  var limit = req.query.limit ? req.query.limit : 1000;
+
+  var filtro = {
+      cbu: req.params.cbu
+  }
+  try {
+      var Users = await UserService.getUsers(filtro, page, limit)
+
+      if (Users.total === 0)
+          return res.status(201).json({ status: 201, data: Users, message: "Error al querer obtener el usuario" });
+      else
+          return res.status(200).json({ status: 200, data: Users, message: "Usuario obtenido correctamente" });
+  } catch (e) {
+
+      console.log(e)
+      return res.status(400).json({ status: 400, message: e.message });
+  }
+} 
+
 exports.updateUser = async function (req, res, next) {
   // Id is necessary for the update
-  if (!req.body.nombre) {
-    return res.status(400).json({ status: 400, message: "Name be present" });
+  if (!req.body.cbu) {
+    return res.status(400).json({ status: 400, message: "CBU debe estar presente" });
   }
 
   var User = {
@@ -141,14 +165,14 @@ exports.updateUser = async function (req, res, next) {
     nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
     numerocajacc : req.body.numerocajacc ? req.body.numerocajacc : null,
     balancecc : req.body.balancecc ? req.body.balancecc : null,
-    numerocajaca : req.body.nnumerocajaca ? req.body.numerocajaca : null,
+    numerocajaca : req.body.numerocajaca ? req.body.numerocajaca : null,
     balanceca : req.body.balanceca ? req.body.balanceca : null,
     numerocajadls : req.body.numerocajadls ? req.body.numerocajadls : null,
     balancedls : req.body.balancedls ? req.body.balancedls : null,
     numerocajaeu : req.body.numerocajaeu ? req.body.numerocajaeu : null,
     balanceeu : req.body.balanceeu ? req.body.balanceeu : null,
     flagdolar : req.body.flagdolar ? req.body.flagdolar : null,
-    flageuro : req.body.flageuro ? req.body.flageuro : null,
+    flageuro : req.body.flageuro ? req.body.flageuro : null
 
   };
   try {
