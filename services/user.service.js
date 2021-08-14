@@ -3,6 +3,7 @@ var User = require("../models/User.model");
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 const random = require("random");
+var randomWords = require("random-words");
 
 // Saving the context of this module inside the _the variable
 _this = this;
@@ -14,6 +15,7 @@ exports.getUsers = async function (query, page, limit) {
     page,
     limit,
   };
+
   // Try Catch the awaited promise to handle the error
   try {
     var Users = await User.paginate(query, options);
@@ -26,10 +28,60 @@ exports.getUsers = async function (query, page, limit) {
   }
 };
 
+// Async function to get the User List
+exports.updateUsersMantenimiento = async function (query, page, limit) {
+  // Options setup for the mongoose paginate
+  var options = {
+    page,
+    limit,
+  };
+
+  // Try Catch the awaited promise to handle the error
+  try {
+    var Users = await User.paginate(query, options);
+
+     // Actualizo Euro  
+    var balanceeu = await User.updateMany(
+      { flageuro: 1 },
+      {
+        $set: {
+          balanceeu: 1111,
+        },
+      }
+    );
+    
+    // Actualizo Dolar  
+    var balancedls = await User.updateMany(
+      { flagdolar: 1 },
+      {
+        $set: {
+          balancedls: 2222,
+        },
+      }
+    );
+    // Actualizo CA  
+    var balanceca = await User.updateMany(
+      {},
+      {
+        $set: {
+          balanceca: 3333,
+        },
+      }
+    );
+
+    // fin prueba
+    // Return the Userd list that was retured by the mongoose promise
+    return Users;
+  } catch (e) {
+    // return a Error message describing the reason
+    console.log("error services", e);
+    throw Error("Error while Paginating Users");
+  }
+};
+
 exports.createUser = async function (user) {
   // Creating a new Mongoose Object by using the new keyword
   var hashedPassword = bcrypt.hashSync(user.password, 8);
-
   var newUser = new User({
     nombre: user.nombre,
     apellido: user.apellido,
@@ -40,7 +92,7 @@ exports.createUser = async function (user) {
     usuariotipo: user.usuariotipo,
     password: hashedPassword,
     tipodni: user.tipodni,
-    estadocuenta: user.estadocuenta,
+    estadocuenta: 2, // cuenta no activa
     empresa: user.empresa,
     nacimiento: user.nacimiento,
     telefono: user.telefono,
@@ -49,7 +101,11 @@ exports.createUser = async function (user) {
     altura: user.altura,
     cuidad: user.cuidad,
     piso: user.piso,
-    cbu: random.int((min = 0), (max = 9999999999)),
+    alias: randomWords({ exactly: 3, join: "." }),
+    cbu: random.int(
+      (min = 1111111111111111111111),
+      (max = 99999999999999999999)
+    ),
     nrocuenta: random.int((min = 0), (max = 9999999999)),
     numerocajacc: random.int((min = 0), (max = 9999999999)),
     balancecc: 0,
@@ -58,11 +114,10 @@ exports.createUser = async function (user) {
     numerocajadls: random.int((min = 0), (max = 9999999999)),
     balancedls: 0,
     numerocajaeu: random.int((min = 0), (max = 9999999999)),
-    flageuro: user.flageuro,
-    flagdolar: user.flagdolar,
+    flageuro: 2, // Sin cuenta euro
+    flagdolar: 2, // Sin cuenta euro
     balanceeu: 0,
   });
-
   try {
     // Saving the User
     var savedUser = await newUser.save();
@@ -84,6 +139,114 @@ exports.createUser = async function (user) {
 };
 
 exports.updateUser = async function (user) {
+  var id = { usuario: user.usuario };
+
+  try {
+    //Find the old User Object by the Id
+    var oldUser = await User.findOne(id);
+  } catch (e) {
+    throw Error("Error occured while Finding the User");
+  }
+  // If no old User Object exists return false
+  if (!oldUser) {
+    return false;
+  }
+
+  //Edit the User Object
+  var hashedPassword = bcrypt.hashSync(user.password, 8);
+  oldUser.nombre = user.nombre;
+  oldUser.apellido = user.apellido;
+  oldUser.email = user.email;
+  oldUser.dni = user.dni;
+  oldUser.usuariotipo = user.usuariotipo;
+  oldUser.usuario = user.usuario;
+  oldUser.password = hashedPassword;
+  oldUser.tipodni = user.tipodni;
+  oldUser.estadocuenta = user.estadocuenta;
+  oldUser.empresa = user.empresa;
+  oldUser.nacimiento = user.nacimiento;
+  oldUser.telefono = user.telefono;
+  oldUser.cuit = user.cuit;
+  oldUser.calle = user.calle;
+  oldUser.altura = user.altura;
+  oldUser.cuidad = user.cuidad;
+  oldUser.piso = user.piso;
+  oldUser.cbu = user.cbu;
+  oldUser.nrocuenta = user.nrocuenta;
+  oldUser.numerocajacc = user.numerocajacc;
+  oldUser.balancecc = user.balancecc;
+  oldUser.numerocajaca = user.numerocajaca;
+  oldUser.balanceca = user.balanceca;
+  oldUser.numerocajadls = user.numerocajadls;
+  oldUser.balancedls = user.balancedls;
+  oldUser.numerocajaeu = user.numerocajaeu;
+  oldUser.flageuro = user.flageuro;
+  oldUser.flagdolar = user.flagdolar;
+  oldUser.balanceeu = user.balanceeu;
+
+  try {
+    var savedUser = await oldUser.save();
+    return savedUser;
+  } catch (e) {
+    throw Error("And Error occured while updating the User");
+  }
+};
+
+exports.updateUserALIAS = async function (user) {
+  var id = { alias: user.alias };
+
+  try {
+    //Find the old User Object by the Id
+    var oldUser = await User.findOne(id);
+  } catch (e) {
+    throw Error("Error occured while Finding the User");
+  }
+  // If no old User Object exists return false
+  if (!oldUser) {
+    return false;
+  }
+
+  //Edit the User Object
+  var hashedPassword = bcrypt.hashSync(user.password, 8);
+  oldUser.nombre = user.nombre;
+  oldUser.apellido = user.apellido;
+  oldUser.email = user.email;
+  oldUser.dni = user.dni;
+  oldUser.usuariotipo = user.usuariotipo;
+  oldUser.usuario = user.usuario;
+  oldUser.password = hashedPassword;
+  oldUser.tipodni = user.tipodni;
+  oldUser.estadocuenta = user.estadocuenta;
+  oldUser.empresa = user.empresa;
+  oldUser.nacimiento = user.nacimiento;
+  oldUser.telefono = user.telefono;
+  oldUser.cuit = user.cuit;
+  oldUser.calle = user.calle;
+  oldUser.altura = user.altura;
+  oldUser.cuidad = user.cuidad;
+  oldUser.piso = user.piso;
+  oldUser.cbu = user.cbu;
+  oldUser.nrocuenta = user.nrocuenta;
+  oldUser.numerocajacc = user.numerocajacc;
+  oldUser.balancecc = user.balancecc;
+  oldUser.numerocajaca = user.numerocajaca;
+  oldUser.balanceca = user.balanceca;
+  oldUser.numerocajadls = user.numerocajadls;
+  oldUser.balancedls = user.balancedls;
+  oldUser.numerocajaeu = user.numerocajaeu;
+  oldUser.flageuro = user.flageuro;
+  oldUser.flagdolar = user.flagdolar;
+  oldUser.balanceeu = user.balanceeu;
+
+  try {
+    var savedUser = await oldUser.save();
+    return savedUser;
+  } catch (e) {
+    throw Error("And Error occured while updating the User");
+  }
+};
+
+exports.updateUserCBU = async function (user) {
   var id = { cbu: user.cbu };
 
   try {
@@ -127,7 +290,7 @@ exports.updateUser = async function (user) {
   oldUser.numerocajaeu = user.numerocajaeu;
   oldUser.flageuro = user.flageuro;
   oldUser.flagdolar = user.flagdolar;
-  oldUser.balanceeu = user.balanceeu
+  oldUser.balanceeu = user.balanceeu;
 
   try {
     var savedUser = await oldUser.save();
@@ -215,7 +378,7 @@ exports.loginUserATM = async function (user) {
   try {
     // Find the User
     var _details = await User.findOne({
-      dni: user.dni,
+      cuit: user.cuit,
     });
     var passwordIsValid = bcrypt.compareSync(user.password, _details.password);
     if (!passwordIsValid) throw Error("Invalid username/password");
