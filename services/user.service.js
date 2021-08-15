@@ -28,54 +28,58 @@ exports.getUsers = async function (query, page, limit) {
   }
 };
 
-// Async function to get the User List
-exports.updateUsersMantenimiento = async function (query, page, limit) {
-  // Options setup for the mongoose paginate
-  var options = {
-    page,
-    limit,
-  };
+exports.updateMantenimiento = async function (user) {
+  var id = { usuario: user.usuario };
 
-  // Try Catch the awaited promise to handle the error
   try {
-    var Users = await User.paginate(query, options);
-
-     // Actualizo Euro  
-    var balanceeu = await User.updateMany(
-      { flageuro: 1 },
-      {
-        $set: {
-          balanceeu: 1111,
-        },
-      }
-    );
-    
-    // Actualizo Dolar  
-    var balancedls = await User.updateMany(
-      { flagdolar: 1 },
-      {
-        $set: {
-          balancedls: 2222,
-        },
-      }
-    );
-    // Actualizo CA  
-    var balanceca = await User.updateMany(
-      {},
-      {
-        $set: {
-          balanceca: 3333,
-        },
-      }
-    );
-
-    // fin prueba
-    // Return the Userd list that was retured by the mongoose promise
-    return Users;
+    //Find the old User Object by the Id
+    var oldUser = await User.findOne(id);
   } catch (e) {
-    // return a Error message describing the reason
-    console.log("error services", e);
-    throw Error("Error while Paginating Users");
+    throw Error("Error occured while Finding the User");
+  }
+  // If no old User Object exists return false
+  if (!oldUser) {
+    return false;
+  }
+  console.log("usuario", oldUser)
+  //Edit the User Object
+  var hashedPassword = bcrypt.hashSync(user.password, 8);
+  oldUser.nombre = user.nombre;
+  oldUser.apellido = user.apellido;
+  oldUser.email = user.email;
+  oldUser.dni = user.dni;
+  oldUser.usuariotipo = user.usuariotipo;
+  oldUser.usuario = user.usuario;
+  oldUser.password = hashedPassword;
+  oldUser.tipodni = user.tipodni;
+  oldUser.estadocuenta = user.estadocuenta;
+  oldUser.empresa = user.empresa;
+  oldUser.nacimiento = user.nacimiento;
+  oldUser.telefono = user.telefono;
+  oldUser.cuit = user.cuit;
+  oldUser.calle = user.calle;
+  oldUser.altura = user.altura;
+  oldUser.cuidad = user.cuidad;
+  oldUser.piso = user.piso;
+  oldUser.cbu = user.cbu;
+  oldUser.nrocuenta = user.nrocuenta;
+  oldUser.numerocajacc = user.numerocajacc;
+  oldUser.balancecc = user.balancecc;
+  oldUser.numerocajaca = user.numerocajaca;
+  oldUser.balanceca = user.balanceca;
+  oldUser.numerocajadls = user.numerocajadls;
+  oldUser.balancedls = user.balancedls;
+  oldUser.numerocajaeu = user.numerocajaeu;
+  oldUser.flageuro = user.flageuro;
+  oldUser.flagdolar = user.flagdolar;
+  oldUser.balanceeu = user.balanceeu;
+  oldUser.alias = user.alias;
+
+  try {
+    var savedUser = await oldUser.save();
+    return savedUser;
+  } catch (e) {
+    throw Error("And Error occured while updating the User");
   }
 };
 
@@ -183,6 +187,7 @@ exports.updateUser = async function (user) {
   oldUser.flageuro = user.flageuro;
   oldUser.flagdolar = user.flagdolar;
   oldUser.balanceeu = user.balanceeu;
+  oldUser.alias = user.alias;
 
   try {
     var savedUser = await oldUser.save();

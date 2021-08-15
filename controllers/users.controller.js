@@ -21,25 +21,57 @@ exports.getUsers = async function (req, res, next) {
     return res.status(400).json({ status: 400, message: "Error al querer obtener los usuarios"});
   }
 };
+exports.updateMantenimiento = async function (req, res, next) {
+  // Id is necessary for the update
+  if (!req.body.usuario) {
+    return res.status(400).json({ status: 400, message: "CBU debe estar presente" });
+  }
 
-// Async Controller function to get the To do List
-exports.updateUsersMantenimiento = async function (req, res, next) {
-  // Check the existence of the query parameters, If doesn't exists assign a default value
-  var page = req.query.page ? req.query.page : 1;
-  var limit = req.query.limit ? req.query.limit : 10;
+  var User = {
+    nombre: req.body.nombre ? req.body.nombre : null,
+    apellido: req.body.apellido ? req.body.apellido : null,
+    email: req.body.email ? req.body.email : null,
+    usuario: req.body.usuario ? req.body.usuario : null,
+    dni: req.body.dni ? req.body.dni : null,
+    password: req.body.password ? req.body.password : null,
+    usuariotipo: req.body.usuariotipo ? req.body.usuariotipo : null,
+    tipodni: req.body.tipodni ? req.body.tipodni : null,
+    estadocuenta: req.body.estadocuenta ? req.body.estadocuenta : null,
+    empresa: req.body.empresa ? req.body.empresa : null,
+    nacimiento: req.body.nacimiento ? req.body.nacimiento : null,
+    telefono: req.body.telefono ? req.body.telefono : null,
+    cuit: req.body.cuit ? req.body.cuit : null,
+    calle: req.body.calle ? req.body.calle : null,
+    altura: req.body.altura ? req.body.altura : null,
+    cuidad: req.body.cuidad ? req.body.cuidad : null,
+    piso: req.body.piso ? req.body.piso : null,
+    cbu: req.body.cbu ? req.body.cbu : null,
+    nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
+    numerocajacc : req.body.numerocajacc ? req.body.numerocajacc : null,
+    balancecc : req.body.balancecc ? req.body.balancecc : null,
+    numerocajaca : req.body.numerocajaca ? req.body.numerocajaca : null,
+    balanceca : req.body.balanceca ? req.body.balanceca : null,
+    numerocajadls : req.body.numerocajadls ? req.body.numerocajadls : null,
+    balancedls : req.body.balancedls ? req.body.balancedls : null,
+    numerocajaeu : req.body.numerocajaeu ? req.body.numerocajaeu : null,
+    balanceeu : req.body.balanceeu ? req.body.balanceeu : null,
+    flagdolar : req.body.flagdolar ? req.body.flagdolar : null,
+    flageuro : req.body.flageuro ? req.body.flageuro : null,
+    alias : req.body.alias ? req.body.alias : null
+
+  };
   try {
-    var Users = await UserService.updateUsersMantenimiento({}, page, limit);
-    // Return the Users list with the appropriate HTTP password Code and Message.
+    var updatedUser = await UserService.updateMantenimiento(User);
     return res.status(200).json({
       status: 200,
-      data: Users,
-      message: "Usuarios obtenidos correctamente",
+      data: updatedUser,
+      message: "Cuentas actualizadas correctamente",
     });
   } catch (e) {
-    //Return an Error Response Message with Code and the Error Message.
-    return res.status(400).json({ status: 400, message: "Error al querer obtener los usuarios"});
+    return res.status(400).json({ status: 400, message: "Error al querer actualizar las cuentas"  });
   }
 };
+
 
 exports.getUsersByMail = async function (req, res, next) {
   // Check the existence of the query parameters, If doesn't exists assign a default value
@@ -291,7 +323,8 @@ exports.updateUserALIAS = async function (req, res, next) {
     numerocajaeu : req.body.numerocajaeu ? req.body.numerocajaeu : null,
     balanceeu : req.body.balanceeu ? req.body.balanceeu : null,
     flagdolar : req.body.flagdolar ? req.body.flagdolar : null,
-    flageuro : req.body.flageuro ? req.body.flageuro : null
+    flageuro : req.body.flageuro ? req.body.flageuro : null,
+    alias : req.body.alias ? req.body.alias : null
 
   };
   try {
