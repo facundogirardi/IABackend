@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
     "version": "v1.0.0",
     "title": "Swagger para API Banco",
@@ -27,6 +27,10 @@
     {
       "name": "Empresas",
       "description": "Endpoints para manejo de empresas"
+    },
+    {
+      "name": "Movimientos",
+      "description": "Endpoints para manejo de movimientos"
     }
   ],
   "consumes": ["application/json"],
@@ -523,115 +527,108 @@
       }
     },
     "/registromovimiento": {
-        "post": {
-          "tags": ["Movimientos"],
-          "summary": "Generacion de movimientos nuevos",
-          "parameters": [
-            {
-              "name": "x-access-token",
-              "in": "header",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "requestBody": {
-            "description": "Registro de movimientos nuevos",
+      "post": {
+        "tags": ["Movimientos"],
+        "summary": "Generacion de movimientos nuevos",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
             "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/Movimiento"
-                }
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "Registro de movimientos nuevos",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Movimiento"
               }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Movimiento generado correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
             }
           },
-          "produces": ["application/json"],
-          "responses": {
-            "201": {
-              "description": "Movimiento generado correctamente",
-              "schema": {
-                "$ref": "#/definitions/id"
-              }
-            },
-            "400": {
-              "description": "Error al querer generar el movimiento"
-            }
-          }
-        }
-      },
-      "/getmovimientos": {
-        "get": {
-          "tags": ["Movimientos"],
-          "summary": "Obtencion de movimientos",
-          "description": "Recupero todos los movimientos, utiliza token de seguridad",
-          "parameters": [
-            {
-              "name": "x-access-token",
-              "in": "header",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "produces": ["application/json"],
-          "responses": {
-            "200": {
-              "description": "Movimientos obtenidas correctamente",
-              "schema": {
-                "$ref": "#/definitions/id"
-              }
-            },
-            "400": {
-              "description": "Error al querer obtener los movimientos"
-            }
-          }
-        }
-      },
-      "/movimientoid/{id}": {
-        "post": {
-          "summary": "Obtengo movimiento especifico",
-          "tags": ["Movimientos"],
-          "parameters": [
-            {
-              "name": "x-access-token",
-              "in": "header",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "description": "ID del movimiento que quiero obtener",
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Movimiento obtenido correctamente",
-              "schema": {
-                "$ref": "#/definitions/id"
-              }
-            },
-            "201": {
-              "description": "Error al querer obtener el movimiento"
-            }
+          "400": {
+            "description": "Error al querer generar el movimiento"
           }
         }
       }
+    },
+    "/getmovimientos": {
+      "get": {
+        "tags": ["Movimientos"],
+        "summary": "Obtencion de movimientos",
+        "description": "Recupero todos los movimientos, utiliza token de seguridad",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Movimientos obtenidas correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener los movimientos"
+          }
+        }
+      }
+    },
+    "/movimientoid/{id}": {
+      "post": {
+        "summary": "Obtengo movimiento especifico",
+        "tags": ["Movimientos"],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID del movimiento que quiero obtener",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movimiento obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "201": {
+            "description": "Error al querer obtener el movimiento"
+          }
+        }
+      }
+    }
   },
 
   "definitions": {
     "id": {
       "properties": {
-        "uuid": {
+        "id": {
           "type": "string"
-        }
-      }
-    },
-    "cbu": {
-      "properties": {
-        "uuid": {
-          "type": "integer"
         }
       }
     },
@@ -774,16 +771,16 @@
       }
     },
     "Movimiento": {
-        "type": "object",
-        "properties": {
-          "tipomovimiento": {
-            "type": "string"
-          },
-          "importe": {
-            "type": "integer"
-          }
+      "type": "object",
+      "properties": {
+        "tipomovimiento": {
+          "type": "string"
+        },
+        "importe": {
+          "type": "integer"
         }
-      },
+      }
+    },
     "Empresa": {
       "type": "object",
       "properties": {
