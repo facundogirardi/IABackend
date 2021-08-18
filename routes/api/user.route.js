@@ -27,6 +27,8 @@ router.post('/getusers/:cbu', Authorization, UserController.getUsuarioCBU)
 router.post('/registromovimiento',Authorization, MovimientoController.createMovimiento)
 router.get('/getmovimientos',Authorization, MovimientoController.getMovimientos)
 router.post('/movimientoid/:id', Authorization, MovimientoController.getMovimientoID)
+router.post('/getMovimientoUsuario/:usuario', Authorization, MovimientoController.getMovimientoUsuario)
+
 
 router.post('/sendMail', Authorization, MailController.sendEmail)
 

@@ -65,3 +65,26 @@ exports.getMovimientoID = async function (req, res, next) {
       return res.status(400).json({ status: 400, message: e.message });
   }
 } 
+
+// Traigo Usuario por Usuario
+exports.getMovimientoUsuario = async function (req, res, next) {
+
+  var page = req.query.page ? req.query.page : 1
+  var limit = req.query.limit ? req.query.limit : 1000;
+
+  var filtro = {
+      usuario: req.params.usuario
+  }
+  try {
+      var Movimientos = await MovimientoService.getMovimientos(filtro, page, limit)
+
+      if (Movimientos.total === 0)
+          return res.status(201).json({ status: 201, data: Movimientos, message: "Error al querer obtener el movimiento" });
+      else
+          return res.status(200).json({ status: 200, data: Movimientos, message: "Movimiento obtenido correctamente" });
+  } catch (e) {
+
+      console.log(e)
+      return res.status(400).json({ status: 400, message: e.message });
+  }
+} 

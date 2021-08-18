@@ -70,3 +70,19 @@ exports.getMovimientoID = async function (query, page, limit) {
     throw Error("Error en el paginado de las Movimiento por ID");
   }
 };
+
+// Recupero Movimiento por Usuario
+exports.getMovimientoUsuario = async function (query, page, limit) {
+  var options = {
+    page,
+    limit,
+  };
+
+  try {
+    var Movimientos = await Movimientos.paginate(query, options);
+    return Movimientos;
+  } catch (e) {
+    console.log("error servicio", e);
+    throw Error("Error en el paginado de las Movimiento por Usuario");
+  }
+};

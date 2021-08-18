@@ -331,7 +331,7 @@
     },
     "/userid/{id}": {
       "post": {
-        "summary": "Obtengo usuario especifico",
+        "summary": "Obtengo usuario especifico por ID",
         "tags": ["Usuarios"],
         "parameters": [
           {
@@ -363,7 +363,7 @@
     },
     "/getusers/{cbu}": {
       "post": {
-        "summary": "Obtengo usuario especifico",
+        "summary": "Obtengo usuario especifico por CBU",
         "tags": ["Usuarios"],
         "parameters": [
           {
@@ -621,8 +621,41 @@
           }
         }
       }
+    },
+    "/getMovimientoUsuario/{usuario}": {
+      "post": {
+        "summary": "Obtengo movimiento especifico por Usuario",
+        "tags": ["Movimientos"],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "usuario",
+            "in": "path",
+            "required": true,
+            "description": "Usuario del movimiento que quiero obtener",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movimiento obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "201": {
+            "description": "Error al querer obtener el movimiento"
+          }
+        }
+      }
     }
   },
+  
 
   "definitions": {
     "id": {
@@ -778,6 +811,9 @@
         },
         "importe": {
           "type": "integer"
+        },
+        "usuario": {
+          "type": "string"
         }
       }
     },
