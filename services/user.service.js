@@ -119,7 +119,7 @@ exports.createUser = async function (user) {
     balancedls: 0,
     numerocajaeu: random.int((min = 0), (max = 9999999999)),
     flageuro: 2, // Sin cuenta euro
-    flagdolar: 2, // Sin cuenta euro
+    flagdolar: 2, // Sin cuenta dolar
     balanceeu: 0,
   });
   try {

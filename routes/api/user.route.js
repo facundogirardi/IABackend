@@ -11,31 +11,31 @@ var Authorization = require('../../auth/authorization');
 router.get('/test', function(req, res, next) {
     res.send('Llegaste a la ruta de api/user.routes');
   });
-router.post('/registration',Authorization, UserController.createUser)
-router.post('/login/',Authorization, UserController.loginUser)
-router.post('/loginATM/',Authorization, UserController.loginUserATM)
-router.get('/getusers',Authorization, UserController.getUsers)
-router.put('/updateMantenimiento',Authorization, UserController.updateMantenimiento)
-router.post('/userByMail', Authorization, UserController.getUsersByMail)
-router.put('/updateusers', Authorization, UserController.updateUser)
-router.put('/updateuseralias', Authorization, UserController.updateUserALIAS)
-router.put('/updateusercbu', Authorization, UserController.updateUserCBU)
-router.post('/userid/:id', Authorization, UserController.getUsuarioID)
-router.delete('/delete/:id', Authorization, UserController.removeUser)
-router.post('/getusers/:cbu', Authorization, UserController.getUsuarioCBU)
+router.post('/registration', UserController.createUser)
+router.post('/login/', UserController.loginUser)
+router.post('/loginATM/', UserController.loginUserATM)
+router.get('/getusers', UserController.getUsers)
+router.put('/updateMantenimiento', UserController.updateMantenimiento)
+router.post('/userByMail',  UserController.getUsersByMail)
+router.put('/updateusers',  UserController.updateUser)
+router.put('/updateuseralias',  UserController.updateUserALIAS)
+router.put('/updateusercbu',  UserController.updateUserCBU)
+router.post('/userid/:id',  UserController.getUsuarioID)
+router.delete('/delete/:id',  UserController.removeUser)
+router.post('/getusers/:cbu',  UserController.getUsuarioCBU)
 
-router.post('/registromovimiento',Authorization, MovimientoController.createMovimiento)
-router.get('/getmovimientos',Authorization, MovimientoController.getMovimientos)
-router.post('/movimientoid/:id', Authorization, MovimientoController.getMovimientoID)
-router.post('/getMovimientoUsuario/:usuario', Authorization, MovimientoController.getMovimientoUsuario)
+router.post('/registromovimiento', MovimientoController.createMovimiento)
+router.get('/getmovimientos', MovimientoController.getMovimientos)
+router.post('/movimientoid/:id',  MovimientoController.getMovimientoID)
+router.post('/getMovimientoUsuario/:usuario',  MovimientoController.getMovimientoUsuario)
 
 
-router.post('/sendMail', Authorization, MailController.sendEmail)
+router.post('/sendMail',  MailController.sendEmail)
 
-router.post('/altaempresa',Authorization, EmpresaController.createEmpresa)
-router.get('/getempresas',Authorization, EmpresaController.getEmpresas)
-router.put('/updateEmpresa', Authorization, EmpresaController.updateEmpresa)
-router.post('/empresaid/:id', Authorization, EmpresaController.getEmpresaID)
+router.post('/altaempresa', EmpresaController.createEmpresa)
+router.get('/getempresas', EmpresaController.getEmpresas)
+router.put('/updateEmpresa',  EmpresaController.updateEmpresa)
+router.post('/empresaid/:id',  EmpresaController.getEmpresaID)
 
 
 // Export the Router
