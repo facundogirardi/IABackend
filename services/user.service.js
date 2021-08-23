@@ -74,6 +74,9 @@ exports.updateMantenimiento = async function (user) {
   oldUser.flagdolar = user.flagdolar;
   oldUser.balanceeu = user.balanceeu;
   oldUser.alias = user.alias;
+  oldUser.provincia = user.provincia;
+  oldUser.pais = user.pais;
+  oldUser.depto = user.depto;
 
   try {
     var savedUser = await oldUser.save();
@@ -104,6 +107,9 @@ exports.createUser = async function (user) {
     calle: user.calle,
     altura: user.altura,
     cuidad: user.cuidad,
+    provincia: user.provincia,
+    pais: user.pais,
+    depto: user.depto,
     piso: user.piso,
     alias: randomWords({ exactly: 3, join: "." }),
     cbu: random.int(
@@ -188,7 +194,10 @@ exports.updateUser = async function (user) {
   oldUser.flagdolar = user.flagdolar;
   oldUser.balanceeu = user.balanceeu;
   oldUser.alias = user.alias;
-
+  oldUser.provincia = user.provincia;
+  oldUser.pais = user.pais;
+  oldUser.depto = user.depto;
+  
   try {
     var savedUser = await oldUser.save();
     return savedUser;
@@ -242,6 +251,10 @@ exports.updateUserALIAS = async function (user) {
   oldUser.flageuro = user.flageuro;
   oldUser.flagdolar = user.flagdolar;
   oldUser.balanceeu = user.balanceeu;
+  oldUser.provincia = user.provincia;
+  oldUser.pais = user.pais;
+  oldUser.depto = user.depto;
+  oldUser.alias = user.alias;
 
   try {
     var savedUser = await oldUser.save();
@@ -296,6 +309,10 @@ exports.updateUserCBU = async function (user) {
   oldUser.flageuro = user.flageuro;
   oldUser.flagdolar = user.flagdolar;
   oldUser.balanceeu = user.balanceeu;
+  oldUser.provincia = user.provincia;
+  oldUser.pais = user.pais;
+  oldUser.depto = user.depto;
+  oldUser.alias = user.alias;
 
   try {
     var savedUser = await oldUser.save();

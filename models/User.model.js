@@ -33,6 +33,9 @@ var UserSchema = new mongoose.Schema({
     numerocajaeu : Number,
     balanceeu : Number,
     flageuro : Number,
+    provincia : String,
+    pais : String,
+    depto : String,
     date: Date 
 
  

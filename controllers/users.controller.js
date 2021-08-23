@@ -18,13 +18,17 @@ exports.getUsers = async function (req, res, next) {
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
-    return res.status(400).json({ status: 400, message: "Error al querer obtener los usuarios"});
+    return res
+      .status(400)
+      .json({ status: 400, message: "Error al querer obtener los usuarios" });
   }
 };
 exports.updateMantenimiento = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.usuario) {
-    return res.status(400).json({ status: 400, message: "CBU debe estar presente" });
+    return res
+      .status(400)
+      .json({ status: 400, message: "CBU debe estar presente" });
   }
 
   var User = {
@@ -47,18 +51,20 @@ exports.updateMantenimiento = async function (req, res, next) {
     piso: req.body.piso ? req.body.piso : null,
     cbu: req.body.cbu ? req.body.cbu : null,
     nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
-    numerocajacc : req.body.numerocajacc ? req.body.numerocajacc : null,
-    balancecc : req.body.balancecc ? req.body.balancecc : null,
-    numerocajaca : req.body.numerocajaca ? req.body.numerocajaca : null,
-    balanceca : req.body.balanceca ? req.body.balanceca : null,
-    numerocajadls : req.body.numerocajadls ? req.body.numerocajadls : null,
-    balancedls : req.body.balancedls ? req.body.balancedls : null,
-    numerocajaeu : req.body.numerocajaeu ? req.body.numerocajaeu : null,
-    balanceeu : req.body.balanceeu ? req.body.balanceeu : null,
-    flagdolar : req.body.flagdolar ? req.body.flagdolar : null,
-    flageuro : req.body.flageuro ? req.body.flageuro : null,
-    alias : req.body.alias ? req.body.alias : null
-
+    numerocajacc: req.body.numerocajacc ? req.body.numerocajacc : null,
+    balancecc: req.body.balancecc ? req.body.balancecc : null,
+    numerocajaca: req.body.numerocajaca ? req.body.numerocajaca : null,
+    balanceca: req.body.balanceca ? req.body.balanceca : null,
+    numerocajadls: req.body.numerocajadls ? req.body.numerocajadls : null,
+    balancedls: req.body.balancedls ? req.body.balancedls : null,
+    numerocajaeu: req.body.numerocajaeu ? req.body.numerocajaeu : null,
+    balanceeu: req.body.balanceeu ? req.body.balanceeu : null,
+    flagdolar: req.body.flagdolar ? req.body.flagdolar : null,
+    flageuro: req.body.flageuro ? req.body.flageuro : null,
+    alias: req.body.alias ? req.body.alias : null,
+    provincia: req.body.provincia ? req.body.provincia : null,
+    pais: req.body.pais ? req.body.pais : null,
+    depto: req.body.depto ? req.body.depto : null,
   };
   try {
     var updatedUser = await UserService.updateMantenimiento(User);
@@ -68,10 +74,11 @@ exports.updateMantenimiento = async function (req, res, next) {
       message: "Cuentas actualizadas correctamente",
     });
   } catch (e) {
-    return res.status(400).json({ status: 400, message: "Error al querer actualizar las cuentas"  });
+    return res
+      .status(400)
+      .json({ status: 400, message: "Error al querer actualizar las cuentas" });
   }
 };
-
 
 exports.getUsersByMail = async function (req, res, next) {
   // Check the existence of the query parameters, If doesn't exists assign a default value
@@ -125,7 +132,9 @@ exports.createUser = async function (req, res, next) {
     balanceeu: req.body.balanceeu,
     flageuro: req.body.flageuro,
     flagdolar: req.body.flagdolar,
-
+    provincia: req.body.provincia,
+    pais: req.body.pais,
+    depto: req.body.depto,
   };
   try {
     // Calling the Service function with the new object from the Request Body
@@ -144,54 +153,76 @@ exports.createUser = async function (req, res, next) {
 
 // Traigo Usuario por ID
 exports.getUsuarioID = async function (req, res, next) {
-
-  var page = req.query.page ? req.query.page : 1
+  var page = req.query.page ? req.query.page : 1;
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
-      _id: req.params.id
-  }
+    _id: req.params.id,
+  };
   try {
-      var Users = await UserService.getUsers(filtro, page, limit)
+    var Users = await UserService.getUsers(filtro, page, limit);
 
-      if (Users.total === 0)
-          return res.status(201).json({ status: 201, data: Users, message: "Error al querer obtener el usuario" });
-      else
-          return res.status(200).json({ status: 200, data: Users, message: "Usuario obtenido correctamente" });
+    if (Users.total === 0)
+      return res
+        .status(201)
+        .json({
+          status: 201,
+          data: Users,
+          message: "Error al querer obtener el usuario",
+        });
+    else
+      return res
+        .status(200)
+        .json({
+          status: 200,
+          data: Users,
+          message: "Usuario obtenido correctamente",
+        });
   } catch (e) {
-
-      console.log(e)
-      return res.status(400).json({ status: 400, message: e.message });
+    console.log(e);
+    return res.status(400).json({ status: 400, message: e.message });
   }
-} 
+};
 
 // Traigo Usuario por CBU
 exports.getUsuarioCBU = async function (req, res, next) {
-
-  var page = req.query.page ? req.query.page : 1
+  var page = req.query.page ? req.query.page : 1;
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
-      cbu: req.params.cbu
-  }
+    cbu: req.params.cbu,
+  };
   try {
-      var Users = await UserService.getUsers(filtro, page, limit)
+    var Users = await UserService.getUsers(filtro, page, limit);
 
-      if (Users.total === 0)
-          return res.status(201).json({ status: 201, data: Users, message: "Error al querer obtener el usuario" });
-      else
-          return res.status(200).json({ status: 200, data: Users, message: "Usuario obtenido correctamente" });
+    if (Users.total === 0)
+      return res
+        .status(201)
+        .json({
+          status: 201,
+          data: Users,
+          message: "Error al querer obtener el usuario",
+        });
+    else
+      return res
+        .status(200)
+        .json({
+          status: 200,
+          data: Users,
+          message: "Usuario obtenido correctamente",
+        });
   } catch (e) {
-
-      console.log(e)
-      return res.status(400).json({ status: 400, message: e.message });
+    console.log(e);
+    return res.status(400).json({ status: 400, message: e.message });
   }
-} 
+};
 
 exports.updateUser = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.usuario) {
-    return res.status(400).json({ status: 400, message: "CBU debe estar presente" });
+    return res
+      .status(400)
+      .json({ status: 400, message: "CBU debe estar presente" });
   }
 
   var User = {
@@ -214,17 +245,20 @@ exports.updateUser = async function (req, res, next) {
     piso: req.body.piso ? req.body.piso : null,
     cbu: req.body.cbu ? req.body.cbu : null,
     nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
-    numerocajacc : req.body.numerocajacc ? req.body.numerocajacc : null,
-    balancecc : req.body.balancecc ? req.body.balancecc : null,
-    numerocajaca : req.body.numerocajaca ? req.body.numerocajaca : null,
-    balanceca : req.body.balanceca ? req.body.balanceca : null,
-    numerocajadls : req.body.numerocajadls ? req.body.numerocajadls : null,
-    balancedls : req.body.balancedls ? req.body.balancedls : null,
-    numerocajaeu : req.body.numerocajaeu ? req.body.numerocajaeu : null,
-    balanceeu : req.body.balanceeu ? req.body.balanceeu : null,
-    flagdolar : req.body.flagdolar ? req.body.flagdolar : null,
-    flageuro : req.body.flageuro ? req.body.flageuro : null
-
+    numerocajacc: req.body.numerocajacc ? req.body.numerocajacc : null,
+    balancecc: req.body.balancecc ? req.body.balancecc : null,
+    numerocajaca: req.body.numerocajaca ? req.body.numerocajaca : null,
+    balanceca: req.body.balanceca ? req.body.balanceca : null,
+    numerocajadls: req.body.numerocajadls ? req.body.numerocajadls : null,
+    balancedls: req.body.balancedls ? req.body.balancedls : null,
+    numerocajaeu: req.body.numerocajaeu ? req.body.numerocajaeu : null,
+    balanceeu: req.body.balanceeu ? req.body.balanceeu : null,
+    flagdolar: req.body.flagdolar ? req.body.flagdolar : null,
+    flageuro: req.body.flageuro ? req.body.flageuro : null,
+    provincia: req.body.provincia ? req.body.provincia : null,
+    pais: req.body.pais ? req.body.pais : null,
+    depto: req.body.depto ? req.body.depto : null,
+    alias: req.body.alias ? req.body.alias : null,
   };
   try {
     var updatedUser = await UserService.updateUser(User);
@@ -234,14 +268,18 @@ exports.updateUser = async function (req, res, next) {
       message: "Usuario actualizado correctamente",
     });
   } catch (e) {
-    return res.status(400).json({ status: 400, message: "Error al querer actualizar el usuario"  });
+    return res
+      .status(400)
+      .json({ status: 400, message: "Error al querer actualizar el usuario" });
   }
 };
 
 exports.updateUserCBU = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.cbu) {
-    return res.status(400).json({ status: 400, message: "CBU debe estar presente" });
+    return res
+      .status(400)
+      .json({ status: 400, message: "CBU debe estar presente" });
   }
 
   var User = {
@@ -264,17 +302,20 @@ exports.updateUserCBU = async function (req, res, next) {
     piso: req.body.piso ? req.body.piso : null,
     cbu: req.body.cbu ? req.body.cbu : null,
     nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
-    numerocajacc : req.body.numerocajacc ? req.body.numerocajacc : null,
-    balancecc : req.body.balancecc ? req.body.balancecc : null,
-    numerocajaca : req.body.numerocajaca ? req.body.numerocajaca : null,
-    balanceca : req.body.balanceca ? req.body.balanceca : null,
-    numerocajadls : req.body.numerocajadls ? req.body.numerocajadls : null,
-    balancedls : req.body.balancedls ? req.body.balancedls : null,
-    numerocajaeu : req.body.numerocajaeu ? req.body.numerocajaeu : null,
-    balanceeu : req.body.balanceeu ? req.body.balanceeu : null,
-    flagdolar : req.body.flagdolar ? req.body.flagdolar : null,
-    flageuro : req.body.flageuro ? req.body.flageuro : null
-
+    numerocajacc: req.body.numerocajacc ? req.body.numerocajacc : null,
+    balancecc: req.body.balancecc ? req.body.balancecc : null,
+    numerocajaca: req.body.numerocajaca ? req.body.numerocajaca : null,
+    balanceca: req.body.balanceca ? req.body.balanceca : null,
+    numerocajadls: req.body.numerocajadls ? req.body.numerocajadls : null,
+    balancedls: req.body.balancedls ? req.body.balancedls : null,
+    numerocajaeu: req.body.numerocajaeu ? req.body.numerocajaeu : null,
+    balanceeu: req.body.balanceeu ? req.body.balanceeu : null,
+    flagdolar: req.body.flagdolar ? req.body.flagdolar : null,
+    flageuro: req.body.flageuro ? req.body.flageuro : null,
+    provincia: req.body.provincia ? req.body.provincia : null,
+    pais: req.body.pais ? req.body.pais : null,
+    depto: req.body.depto ? req.body.depto : null,
+    alias: req.body.alias ? req.body.alias : null,
   };
   try {
     var updatedUser = await UserService.updateUserCBU(User);
@@ -284,14 +325,18 @@ exports.updateUserCBU = async function (req, res, next) {
       message: "Cuenta actualizada correctamente",
     });
   } catch (e) {
-    return res.status(400).json({ status: 400, message: "Error al querer actualizar la cuenta"  });
+    return res
+      .status(400)
+      .json({ status: 400, message: "Error al querer actualizar la cuenta" });
   }
 };
 
 exports.updateUserALIAS = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.alias) {
-    return res.status(400).json({ status: 400, message: "CBU debe estar presente" });
+    return res
+      .status(400)
+      .json({ status: 400, message: "CBU debe estar presente" });
   }
 
   var User = {
@@ -314,18 +359,20 @@ exports.updateUserALIAS = async function (req, res, next) {
     piso: req.body.piso ? req.body.piso : null,
     cbu: req.body.cbu ? req.body.cbu : null,
     nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
-    numerocajacc : req.body.numerocajacc ? req.body.numerocajacc : null,
-    balancecc : req.body.balancecc ? req.body.balancecc : null,
-    numerocajaca : req.body.numerocajaca ? req.body.numerocajaca : null,
-    balanceca : req.body.balanceca ? req.body.balanceca : null,
-    numerocajadls : req.body.numerocajadls ? req.body.numerocajadls : null,
-    balancedls : req.body.balancedls ? req.body.balancedls : null,
-    numerocajaeu : req.body.numerocajaeu ? req.body.numerocajaeu : null,
-    balanceeu : req.body.balanceeu ? req.body.balanceeu : null,
-    flagdolar : req.body.flagdolar ? req.body.flagdolar : null,
-    flageuro : req.body.flageuro ? req.body.flageuro : null,
-    alias : req.body.alias ? req.body.alias : null
-
+    numerocajacc: req.body.numerocajacc ? req.body.numerocajacc : null,
+    balancecc: req.body.balancecc ? req.body.balancecc : null,
+    numerocajaca: req.body.numerocajaca ? req.body.numerocajaca : null,
+    balanceca: req.body.balanceca ? req.body.balanceca : null,
+    numerocajadls: req.body.numerocajadls ? req.body.numerocajadls : null,
+    balancedls: req.body.balancedls ? req.body.balancedls : null,
+    numerocajaeu: req.body.numerocajaeu ? req.body.numerocajaeu : null,
+    balanceeu: req.body.balanceeu ? req.body.balanceeu : null,
+    flagdolar: req.body.flagdolar ? req.body.flagdolar : null,
+    flageuro: req.body.flageuro ? req.body.flageuro : null,
+    alias: req.body.alias ? req.body.alias : null,
+    provincia: req.body.provincia ? req.body.provincia : null,
+    pais: req.body.pais ? req.body.pais : null,
+    depto: req.body.depto ? req.body.depto : null,
   };
   try {
     var updatedUser = await UserService.updateUserALIAS(User);
@@ -335,7 +382,9 @@ exports.updateUserALIAS = async function (req, res, next) {
       message: "Cuenta actualizada correctamente",
     });
   } catch (e) {
-    return res.status(400).json({ status: 400, message: "Error al querer actualizar la cuenta"  });
+    return res
+      .status(400)
+      .json({ status: 400, message: "Error al querer actualizar la cuenta" });
   }
 };
 
@@ -345,7 +394,9 @@ exports.removeUser = async function (req, res, next) {
     var deleted = await UserService.deleteUser(id);
     res.status(200).send("Usuario eliminado correctamente");
   } catch (e) {
-    return res.status(400).json({ status: 400, message: "Error al querer eliminar el usuario" });
+    return res
+      .status(400)
+      .json({ status: 400, message: "Error al querer eliminar el usuario" });
   }
 };
 
@@ -358,7 +409,9 @@ exports.loginUser = async function (req, res, next) {
   try {
     // Calling the Service function with the new object from the Request Body
     var loginUser = await UserService.loginUser(User);
-    return res.status(201).json({ loginUser, message: "Usuario loggeado correctamente" });
+    return res
+      .status(201)
+      .json({ loginUser, message: "Usuario loggeado correctamente" });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res
@@ -376,7 +429,9 @@ exports.loginUserATM = async function (req, res, next) {
   try {
     // Calling the Service function with the new object from the Request Body
     var loginUserATM = await UserService.loginUserATM(User);
-    return res.status(201).json({ loginUserATM, message: "Usuario loggeado correctamente" });
+    return res
+      .status(201)
+      .json({ loginUserATM, message: "Usuario loggeado correctamente" });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res
