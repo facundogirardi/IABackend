@@ -50,7 +50,7 @@
           }
         ],
         "requestBody": {
-          "description": "Registro de usuarios nuevos - (usuariotipo : 1 no juridico, 2 juridico, 3 operador) - (flags = 1 es activa, 2 no activa)",
+          "description": "Registro de usuarios nuevos - (usuariotipo : 1 no juridico, 2 juridico, 3 operador)",
           "required": true,
           "content": {
             "application/json": {
@@ -710,10 +710,19 @@
         "altura": {
           "type": "string"
         },
-        "cuidad": {
+        "ciudad": {
           "type": "string"
         },
         "piso": {
+          "type": "string"
+        },
+        "provincia": {
+          "type": "string"
+        },
+        "depto": {
+          "type": "string"
+        },
+        "pais": {
           "type": "string"
         }
       }
@@ -766,7 +775,7 @@
         "altura": {
           "type": "string"
         },
-        "cuidad": {
+        "ciudad": {
           "type": "string"
         },
         "piso": {
@@ -789,6 +798,15 @@
         },
         "balanceeu": {
           "type": "integer"
+        },
+        "provincia": {
+          "type": "string"
+        },
+        "depto": {
+          "type": "string"
+        },
+        "pais": {
+          "type": "string"
         }
       }
     },

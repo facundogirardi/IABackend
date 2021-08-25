@@ -59,7 +59,7 @@ exports.updateMantenimiento = async function (user) {
   oldUser.cuit = user.cuit;
   oldUser.calle = user.calle;
   oldUser.altura = user.altura;
-  oldUser.cuidad = user.cuidad;
+  oldUser.ciudad = user.ciudad;
   oldUser.piso = user.piso;
   oldUser.cbu = user.cbu;
   oldUser.nrocuenta = user.nrocuenta;
@@ -106,7 +106,7 @@ exports.createUser = async function (user) {
     cuit: user.cuit,
     calle: user.calle,
     altura: user.altura,
-    cuidad: user.cuidad,
+    ciudad: user.ciudad,
     provincia: user.provincia,
     pais: user.pais,
     depto: user.depto,
@@ -179,7 +179,7 @@ exports.updateUser = async function (user) {
   oldUser.cuit = user.cuit;
   oldUser.calle = user.calle;
   oldUser.altura = user.altura;
-  oldUser.cuidad = user.cuidad;
+  oldUser.ciudad = user.ciudad;
   oldUser.piso = user.piso;
   oldUser.cbu = user.cbu;
   oldUser.nrocuenta = user.nrocuenta;
@@ -237,7 +237,7 @@ exports.updateUserALIAS = async function (user) {
   oldUser.cuit = user.cuit;
   oldUser.calle = user.calle;
   oldUser.altura = user.altura;
-  oldUser.cuidad = user.cuidad;
+  oldUser.ciudad = user.ciudad;
   oldUser.piso = user.piso;
   oldUser.cbu = user.cbu;
   oldUser.nrocuenta = user.nrocuenta;
@@ -295,7 +295,7 @@ exports.updateUserCBU = async function (user) {
   oldUser.cuit = user.cuit;
   oldUser.calle = user.calle;
   oldUser.altura = user.altura;
-  oldUser.cuidad = user.cuidad;
+  oldUser.ciudad = user.ciudad;
   oldUser.piso = user.piso;
   oldUser.cbu = user.cbu;
   oldUser.nrocuenta = user.nrocuenta;
