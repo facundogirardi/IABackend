@@ -190,7 +190,7 @@ exports.getUsuarioCBU = async function (req, res, next) {
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
-    cbu: req.params.cbu,
+    cbu: req.body.cbu,
   };
   try {
     var Users = await UserService.getUsers(filtro, page, limit);

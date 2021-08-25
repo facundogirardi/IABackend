@@ -361,34 +361,39 @@
         }
       }
     },
-    "/getusers/{cbu}": {
+    "/getusersCBU": {
       "post": {
-        "summary": "Obtengo usuario especifico por CBU",
         "tags": ["Usuarios"],
+        "summary": "Obtengo usuario especifico por CBU",
         "parameters": [
           {
             "name": "x-access-token",
             "in": "header",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "cbu",
-            "in": "path",
-            "required": true,
-            "description": "CBU del usuario que quiero obtener",
-            "type": "integer"
           }
         ],
+        "requestBody": {
+          "description": "El campo CBU el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/CBU"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Usuario obtenido correctamente",
+            "description": "Cuenta actualizada correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
-          "201": {
-            "description": "Error al querer obtener el usuario"
+          "400": {
+            "description": "Error al querer actualizar la cuenta"
           }
         }
       }
@@ -662,6 +667,13 @@
       "properties": {
         "id": {
           "type": "string"
+        }
+      }
+    },
+    "CBU": {
+      "properties": {
+        "cbu": {
+          "type": "integer"
         }
       }
     },

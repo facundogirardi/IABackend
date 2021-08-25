@@ -22,7 +22,7 @@ router.put("/updateuseralias", UserController.updateUserALIAS);
 router.put("/updateusercbu", UserController.updateUserCBU);
 router.post("/userid/:id", UserController.getUsuarioID);
 router.delete("/delete/:id", UserController.removeUser);
-router.post("/getusers/:cbu", UserController.getUsuarioCBU);
+router.post("/getusersCBU", UserController.getUsuarioCBU);
 
 router.post("/registromovimiento", MovimientoController.createMovimiento);
 router.get("/getmovimientos", MovimientoController.getMovimientos);
