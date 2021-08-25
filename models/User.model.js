@@ -20,7 +20,7 @@ var UserSchema = new mongoose.Schema({
     altura: String,
     ciudad: String,
     piso: String,
-    cbu: Number,
+    cbu: String,
     alias: String,
     nrocuenta: Number,
     numerocajacc : Number,
