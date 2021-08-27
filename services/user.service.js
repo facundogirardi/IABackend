@@ -67,15 +67,8 @@ exports.updateMantenimiento = async function (user) {
   oldUser.balancecc = user.balancecc;
   oldUser.numerocajaca = user.numerocajaca;
   oldUser.balanceca = user.balanceca;
-  oldUser.numerocajadls = user.numerocajadls;
-  oldUser.balancedls = user.balancedls;
-  oldUser.numerocajaeu = user.numerocajaeu;
-  oldUser.flageuro = user.flageuro;
-  oldUser.flagdolar = user.flagdolar;
-  oldUser.balanceeu = user.balanceeu;
   oldUser.alias = user.alias;
   oldUser.provincia = user.provincia;
-  oldUser.pais = user.pais;
   oldUser.depto = user.depto;
 
   try {
@@ -121,12 +114,6 @@ exports.createUser = async function (user) {
     balancecc: 0,
     numerocajaca: random.int((min = 0), (max = 9999999999)),
     balanceca: 0,
-    numerocajadls: random.int((min = 0), (max = 9999999999)),
-    balancedls: 0,
-    numerocajaeu: random.int((min = 0), (max = 9999999999)),
-    flageuro: 2, // Sin cuenta euro
-    flagdolar: 2, // Sin cuenta dolar
-    balanceeu: 0,
   });
   try {
     // Saving the User
@@ -187,15 +174,8 @@ exports.updateUser = async function (user) {
   oldUser.balancecc = user.balancecc;
   oldUser.numerocajaca = user.numerocajaca;
   oldUser.balanceca = user.balanceca;
-  oldUser.numerocajadls = user.numerocajadls;
-  oldUser.balancedls = user.balancedls;
-  oldUser.numerocajaeu = user.numerocajaeu;
-  oldUser.flageuro = user.flageuro;
-  oldUser.flagdolar = user.flagdolar;
-  oldUser.balanceeu = user.balanceeu;
   oldUser.alias = user.alias;
   oldUser.provincia = user.provincia;
-  oldUser.pais = user.pais;
   oldUser.depto = user.depto;
   
   try {
@@ -245,14 +225,7 @@ exports.updateUserALIAS = async function (user) {
   oldUser.balancecc = user.balancecc;
   oldUser.numerocajaca = user.numerocajaca;
   oldUser.balanceca = user.balanceca;
-  oldUser.numerocajadls = user.numerocajadls;
-  oldUser.balancedls = user.balancedls;
-  oldUser.numerocajaeu = user.numerocajaeu;
-  oldUser.flageuro = user.flageuro;
-  oldUser.flagdolar = user.flagdolar;
-  oldUser.balanceeu = user.balanceeu;
   oldUser.provincia = user.provincia;
-  oldUser.pais = user.pais;
   oldUser.depto = user.depto;
   oldUser.alias = user.alias;
 
@@ -303,14 +276,7 @@ exports.updateUserCBU = async function (user) {
   oldUser.balancecc = user.balancecc;
   oldUser.numerocajaca = user.numerocajaca;
   oldUser.balanceca = user.balanceca;
-  oldUser.numerocajadls = user.numerocajadls;
-  oldUser.balancedls = user.balancedls;
-  oldUser.numerocajaeu = user.numerocajaeu;
-  oldUser.flageuro = user.flageuro;
-  oldUser.flagdolar = user.flagdolar;
-  oldUser.balanceeu = user.balanceeu;
   oldUser.provincia = user.provincia;
-  oldUser.pais = user.pais;
   oldUser.depto = user.depto;
   oldUser.alias = user.alias;
 

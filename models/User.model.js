@@ -27,14 +27,7 @@ var UserSchema = new mongoose.Schema({
     balancecc : Number,
     numerocajaca : Number,
     balanceca : Number,
-    numerocajadls : Number,
-    balancedls : Number,
-    flagdolar : Number,
-    numerocajaeu : Number,
-    balanceeu : Number,
-    flageuro : Number,
     provincia : String,
-    pais : String,
     depto : String,
     date: Date 
 
