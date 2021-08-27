@@ -203,6 +203,39 @@ exports.getUsuarioCBU = async function (req, res, next) {
   }
 };
 
+// Traigo Usuario por Usuario
+exports.getUsuarioUsuario = async function (req, res, next) {
+  var page = req.query.page ? req.query.page : 1;
+  var limit = req.query.limit ? req.query.limit : 1000;
+
+  var filtro = {
+    usuario: req.body.usuario,
+  };
+  try {
+    var Users = await UserService.getUsers(filtro, page, limit);
+
+    if (Users.total === 0)
+      return res
+        .status(201)
+        .json({
+          status: 201,
+          data: Users,
+          message: "Error al querer obtener el usuario",
+        });
+    else
+      return res
+        .status(200)
+        .json({
+          status: 200,
+          data: Users,
+          message: "Usuario obtenido correctamente",
+        });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ status: 400, message: e.message });
+  }
+};
+
 exports.updateUser = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.usuario) {

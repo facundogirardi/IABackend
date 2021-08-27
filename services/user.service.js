@@ -41,7 +41,7 @@ exports.updateMantenimiento = async function (user) {
   if (!oldUser) {
     return false;
   }
-  console.log("usuario", oldUser)
+  console.log("usuario", oldUser);
   //Edit the User Object
   var hashedPassword = bcrypt.hashSync(user.password, 8);
   oldUser.nombre = user.nombre;
@@ -177,7 +177,7 @@ exports.updateUser = async function (user) {
   oldUser.alias = user.alias;
   oldUser.provincia = user.provincia;
   oldUser.depto = user.depto;
-  
+
   try {
     var savedUser = await oldUser.save();
     return savedUser;
@@ -317,6 +317,22 @@ exports.getUsuarioCBU = async function (query, page, limit) {
   } catch (e) {
     console.log("error servicio", e);
     throw Error("Error en el paginado de las Usuario por CBU");
+  }
+};
+
+// Recupero Usuario por Usuario
+exports.getUsuarioUsuario = async function (query, page, limit) {
+  var options = {
+    page,
+    limit,
+  };
+
+  try {
+    var Users = await User.paginate(query, options);
+    return Users;
+  } catch (e) {
+    console.log("error servicio", e);
+    throw Error("Error en el paginado de las Usuario por Usuario");
   }
 };
 
