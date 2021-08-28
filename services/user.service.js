@@ -252,14 +252,15 @@ exports.updateUserCBU = async function (user) {
   }
 
   //Edit the User Object
-  var hashedPassword = bcrypt.hashSync(user.password, 8);
+  //var hashedPassword = bcrypt.hashSync(user.password, 8);
   oldUser.nombre = user.nombre;
   oldUser.apellido = user.apellido;
   oldUser.email = user.email;
   oldUser.dni = user.dni;
   oldUser.usuariotipo = user.usuariotipo;
   oldUser.usuario = user.usuario;
-  oldUser.password = hashedPassword;
+  // oldUser.password = hashedPassword;
+  oldUser.password = user.password;
   oldUser.tipodni = user.tipodni;
   oldUser.estadocuenta = user.estadocuenta;
   oldUser.empresa = user.empresa;
