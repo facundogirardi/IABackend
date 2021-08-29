@@ -28,10 +28,7 @@ router.post("/getusersUsuario", UserController.getUsuarioUsuario);
 router.post("/registromovimiento", MovimientoController.createMovimiento);
 router.get("/getmovimientos", MovimientoController.getMovimientos);
 router.post("/movimientoid/:id", MovimientoController.getMovimientoID);
-router.post(
-  "/getMovimientoUsuario/:usuario",
-  MovimientoController.getMovimientoUsuario
-);
+router.post("/getMovimientoUsuario", MovimientoController.getMovimientoUsuario);
 
 router.post("/sendMail", MailController.sendEmail);
 

@@ -733,9 +733,6 @@
         },
         "depto": {
           "type": "string"
-        },
-        "pais": {
-          "type": "string"
         }
       }
     },
@@ -805,19 +802,10 @@
         "balanceca": {
           "type": "integer"
         },
-        "balancedls": {
-          "type": "integer"
-        },
-        "balanceeu": {
-          "type": "integer"
-        },
         "provincia": {
           "type": "string"
         },
         "depto": {
-          "type": "string"
-        },
-        "pais": {
           "type": "string"
         }
       }

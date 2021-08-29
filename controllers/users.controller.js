@@ -288,6 +288,7 @@ exports.updateUser = async function (req, res, next) {
 
 exports.updateUserCBU = async function (req, res, next) {
   // Id is necessary for the update
+  console.log(req.body.cbu)
   if (!req.body.cbu) {
     return res
       .status(400)
@@ -323,6 +324,7 @@ exports.updateUserCBU = async function (req, res, next) {
     alias: req.body.alias ? req.body.alias : null,
   };
   try {
+    console.log("jason", User)
     var updatedUser = await UserService.updateUserCBU(User);
     return res.status(200).json({
       status: 200,

@@ -4,7 +4,7 @@ var mongoosePaginate = require('mongoose-paginate')
 
 var MovementSchema = new mongoose.Schema({
     tipomovimiento: String,
-    importe: Number,
+    importe: String,
     usuario : String,
     date: Date 
 

@@ -26,7 +26,8 @@ exports.createMovimiento = async function (req, res, next) {
   // Req.Body contains the form submit values.
   var Movimiento = {
     tipomovimiento: req.body.tipomovimiento,
-    importe: req.body.importe
+    importe: req.body.importe,
+    usuario: req.body.usuario
   };
   try {
     // Calling the Service function with the new object from the Request Body
@@ -73,7 +74,7 @@ exports.getMovimientoUsuario = async function (req, res, next) {
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
-      usuario: req.params.usuario
+      usuario: req.body.usuario
   }
   try {
       var Movimientos = await MovimientoService.getMovimientos(filtro, page, limit)
