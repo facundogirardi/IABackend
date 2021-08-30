@@ -50,6 +50,7 @@ exports.updateMantenimiento = async function (req, res, next) {
     ciudad: req.body.ciudad ? req.body.ciudad : null,
     piso: req.body.piso ? req.body.piso : null,
     cbu: req.body.cbu ? req.body.cbu : null,
+    cbuCC: req.body.cbuCC ? req.body.cbuCC : null,
     nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
     numerocajacc: req.body.numerocajacc ? req.body.numerocajacc : null,
     balancecc: req.body.balancecc ? req.body.balancecc : null,
@@ -114,6 +115,7 @@ exports.createUser = async function (req, res, next) {
     piso: req.body.piso,
     alias: req.body.alias,
     cbu: req.body.cbu,
+    cbuCC: req.body.cbuCC,
     nrocuenta: req.body.nrocuenta,
     numerocajacc: req.body.numerocajacc,
     balancecc: req.body.balancecc,
@@ -149,21 +151,17 @@ exports.getUsuarioID = async function (req, res, next) {
     var Users = await UserService.getUsers(filtro, page, limit);
 
     if (Users.total === 0)
-      return res
-        .status(201)
-        .json({
-          status: 201,
-          data: Users,
-          message: "Error al querer obtener el usuario",
-        });
+      return res.status(201).json({
+        status: 201,
+        data: Users,
+        message: "Error al querer obtener el usuario",
+      });
     else
-      return res
-        .status(200)
-        .json({
-          status: 200,
-          data: Users,
-          message: "Usuario obtenido correctamente",
-        });
+      return res.status(200).json({
+        status: 200,
+        data: Users,
+        message: "Usuario obtenido correctamente",
+      });
   } catch (e) {
     console.log(e);
     return res.status(400).json({ status: 400, message: e.message });
@@ -182,21 +180,17 @@ exports.getUsuarioCBU = async function (req, res, next) {
     var Users = await UserService.getUsers(filtro, page, limit);
 
     if (Users.total === 0)
-      return res
-        .status(201)
-        .json({
-          status: 201,
-          data: Users,
-          message: "Error al querer obtener el usuario",
-        });
+      return res.status(201).json({
+        status: 201,
+        data: Users,
+        message: "Error al querer obtener el usuario",
+      });
     else
-      return res
-        .status(200)
-        .json({
-          status: 200,
-          data: Users,
-          message: "Usuario obtenido correctamente",
-        });
+      return res.status(200).json({
+        status: 200,
+        data: Users,
+        message: "Usuario obtenido correctamente",
+      });
   } catch (e) {
     console.log(e);
     return res.status(400).json({ status: 400, message: e.message });
@@ -215,21 +209,17 @@ exports.getUsuarioUsuario = async function (req, res, next) {
     var Users = await UserService.getUsers(filtro, page, limit);
 
     if (Users.total === 0)
-      return res
-        .status(201)
-        .json({
-          status: 201,
-          data: Users,
-          message: "Error al querer obtener el usuario",
-        });
+      return res.status(201).json({
+        status: 201,
+        data: Users,
+        message: "Error al querer obtener el usuario",
+      });
     else
-      return res
-        .status(200)
-        .json({
-          status: 200,
-          data: Users,
-          message: "Usuario obtenido correctamente",
-        });
+      return res.status(200).json({
+        status: 200,
+        data: Users,
+        message: "Usuario obtenido correctamente",
+      });
   } catch (e) {
     console.log(e);
     return res.status(400).json({ status: 400, message: e.message });
@@ -263,6 +253,7 @@ exports.updateUser = async function (req, res, next) {
     ciudad: req.body.ciudad ? req.body.ciudad : null,
     piso: req.body.piso ? req.body.piso : null,
     cbu: req.body.cbu ? req.body.cbu : null,
+    cbuCC: req.body.cbuCC ? req.body.cbuCC : null,
     nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
     numerocajacc: req.body.numerocajacc ? req.body.numerocajacc : null,
     balancecc: req.body.balancecc ? req.body.balancecc : null,
@@ -288,7 +279,7 @@ exports.updateUser = async function (req, res, next) {
 
 exports.updateUserCBU = async function (req, res, next) {
   // Id is necessary for the update
-  console.log(req.body.cbu)
+  console.log(req.body.cbu);
   if (!req.body.cbu) {
     return res
       .status(400)
@@ -314,6 +305,7 @@ exports.updateUserCBU = async function (req, res, next) {
     ciudad: req.body.ciudad ? req.body.ciudad : null,
     piso: req.body.piso ? req.body.piso : null,
     cbu: req.body.cbu ? req.body.cbu : null,
+    cbuCC: req.body.cbuCC ? req.body.cbuCC : null,
     nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
     numerocajacc: req.body.numerocajacc ? req.body.numerocajacc : null,
     balancecc: req.body.balancecc ? req.body.balancecc : null,
@@ -324,7 +316,7 @@ exports.updateUserCBU = async function (req, res, next) {
     alias: req.body.alias ? req.body.alias : null,
   };
   try {
-    console.log("jason", User)
+    console.log("jason", User);
     var updatedUser = await UserService.updateUserCBU(User);
     return res.status(200).json({
       status: 200,
@@ -365,6 +357,7 @@ exports.updateUserALIAS = async function (req, res, next) {
     ciudad: req.body.ciudad ? req.body.ciudad : null,
     piso: req.body.piso ? req.body.piso : null,
     cbu: req.body.cbu ? req.body.cbu : null,
+    cbuCC: req.body.cbuCC ? req.body.cbuCC : null,
     nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
     numerocajacc: req.body.numerocajacc ? req.body.numerocajacc : null,
     balancecc: req.body.balancecc ? req.body.balancecc : null,

@@ -21,6 +21,7 @@ var UserSchema = new mongoose.Schema({
     ciudad: String,
     piso: String,
     cbu: Number,
+    cbuCC: Number,
     alias: String,
     nrocuenta: Number,
     numerocajacc : Number,

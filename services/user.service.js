@@ -62,6 +62,7 @@ exports.updateMantenimiento = async function (user) {
   oldUser.ciudad = user.ciudad;
   oldUser.piso = user.piso;
   oldUser.cbu = user.cbu;
+  oldUser.cbuCC = user.cbuCC;
   oldUser.nrocuenta = user.nrocuenta;
   oldUser.numerocajacc = user.numerocajacc;
   oldUser.balancecc = user.balancecc;
@@ -101,11 +102,14 @@ exports.createUser = async function (user) {
     altura: user.altura,
     ciudad: user.ciudad,
     provincia: user.provincia,
-    pais: user.pais,
     depto: user.depto,
     piso: user.piso,
     alias: randomWords({ exactly: 3, join: "." }),
     cbu: random.int(
+      (min = 1111111111111111111111),
+      (max = 99999999999999999999)
+    ),
+    cbuCC: random.int(
       (min = 1111111111111111111111),
       (max = 99999999999999999999)
     ),
@@ -169,6 +173,7 @@ exports.updateUser = async function (user) {
   oldUser.ciudad = user.ciudad;
   oldUser.piso = user.piso;
   oldUser.cbu = user.cbu;
+  oldUser.cbuCC = user.cbuCC;
   oldUser.nrocuenta = user.nrocuenta;
   oldUser.numerocajacc = user.numerocajacc;
   oldUser.balancecc = user.balancecc;
@@ -220,6 +225,7 @@ exports.updateUserALIAS = async function (user) {
   oldUser.ciudad = user.ciudad;
   oldUser.piso = user.piso;
   oldUser.cbu = user.cbu;
+  oldUser.cbuCC = user.cbuCC;
   oldUser.nrocuenta = user.nrocuenta;
   oldUser.numerocajacc = user.numerocajacc;
   oldUser.balancecc = user.balancecc;
@@ -272,6 +278,7 @@ exports.updateUserCBU = async function (user) {
   oldUser.ciudad = user.ciudad;
   oldUser.piso = user.piso;
   oldUser.cbu = user.cbu;
+  oldUser.cbuCC = user.cbuCC;
   oldUser.nrocuenta = user.nrocuenta;
   oldUser.numerocajacc = user.numerocajacc;
   oldUser.balancecc = user.balancecc;
