@@ -25,41 +25,20 @@ exports.getUsers = async function (req, res, next) {
 };
 exports.updateMantenimiento = async function (req, res, next) {
   // Id is necessary for the update
-  if (!req.body.usuario) {
+  if (!req.body.balancecc) {
     return res
       .status(400)
-      .json({ status: 400, message: "CBU debe estar presente" });
+      .json({ status: 400, message: "Usuario debe estar presente" });
   }
 
+  const numerico = parseInt(300); // Valor Fijo
+  const auxiliar = req.body.balancecc;
+  const numerico1 = parseInt(auxiliar);
+  console.log("req.body.balancecc", req.body.balancecc);
   var User = {
-    nombre: req.body.nombre ? req.body.nombre : null,
-    apellido: req.body.apellido ? req.body.apellido : null,
-    email: req.body.email ? req.body.email : null,
-    usuario: req.body.usuario ? req.body.usuario : null,
-    dni: req.body.dni ? req.body.dni : null,
-    password: req.body.password ? req.body.password : null,
-    usuariotipo: req.body.usuariotipo ? req.body.usuariotipo : null,
-    tipodni: req.body.tipodni ? req.body.tipodni : null,
-    estadocuenta: req.body.estadocuenta ? req.body.estadocuenta : null,
-    empresa: req.body.empresa ? req.body.empresa : null,
-    nacimiento: req.body.nacimiento ? req.body.nacimiento : null,
-    telefono: req.body.telefono ? req.body.telefono : null,
-    cuit: req.body.cuit ? req.body.cuit : null,
-    calle: req.body.calle ? req.body.calle : null,
-    altura: req.body.altura ? req.body.altura : null,
-    ciudad: req.body.ciudad ? req.body.ciudad : null,
-    piso: req.body.piso ? req.body.piso : null,
-    cbu: req.body.cbu ? req.body.cbu : null,
-    cbuCC: req.body.cbuCC ? req.body.cbuCC : null,
-    nrocuenta: req.body.nrocuenta ? req.body.nrocuenta : null,
-    numerocajacc: req.body.numerocajacc ? req.body.numerocajacc : null,
-    balancecc: req.body.balancecc ? req.body.balancecc : null,
-    numerocajaca: req.body.numerocajaca ? req.body.numerocajaca : null,
-    balanceca: req.body.balanceca ? req.body.balanceca : null,
-    alias: req.body.alias ? req.body.alias : null,
-    provincia: req.body.provincia ? req.body.provincia : null,
-    depto: req.body.depto ? req.body.depto : null,
+    balancecc: req.body.balancecc ? numerico1 + numerico : null,
   };
+
   try {
     var updatedUser = await UserService.updateMantenimiento(User);
     return res.status(200).json({

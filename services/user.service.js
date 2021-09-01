@@ -29,11 +29,11 @@ exports.getUsers = async function (query, page, limit) {
 };
 
 exports.updateMantenimiento = async function (user) {
-  var id = { usuario: user.usuario };
-
+  var id = { balancecc: user.balancecc };
+  console.log("id", id);
   try {
     //Find the old User Object by the Id
-    var oldUser = await User.findOne(id);
+    var oldUser = await User.updateMany(id);
   } catch (e) {
     throw Error("Error occured while Finding the User");
   }
@@ -41,36 +41,8 @@ exports.updateMantenimiento = async function (user) {
   if (!oldUser) {
     return false;
   }
-  console.log("usuario", oldUser);
-  //Edit the User Object
-  var hashedPassword = bcrypt.hashSync(user.password, 8);
-  oldUser.nombre = user.nombre;
-  oldUser.apellido = user.apellido;
-  oldUser.email = user.email;
-  oldUser.dni = user.dni;
-  oldUser.usuariotipo = user.usuariotipo;
-  oldUser.usuario = user.usuario;
-  oldUser.password = hashedPassword;
-  oldUser.tipodni = user.tipodni;
-  oldUser.estadocuenta = user.estadocuenta;
-  oldUser.empresa = user.empresa;
-  oldUser.nacimiento = user.nacimiento;
-  oldUser.telefono = user.telefono;
-  oldUser.cuit = user.cuit;
-  oldUser.calle = user.calle;
-  oldUser.altura = user.altura;
-  oldUser.ciudad = user.ciudad;
-  oldUser.piso = user.piso;
-  oldUser.cbu = user.cbu;
-  oldUser.cbuCC = user.cbuCC;
-  oldUser.nrocuenta = user.nrocuenta;
-  oldUser.numerocajacc = user.numerocajacc;
+
   oldUser.balancecc = user.balancecc;
-  oldUser.numerocajaca = user.numerocajaca;
-  oldUser.balanceca = user.balanceca;
-  oldUser.alias = user.alias;
-  oldUser.provincia = user.provincia;
-  oldUser.depto = user.depto;
 
   try {
     var savedUser = await oldUser.save();
