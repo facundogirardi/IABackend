@@ -33,6 +33,8 @@ exports.createMovimiento = async function (movimiento) {
   var newMovimiento = new Movimiento({
     tipomovimiento: movimiento.tipomovimiento,
     importe: movimiento.importe,
+    importeCC: movimiento.importeCC,
+    importeCA: movimiento.importeCA,
     usuario: movimiento.usuario,
     date: new Date()
   });

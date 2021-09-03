@@ -20,6 +20,7 @@ router.post("/userByMail", UserController.getUsersByMail);
 router.put("/updateusers", UserController.updateUser);
 router.put("/updateuseralias", UserController.updateUserALIAS);
 router.put("/updateusercbu", UserController.updateUserCBU);
+router.put("/updateusercbuCC", UserController.updateUserCBU);
 router.post("/userid/:id", UserController.getUsuarioID);
 router.delete("/delete/:id", UserController.removeUser);
 router.post("/getusersCBU", UserController.getUsuarioCBU);

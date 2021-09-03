@@ -27,6 +27,8 @@ exports.createMovimiento = async function (req, res, next) {
   var Movimiento = {
     tipomovimiento: req.body.tipomovimiento,
     importe: req.body.importe,
+    importeCA: req.body.importeCA,
+    importeCC: req.body.importeCC,
     usuario: req.body.usuario
   };
   try {
