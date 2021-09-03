@@ -24,6 +24,7 @@ router.put("/updateusercbuCC", UserController.updateUserCBU);
 router.post("/userid/:id", UserController.getUsuarioID);
 router.delete("/delete/:id", UserController.removeUser);
 router.post("/getusersCBU", UserController.getUsuarioCBU);
+router.post("/getusersCBUCC", UserController.getUsuarioCBUCC);
 router.post("/getusersUsuario", UserController.getUsuarioUsuario);
 
 router.post("/registromovimiento", MovimientoController.createMovimiento);
@@ -44,3 +45,4 @@ module.exports = router;
 //api/users
 //api/users/registration
 //api/users/login
+
