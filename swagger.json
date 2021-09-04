@@ -381,7 +381,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/CBU"
+                "$ref": "#/definitions/Getmovimiento"
               }
             }
           }
@@ -857,17 +857,6 @@
           "type": "string"
         },
         "cuit": {
-          "type": "string"
-        }
-      }
-    },
-    "LoginATM": {
-      "type": "object",
-      "properties": {
-        "cuit": {
-          "type": "string"
-        },
-        "password": {
           "type": "string"
         }
       }
