@@ -111,43 +111,6 @@
         }
       }
     },
-    "/loginATM": {
-      "post": {
-        "tags": ["Usuarios"],
-        "summary": "Login de usuarios en ATM",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El usuario debe existir primero",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/LoginATM"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "201": {
-            "description": "Usuario loggeado correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer loggear el usuario"
-          }
-        }
-      }
-    },
     "/getusers": {
       "get": {
         "tags": ["Usuarios"],
@@ -286,85 +249,49 @@
         }
       }
     },
-    "/delete/{id}": {
-      "parameters": [
-        {
-          "name": "x-access-token",
-          "in": "header",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "ID del usuario que quiero eliminar",
-          "type": "string"
-        }
-      ],
-      "delete": {
-        "summary": "Elimina usuario",
+
+    "/updateusercbuCC": {
+      "put": {
         "tags": ["Usuarios"],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "description": "Elimina usuario por id",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Usuario eliminado correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "404": {
-            "description": "Error al querer eliminar el usuario"
-          }
-        }
-      }
-    },
-    "/userid/{id}": {
-      "post": {
-        "summary": "Obtengo usuario especifico por ID",
-        "tags": ["Usuarios"],
+        "summary": "Actualizacion de Cuentas",
         "parameters": [
           {
             "name": "x-access-token",
             "in": "header",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "ID del usuario que quiero obtener",
-            "type": "string"
           }
         ],
+        "requestBody": {
+          "description": "El campo CBUcc el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Usuarioupdate"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Usuario obtenido correctamente",
+            "description": "Cuenta actualizada correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
-          "201": {
-            "description": "Error al querer obtener el usuario"
+          "400": {
+            "description": "Error al querer actualizar la cuenta"
           }
         }
       }
     },
+
     "/getusersCBU": {
       "post": {
         "tags": ["Usuarios"],
-        "summary": "Obtengo usuario especifico por CBU",
+        "summary": "Obtengo usuario especifico por CBU de caja de ahorro",
         "parameters": [
           {
             "name": "x-access-token",
@@ -375,6 +302,81 @@
         ],
         "requestBody": {
           "description": "El campo CBU el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/CBU"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Cuenta actualizada correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer actualizar la cuenta"
+          }
+        }
+      }
+    },
+
+    "/getusersCBUCC": {
+      "post": {
+        "tags": ["Usuarios"],
+        "summary": "Obtengo usuario especifico por CBU de cuenta corriente",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "El campo CBUcc el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/CBUcc"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Cuenta actualizada correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer actualizar la cuenta"
+          }
+        }
+      }
+    },
+    "/getusersUsuario": {
+      "post": {
+        "tags": ["Usuarios"],
+        "summary": "Obtengo usuario especifico por Usuario",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "El campo Usuario el indice de busqueda",
           "required": true,
           "content": {
             "application/json": {
@@ -499,38 +501,6 @@
         }
       }
     },
-    "/empresaid/{id}": {
-      "post": {
-        "summary": "Obtengo usuario especifico",
-        "tags": ["Empresas"],
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "ID de la empresa que quiero obtener",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Empresa obtenida correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "201": {
-            "description": "Error al querer obtener la empresa"
-          }
-        }
-      }
-    },
     "/registromovimiento": {
       "post": {
         "tags": ["Movimientos"],
@@ -595,57 +565,31 @@
         }
       }
     },
-    "/movimientoid/{id}": {
+
+    "/getMovimientoUsuario": {
       "post": {
-        "summary": "Obtengo movimiento especifico",
         "tags": ["Movimientos"],
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "ID del movimiento que quiero obtener",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Movimiento obtenido correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "201": {
-            "description": "Error al querer obtener el movimiento"
-          }
-        }
-      }
-    },
-    "/getMovimientoUsuario/{usuario}": {
-      "post": {
         "summary": "Obtengo movimiento especifico por Usuario",
-        "tags": ["Movimientos"],
         "parameters": [
           {
             "name": "x-access-token",
             "in": "header",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "usuario",
-            "in": "path",
-            "required": true,
-            "description": "Usuario del movimiento que quiero obtener",
-            "type": "string"
           }
         ],
+        "requestBody": {
+          "description": "El campo Usuario el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Getmovimiento"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "Movimiento obtenido correctamente",
@@ -660,8 +604,6 @@
       }
     }
   },
-  
-
   "definitions": {
     "id": {
       "properties": {
@@ -674,6 +616,20 @@
       "properties": {
         "cbu": {
           "type": "integer"
+        }
+      }
+    },
+    "CBUcc": {
+      "properties": {
+        "cbuCC": {
+          "type": "integer"
+        }
+      }
+    },
+    "Getmovimiento": {
+      "properties": {
+        "usuario": {
+          "type": "string"
         }
       }
     },
@@ -775,6 +731,9 @@
         "telefono": {
           "type": "string"
         },
+        "alias": {
+          "type": "string"
+        },
         "cuit": {
           "type": "string"
         },
@@ -790,10 +749,19 @@
         "piso": {
           "type": "string"
         },
-        "flagdolar": {
+        "cbu": {
           "type": "integer"
         },
-        "flageuro": {
+        "cbuCC": {
+          "type": "integer"
+        },
+        "numerocajacc": {
+          "type": "integer"
+        },
+        "numerocajaca": {
+          "type": "integer"
+        },
+        "nrocuenta": {
           "type": "integer"
         },
         "balancecc": {
@@ -832,6 +800,12 @@
         },
         "usuario": {
           "type": "string"
+        },
+        "importeCC": {
+          "type": "integer"
+        },
+        "importeCA": {
+          "type": "integer"
         }
       }
     },

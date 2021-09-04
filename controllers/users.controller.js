@@ -23,54 +23,6 @@ exports.getUsers = async function (req, res, next) {
       .json({ status: 400, message: "Error al querer obtener los usuarios" });
   }
 };
-exports.updateMantenimiento = async function (req, res, next) {
-  // Id is necessary for the update
-  if (!req.body.balancecc) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Usuario debe estar presente" });
-  }
-
-  const numerico = parseInt(300); // Valor Fijo
-  const auxiliar = req.body.balancecc;
-  const numerico1 = parseInt(auxiliar);
-  console.log("req.body.balancecc", req.body.balancecc);
-  var User = {
-    balancecc: req.body.balancecc ? numerico1 + numerico : null,
-  };
-
-  try {
-    var updatedUser = await UserService.updateMantenimiento(User);
-    return res.status(200).json({
-      status: 200,
-      data: updatedUser,
-      message: "Cuentas actualizadas correctamente",
-    });
-  } catch (e) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Error al querer actualizar las cuentas" });
-  }
-};
-
-exports.getUsersByMail = async function (req, res, next) {
-  // Check the existence of the query parameters, If doesn't exists assign a default value
-  var page = req.query.page ? req.query.page : 1;
-  var limit = req.query.limit ? req.query.limit : 10;
-  let filtro = { email: req.body.email };
-  try {
-    var Users = await UserService.getUsers(filtro, page, limit);
-    // Return the Users list with the appropriate HTTP password Code and Message.
-    return res.status(200).json({
-      status: 200,
-      data: Users,
-      message: "Succesfully Users Recieved",
-    });
-  } catch (e) {
-    //Return an Error Response Message with Code and the Error Message.
-    return res.status(400).json({ status: 400, message: e.message });
-  }
-};
 
 exports.createUser = async function (req, res, next) {
   // Req.Body contains the form submit values.
@@ -115,35 +67,6 @@ exports.createUser = async function (req, res, next) {
     return res
       .status(400)
       .json({ status: 400, message: "Error al querer generar el usuario" });
-  }
-};
-
-// Traigo Usuario por ID
-exports.getUsuarioID = async function (req, res, next) {
-  var page = req.query.page ? req.query.page : 1;
-  var limit = req.query.limit ? req.query.limit : 1000;
-
-  var filtro = {
-    _id: req.params.id,
-  };
-  try {
-    var Users = await UserService.getUsers(filtro, page, limit);
-
-    if (Users.total === 0)
-      return res.status(201).json({
-        status: 201,
-        data: Users,
-        message: "Error al querer obtener el usuario",
-      });
-    else
-      return res.status(200).json({
-        status: 200,
-        data: Users,
-        message: "Usuario obtenido correctamente",
-      });
-  } catch (e) {
-    console.log(e);
-    return res.status(400).json({ status: 400, message: e.message });
   }
 };
 
@@ -287,7 +210,6 @@ exports.updateUser = async function (req, res, next) {
 
 exports.updateUserCBU = async function (req, res, next) {
   // Id is necessary for the update
-  console.log(req.body.cbu);
   if (!req.body.cbu) {
     return res
       .status(400)
@@ -324,7 +246,6 @@ exports.updateUserCBU = async function (req, res, next) {
     alias: req.body.alias ? req.body.alias : null,
   };
   try {
-    console.log("jason", User);
     var updatedUser = await UserService.updateUserCBU(User);
     return res.status(200).json({
       status: 200,
@@ -340,7 +261,6 @@ exports.updateUserCBU = async function (req, res, next) {
 
 exports.updateUserCBUCC = async function (req, res, next) {
   // Id is necessary for the update
-  console.log(req.body.cbu);
   if (!req.body.cbu) {
     return res
       .status(400)
@@ -377,7 +297,6 @@ exports.updateUserCBUCC = async function (req, res, next) {
     alias: req.body.alias ? req.body.alias : null,
   };
   try {
-    console.log("jason", User);
     var updatedUser = await UserService.updateUserCBU(User);
     return res.status(200).json({
       status: 200,
@@ -442,18 +361,6 @@ exports.updateUserALIAS = async function (req, res, next) {
   }
 };
 
-exports.removeUser = async function (req, res, next) {
-  var id = req.params.id;
-  try {
-    var deleted = await UserService.deleteUser(id);
-    res.status(200).send("Usuario eliminado correctamente");
-  } catch (e) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Error al querer eliminar el usuario" });
-  }
-};
-
 exports.loginUser = async function (req, res, next) {
   // Req.Body contains the form submit values.
   var User = {
@@ -466,26 +373,6 @@ exports.loginUser = async function (req, res, next) {
     return res
       .status(201)
       .json({ loginUser, message: "Usuario loggeado correctamente" });
-  } catch (e) {
-    //Return an Error Response Message with Code and the Error Message.
-    return res
-      .status(400)
-      .json({ status: 400, message: "Error al querer loggear el usuario" });
-  }
-};
-
-exports.loginUserATM = async function (req, res, next) {
-  // Req.Body contains the form submit values.
-  var User = {
-    cuit: req.body.cuit,
-    password: req.body.password,
-  };
-  try {
-    // Calling the Service function with the new object from the Request Body
-    var loginUserATM = await UserService.loginUserATM(User);
-    return res
-      .status(201)
-      .json({ loginUserATM, message: "Usuario loggeado correctamente" });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res

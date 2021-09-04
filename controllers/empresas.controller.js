@@ -49,29 +49,6 @@ exports.createEmpresa = async function (req, res, next) {
   }
 };
 
-// Traigo Empresa por ID
-exports.getEmpresaID = async function (req, res, next) {
-
-  var page = req.query.page ? req.query.page : 1
-  var limit = req.query.limit ? req.query.limit : 1000;
-
-  var filtro = {
-      _id: req.params.id
-  }
-  try {
-      var Empresas = await EmpresaService.getEmpresas(filtro, page, limit)
-
-      if (Empresas.total === 0)
-          return res.status(201).json({ status: 201, data: Empresas, message: "Error al querer obtener el empresa" });
-      else
-          return res.status(200).json({ status: 200, data: Empresas, message: "empresa obtenido correctamente" });
-  } catch (e) {
-
-      console.log(e)
-      return res.status(400).json({ status: 400, message: e.message });
-  }
-} 
-
 exports.updateEmpresa = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.nombre) {

@@ -28,30 +28,6 @@ exports.getUsers = async function (query, page, limit) {
   }
 };
 
-exports.updateMantenimiento = async function (user) {
-  var id = { balancecc: user.balancecc };
-  console.log("id", id);
-  try {
-    //Find the old User Object by the Id
-    var oldUser = await User.updateMany(id);
-  } catch (e) {
-    throw Error("Error occured while Finding the User");
-  }
-  // If no old User Object exists return false
-  if (!oldUser) {
-    return false;
-  }
-
-  oldUser.balancecc = user.balancecc;
-
-  try {
-    var savedUser = await oldUser.save();
-    return savedUser;
-  } catch (e) {
-    throw Error("And Error occured while updating the User");
-  }
-};
-
 exports.createUser = async function (user) {
   // Creating a new Mongoose Object by using the new keyword
   var hashedPassword = bcrypt.hashSync(user.password, 8);
@@ -321,22 +297,6 @@ exports.updateUserCBUCC = async function (user) {
   }
 };
 
-// Recupero Usuario por ID
-exports.getUsuarioID = async function (query, page, limit) {
-  var options = {
-    page,
-    limit,
-  };
-
-  try {
-    var Users = await User.paginate(query, options);
-    return Users;
-  } catch (e) {
-    console.log("error servicio", e);
-    throw Error("Error en el paginado de las Usuario por ID");
-  }
-};
-
 // Recupero Usuario por CBU
 exports.getUsuarioCBU = async function (query, page, limit) {
   var options = {
@@ -385,53 +345,12 @@ exports.getUsuarioUsuario = async function (query, page, limit) {
   }
 };
 
-exports.deleteUser = async function (id) {
-  // Delete the User
-  try {
-    var deleted = await User.remove({
-      _id: id,
-    });
-    if (deleted.n === 0 && deleted.ok === 1) {
-      throw Error("User Could not be deleted");
-    }
-    return deleted;
-  } catch (e) {
-    throw Error("Error Occured while Deleting the User");
-  }
-};
-
 exports.loginUser = async function (user) {
   // Creating a new Mongoose Object by using the new keyword
   try {
     // Find the User
     var _details = await User.findOne({
       usuario: user.usuario,
-    });
-    var passwordIsValid = bcrypt.compareSync(user.password, _details.password);
-    if (!passwordIsValid) throw Error("Invalid username/password");
-
-    var token = jwt.sign(
-      {
-        id: _details._id,
-      },
-      process.env.SECRET,
-      {
-        expiresIn: 15552000, // expires in 4 mounth
-      }
-    );
-    return { token: token, user: _details };
-  } catch (e) {
-    // return a Error message describing the reason
-    throw Error("Error while Login User");
-  }
-};
-
-exports.loginUserATM = async function (user) {
-  // Creating a new Mongoose Object by using the new keyword
-  try {
-    // Find the User
-    var _details = await User.findOne({
-      cuit: user.cuit,
     });
     var passwordIsValid = bcrypt.compareSync(user.password, _details.password);
     if (!passwordIsValid) throw Error("Invalid username/password");

@@ -90,18 +90,3 @@ if (!oldEmpresa) {
   }
 };
 
-// Recupero Empresa por ID
-exports.getEmpresaID = async function (query, page, limit) {
-  var options = {
-    page,
-    limit,
-  };
-
-  try {
-    var Empresas = await Empresa.paginate(query, options);
-    return Empresas;
-  } catch (e) {
-    console.log("error servicio", e);
-    throw Error("Error en el paginado de las Empresas por ID");
-  }
-};
