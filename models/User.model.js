@@ -22,7 +22,6 @@ var UserSchema = new mongoose.Schema({
     piso: String,
     cbu: Number,
     cbuCC: Number,
-    alias: String,
     nrocuenta: Number,
     numerocajacc : Number,
     balancecc : Number,

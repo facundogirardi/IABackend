@@ -108,6 +108,22 @@ exports.getEmpresaCUIT = async function (query, page, limit) {
   }
 };
 
+// Recupero Usuario por codigoPago
+exports.getEmpresaPAGO = async function (query, page, limit) {
+  var options = {
+    page,
+    limit,
+  };
+
+  try {
+    var Empresas = await Empresa.paginate(query, options);
+    return Empresas;
+  } catch (e) {
+    console.log("error servicio", e);
+    throw Error("Error en el paginado de las Usuario por CodigoPago");
+  }
+};
+
 // Recupero Usuario por Cuit Empresa
 exports.getEmpresaCUITEmpresa = async function (query, page, limit) {
   var options = {

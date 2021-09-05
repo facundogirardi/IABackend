@@ -175,43 +175,6 @@
         }
       }
     },
-    "/updateuseralias": {
-      "put": {
-        "tags": ["Usuarios"],
-        "summary": "Actualizacion de Cuentas",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El campo Alias el indice de busqueda",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Usuarioupdate"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Cuenta actualizada correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer actualizar la cuenta"
-          }
-        }
-      }
-    },
     "/updateusercbu": {
       "put": {
         "tags": ["Usuarios"],
@@ -767,9 +730,6 @@
           "type": "string"
         },
         "telefono": {
-          "type": "string"
-        },
-        "alias": {
           "type": "string"
         },
         "cuit": {

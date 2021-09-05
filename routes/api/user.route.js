@@ -14,7 +14,6 @@ router.post("/registration", UserController.createUser);
 router.post("/login/", UserController.loginUser);
 router.get("/getusers", UserController.getUsers);
 router.put("/updateusers", UserController.updateUser);
-router.put("/updateuseralias", UserController.updateUserALIAS);
 router.put("/updateusercbu", UserController.updateUserCBU);
 router.put("/updateusercbuCC", UserController.updateUserCBU);
 router.post("/getusersCBU", UserController.getUsuarioCBU);
@@ -26,6 +25,7 @@ router.post("/altaempresa", EmpresaController.createEmpresa);
 router.get("/getempresas", EmpresaController.getEmpresas);
 router.put("/updateEmpresa", EmpresaController.updateEmpresa);
 router.post("/getEmpresaCUIT", EmpresaController.getEmpresaCUIT);
+router.post("/getEmpresaPAGO", EmpresaController.getEmpresaPAGO);
 router.post("/getEmpresaCUITEmpresa", EmpresaController.getEmpresaCUITEmpresa);
 
 router.post("/getEmpresasID", EmpresaController.getEmpresasID);
