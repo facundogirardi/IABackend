@@ -10,6 +10,7 @@ var EmpresaSchema = new mongoose.Schema({
     fechaVencimiento : Number,
     estado : String,
     cuit : String,
+    cuitEmpresa : String,
     date : Date 
 
 })

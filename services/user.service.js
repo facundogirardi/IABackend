@@ -41,7 +41,7 @@ exports.createUser = async function (user) {
     usuariotipo: user.usuariotipo,
     password: hashedPassword,
     tipodni: user.tipodni,
-    estadocuenta: 2, // cuenta no activa
+    estadocuenta: 1, // cuenta activa
     empresa: user.empresa,
     nacimiento: user.nacimiento,
     telefono: user.telefono,
@@ -326,6 +326,22 @@ exports.getUsuarioCBUCC = async function (query, page, limit) {
   } catch (e) {
     console.log("error servicio", e);
     throw Error("Error en el paginado de las Usuario por CBU CC");
+  }
+};
+
+// Recupero Usuario por CBU CC
+exports.getUsuarioCuit = async function (query, page, limit) {
+  var options = {
+    page,
+    limit,
+  };
+
+  try {
+    var Users = await User.paginate(query, options);
+    return Users;
+  } catch (e) {
+    console.log("error servicio", e);
+    throw Error("Error en el paginado de las Usuario por Cuit");
   }
 };
 

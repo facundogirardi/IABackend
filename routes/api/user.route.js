@@ -20,10 +20,15 @@ router.put("/updateusercbuCC", UserController.updateUserCBU);
 router.post("/getusersCBU", UserController.getUsuarioCBU);
 router.post("/getusersCBUCC", UserController.getUsuarioCBUCC);
 router.post("/getusersUsuario", UserController.getUsuarioUsuario);
+router.post("/getUsuarioCuit", UserController.getUsuarioCuit);
 
 router.post("/altaempresa", EmpresaController.createEmpresa);
 router.get("/getempresas", EmpresaController.getEmpresas);
 router.put("/updateEmpresa", EmpresaController.updateEmpresa);
+router.post("/getEmpresaCUIT", EmpresaController.getEmpresaCUIT);
+router.post("/getEmpresaCUITEmpresa", EmpresaController.getEmpresaCUITEmpresa);
+
+router.post("/getEmpresasID", EmpresaController.getEmpresasID);
 
 router.post("/registromovimiento", MovimientoController.createMovimiento);
 router.get("/getmovimientos", MovimientoController.getMovimientos);

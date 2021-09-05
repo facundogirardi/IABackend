@@ -441,7 +441,7 @@
       "get": {
         "tags": ["Empresas"],
         "summary": "Obtencion de empresas",
-        "description": "Recupero todos los usuarios, utiliza token de seguridad",
+        "description": "Recupero todos las empresas, utiliza token de seguridad",
         "parameters": [
           {
             "name": "x-access-token",
@@ -450,6 +450,44 @@
             "type": "string"
           }
         ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Empresas obtenidas correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener las empresas"
+          }
+        }
+      }
+    },
+    "/getEmpresasID": {
+      "post": {
+        "tags": ["Empresas"],
+        "summary": "Obtencion de empresa por ID",
+        "description": "Recupero todos as empresas, utiliza token de seguridad",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "El campo ID el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/id"
+              }
+            }
+          }
+        },
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -818,6 +856,9 @@
         "codigopago": {
           "type": "string"
         },
+        "cuitEmpresa": {
+          "type": "string"
+        },
         "importe": {
           "type": "integer"
         },
@@ -842,6 +883,9 @@
           "type": "string"
         },
         "codigopago": {
+          "type": "string"
+        },
+        "cuitEmpresa": {
           "type": "string"
         },
         "importe": {

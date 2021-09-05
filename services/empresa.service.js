@@ -31,6 +31,7 @@ exports.createEmpresa = async function (empresa) {
   var newEmpresa = new Empresa({
     nombre: empresa.nombre,
     codigopago: empresa.codigopago,
+    cuitEmpresa: empresa.cuitEmpresa,
     importe: empresa.importe,
     mes: empresa.mes,
     fechaVencimiento: empresa.fechaVencimiento,
@@ -60,7 +61,7 @@ exports.createEmpresa = async function (empresa) {
 };
 
 exports.updateEmpresa = async function (empresa) {
-  var id = { nombre: empresa.nombre };
+  var id = { codigopago: empresa.codigopago };
 
   try {
     //Find the old Empresa Object by the Id
@@ -75,6 +76,7 @@ if (!oldEmpresa) {
   //Edit the Empresa Object
   oldEmpresa.nombre = empresa.nombre
   oldEmpresa.codigopago = empresa.codigopago
+  oldEmpresa.cuitEmpresa = empresa.cuitEmpresa
   oldEmpresa.importe = empresa.importe
   oldEmpresa.mes = empresa.mes
   oldEmpresa.fechaVencimiento = empresa.fechaVencimiento
@@ -90,3 +92,51 @@ if (!oldEmpresa) {
   }
 };
 
+// Recupero Usuario por Cuit
+exports.getEmpresaCUIT = async function (query, page, limit) {
+  var options = {
+    page,
+    limit,
+  };
+
+  try {
+    var Empresas = await Empresa.paginate(query, options);
+    return Empresas;
+  } catch (e) {
+    console.log("error servicio", e);
+    throw Error("Error en el paginado de las Usuario por CBU");
+  }
+};
+
+// Recupero Usuario por Cuit Empresa
+exports.getEmpresaCUITEmpresa = async function (query, page, limit) {
+  var options = {
+    page,
+    limit,
+  };
+
+  try {
+    var Empresas = await Empresa.paginate(query, options);
+    return Empresas;
+  } catch (e) {
+    console.log("error servicio", e);
+    throw Error("Error en el paginado de las Usuario por CBU Empresa");
+  }
+};
+
+// Recupero Empresa por ID
+exports.getEmpresasID = async function (query, page, limit) {
+  var options = {
+      page,
+      limit
+  }
+
+  try {
+      var Reportes = await Empresa.paginate(query, options)
+      return Reportes;
+
+  } catch (e) {
+      console.log("error servicio", e)
+      throw Error('Error en el paginado de las reportes por ID');
+  }
+}
