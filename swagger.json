@@ -3,7 +3,7 @@
   "info": {
     "version": "v1.0.0",
     "title": "Swagger para API Banco",
-    "description": "Enpoints para API Banco, realizada por el Grupo 1, Integracion de aplicaciones | Segundo Cuatrimestre 2021 ",
+    "description": "Enpoints para uso externo. API Banco realizada por el Grupo 1, Integracion de aplicaciones | Segundo Cuatrimestre 2021 ",
     "license": {
       "name": "UADE",
       "url": "https://www.uade.edu.ar/"
@@ -17,20 +17,12 @@
   ],
   "tags": [
     {
-      "name": "Token",
-      "description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMGQzZjNhZTU2NGRhMjUwOGZiMDFlNSIsImlhdCI6MTYyODI1ODEwNiwiZXhwIjoxNjQzODEwMTA2fQ.tsv_8Yo7TMi0hxBGMtQ_1ltRFd4Sbtaf8HDKKepHtwY"
-    },
-    {
       "name": "Usuarios",
       "description": "Endpoints para manejo de usuarios"
     },
     {
       "name": "Empresas",
       "description": "Endpoints para manejo de empresas"
-    },
-    {
-      "name": "Movimientos",
-      "description": "Endpoints para manejo de movimientos"
     }
   ],
   "consumes": ["application/json"],
@@ -41,14 +33,6 @@
       "post": {
         "tags": ["Usuarios"],
         "summary": "Generacion de usuarios nuevos",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "requestBody": {
           "description": "Registro de usuarios nuevos - (usuariotipo : 1 no juridico, 2 juridico, 3 operador)",
           "required": true,
@@ -74,299 +58,10 @@
         }
       }
     },
-    "/login": {
-      "post": {
-        "tags": ["Usuarios"],
-        "summary": "Login de usuarios",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El usuario debe existir primero",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Login"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "201": {
-            "description": "Usuario loggeado correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer loggear el usuario"
-          }
-        }
-      }
-    },
-    "/getusers": {
-      "get": {
-        "tags": ["Usuarios"],
-        "summary": "Obtencion de usuarios",
-        "description": "Recupero todos los usuarios, utiliza token de seguridad",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Usuarios obtenidos correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer obtener los usuarios"
-          }
-        }
-      }
-    },
-    "/updateusers": {
-      "put": {
-        "tags": ["Usuarios"],
-        "summary": "Actualizacion de usuarios",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El campo Usuario el indice de busqueda",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Usuarioupdate"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Usuario actualizado correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer actualizar el usuario"
-          }
-        }
-      }
-    },
-    "/updateusercbu": {
-      "put": {
-        "tags": ["Usuarios"],
-        "summary": "Actualizacion de Cuentas",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El campo CBU el indice de busqueda",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Usuarioupdate"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Cuenta actualizada correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer actualizar la cuenta"
-          }
-        }
-      }
-    },
-
-    "/updateusercbuCC": {
-      "put": {
-        "tags": ["Usuarios"],
-        "summary": "Actualizacion de Cuentas",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El campo CBUcc el indice de busqueda",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Usuarioupdate"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Cuenta actualizada correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer actualizar la cuenta"
-          }
-        }
-      }
-    },
-
-    "/getusersCBU": {
-      "post": {
-        "tags": ["Usuarios"],
-        "summary": "Obtengo usuario especifico por CBU de caja de ahorro",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El campo CBU el indice de busqueda",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/CBU"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Cuenta actualizada correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer actualizar la cuenta"
-          }
-        }
-      }
-    },
-
-    "/getusersCBUCC": {
-      "post": {
-        "tags": ["Usuarios"],
-        "summary": "Obtengo usuario especifico por CBU de cuenta corriente",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El campo CBUcc el indice de busqueda",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/CBUcc"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Cuenta actualizada correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer actualizar la cuenta"
-          }
-        }
-      }
-    },
-    "/getusersUsuario": {
-      "post": {
-        "tags": ["Usuarios"],
-        "summary": "Obtengo usuario especifico por Usuario",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El campo Usuario el indice de busqueda",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Getmovimiento"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Cuenta actualizada correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer actualizar la cuenta"
-          }
-        }
-      }
-    },
     "/altaempresa": {
       "post": {
         "tags": ["Empresas"],
-        "summary": "Generacion de empresas nuevas",
+        "summary": "Alta de cuotas",
         "parameters": [
           {
             "name": "x-access-token",
@@ -375,17 +70,7 @@
             "type": "string"
           }
         ],
-        "requestBody": {
-          "description": "Registro de empresas nuevas",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Empresa"
-              }
-            }
-          }
-        },
+
         "produces": ["application/json"],
         "responses": {
           "201": {
@@ -403,8 +88,8 @@
     "/getempresas": {
       "get": {
         "tags": ["Empresas"],
-        "summary": "Obtencion de empresas",
-        "description": "Recupero todos las empresas, utiliza token de seguridad",
+        "summary": "Obtencion de cuotas",
+        "description": "Recupero todos las cuotas de pago",
         "parameters": [
           {
             "name": "x-access-token",
@@ -427,11 +112,10 @@
         }
       }
     },
-    "/getEmpresasID": {
+    "/getEmpresaCUITEmpresa": {
       "post": {
         "tags": ["Empresas"],
-        "summary": "Obtencion de empresa por ID",
-        "description": "Recupero todos as empresas, utiliza token de seguridad",
+        "summary": "Obtengo la cuit por Empresa especifico",
         "parameters": [
           {
             "name": "x-access-token",
@@ -441,12 +125,12 @@
           }
         ],
         "requestBody": {
-          "description": "El campo ID el indice de busqueda",
+          "description": "El campo CuitEmpresa el indice de busqueda",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/id"
+                "$ref": "#/definitions/cuitEmpresa"
               }
             }
           }
@@ -454,21 +138,21 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Empresas obtenidas correctamente",
+            "description": "Cupon obtenido correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
           "400": {
-            "description": "Error al querer obtener las empresas"
+            "description": "Error al querer obtener el cupon"
           }
         }
       }
     },
-    "/updateEmpresa": {
-      "put": {
+    "/getEmpresaPAGO": {
+      "post": {
         "tags": ["Empresas"],
-        "summary": "Actualizacion de empresas",
+        "summary": "Obtengo usuario especifico por CBU de caja de ahorro",
         "parameters": [
           {
             "name": "x-access-token",
@@ -478,7 +162,81 @@
           }
         ],
         "requestBody": {
-          "description": "El campo nombre el indice de busqueda",
+          "description": "El campo Codigopago el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/codigopago"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Cupon obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener el cupon"
+          }
+        }
+      }
+    },
+    "/getEmpresaCUIT": {
+      "post": {
+        "tags": ["Empresas"],
+        "summary": "Obtengo cupon por Cuit de usuario especifico",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "El campo Cuit el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/cuit"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Cuenta actualizada correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer actualizar la cuenta"
+          }
+        }
+      }
+    },
+    "/updateEmpresa": {
+      "put": {
+        "tags": ["Empresas"],
+        "summary": "Actualizacion de cuotas",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "Actualizo estado de cuotas",
           "required": true,
           "content": {
             "application/json": {
@@ -501,110 +259,9 @@
           }
         }
       }
-    },
-    "/registromovimiento": {
-      "post": {
-        "tags": ["Movimientos"],
-        "summary": "Generacion de movimientos nuevos",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "Registro de movimientos nuevos",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Movimiento"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "201": {
-            "description": "Movimiento generado correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer generar el movimiento"
-          }
-        }
-      }
-    },
-    "/getmovimientos": {
-      "get": {
-        "tags": ["Movimientos"],
-        "summary": "Obtencion de movimientos",
-        "description": "Recupero todos los movimientos, utiliza token de seguridad",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Movimientos obtenidas correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer obtener los movimientos"
-          }
-        }
-      }
-    },
-
-    "/getMovimientoUsuario": {
-      "post": {
-        "tags": ["Movimientos"],
-        "summary": "Obtengo movimiento especifico por Usuario",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El campo Usuario el indice de busqueda",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Getmovimiento"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Movimiento obtenido correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "201": {
-            "description": "Error al querer obtener el movimiento"
-          }
-        }
-      }
     }
   },
+
   "definitions": {
     "id": {
       "properties": {
@@ -613,23 +270,34 @@
         }
       }
     },
-    "CBU": {
+    "cuit": {
       "properties": {
-        "cbu": {
-          "type": "integer"
+        "cuit": {
+          "type": "string"
         }
       }
     },
-    "CBUcc": {
+    "cuitEmpresa": {
       "properties": {
-        "cbuCC": {
-          "type": "integer"
+        "cuitEmpresa": {
+          "type": "string"
         }
       }
     },
-    "Getmovimiento": {
+    "codigopago": {
+      "properties": {
+        "codigopago": {
+          "type": "string"
+        }
+      }
+    },
+    "Login": {
+      "type": "object",
       "properties": {
         "usuario": {
+          "type": "string"
+        },
+        "password": {
           "type": "string"
         }
       }
@@ -690,120 +358,6 @@
         },
         "depto": {
           "type": "string"
-        }
-      }
-    },
-    "Usuarioupdate": {
-      "type": "object",
-      "properties": {
-        "nombre": {
-          "type": "string"
-        },
-        "apellido": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "usuario": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "usuariotipo": {
-          "type": "integer"
-        },
-        "tipodni": {
-          "type": "string"
-        },
-        "dni": {
-          "type": "string"
-        },
-        "estadocuenta": {
-          "type": "integer"
-        },
-        "empresa": {
-          "type": "string"
-        },
-        "nacimiento": {
-          "type": "string"
-        },
-        "telefono": {
-          "type": "string"
-        },
-        "cuit": {
-          "type": "string"
-        },
-        "calle": {
-          "type": "string"
-        },
-        "altura": {
-          "type": "string"
-        },
-        "ciudad": {
-          "type": "string"
-        },
-        "piso": {
-          "type": "string"
-        },
-        "cbu": {
-          "type": "integer"
-        },
-        "cbuCC": {
-          "type": "integer"
-        },
-        "numerocajacc": {
-          "type": "integer"
-        },
-        "numerocajaca": {
-          "type": "integer"
-        },
-        "nrocuenta": {
-          "type": "integer"
-        },
-        "balancecc": {
-          "type": "integer"
-        },
-        "balanceca": {
-          "type": "integer"
-        },
-        "provincia": {
-          "type": "string"
-        },
-        "depto": {
-          "type": "string"
-        }
-      }
-    },
-    "Login": {
-      "type": "object",
-      "properties": {
-        "usuario": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "Movimiento": {
-      "type": "object",
-      "properties": {
-        "tipomovimiento": {
-          "type": "string"
-        },
-        "importe": {
-          "type": "integer"
-        },
-        "usuario": {
-          "type": "string"
-        },
-        "importeCC": {
-          "type": "integer"
-        },
-        "importeCA": {
-          "type": "integer"
         }
       }
     },
