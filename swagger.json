@@ -409,7 +409,7 @@
           "type": "integer"
         },
         "fechavencimiento": {
-          "type": "integer"
+          "type": "string"
         },
         "estado": {
           "type": "string"

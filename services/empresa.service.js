@@ -42,7 +42,7 @@ exports.createEmpresa = async function (empresa) {
 
   try {
     // Saving the Empresa
-    var savedEmpresa = await newEmpresa.save();
+    var savedEmpresa = await  Empresa.insertMany(empresa);
     var token = jwt.sign(
       {
         id: savedEmpresa._id,

@@ -7,7 +7,7 @@ var EmpresaSchema = new mongoose.Schema({
     codigopago : String,
     importe : Number,
     mes : Number,
-    fechaVencimiento : Number,
+    fechaVencimiento : String,
     estado : String,
     cuit : String,
     cuitEmpresa : String,
