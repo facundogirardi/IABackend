@@ -15,6 +15,7 @@ router.post("/login/", UserController.loginUser);
 router.get("/getusers", UserController.getUsers);
 router.put("/updateusers", UserController.updateUser);
 router.put("/updateusercbu", UserController.updateUserCBU);
+router.put("/updateUserP", UserController.updateUserP);
 router.put("/updateusercbuCC", UserController.updateUserCBU);
 router.post("/getusersCBU", UserController.getUsuarioCBU);
 router.post("/getusersCBUCC", UserController.getUsuarioCBUCC);
