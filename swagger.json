@@ -17,10 +17,6 @@
   ],
   "tags": [
     {
-      "name": "Usuarios",
-      "description": "Endpoints para manejo de usuarios"
-    },
-    {
       "name": "Empresas",
       "description": "Endpoints para manejo de empresas"
     }
@@ -29,35 +25,6 @@
   "produces": ["application/json"],
 
   "paths": {
-    "/registration": {
-      "post": {
-        "tags": ["Usuarios"],
-        "summary": "Generacion de usuarios nuevos",
-        "requestBody": {
-          "description": "Registro de usuarios nuevos - (usuariotipo : 1 no juridico, 2 juridico, 3 operador)",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Usuario"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "201": {
-            "description": "Usuario generado correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer generar el usuario"
-          }
-        }
-      }
-    },
     "/altaempresa": {
       "post": {
         "tags": ["Empresas"],
