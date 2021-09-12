@@ -153,15 +153,20 @@ exports.updateUserP = async function (user) {
   }
 
   //Edit the User Object
-  var hashedPassword = bcrypt.hashSync(user.password, 8);
-
+  var passwordIsValido = bcrypt.compareSync(user.password, oldUser.password);
+  if (!passwordIsValido) {
+    var hashedPassword = bcrypt.hashSync(user.password, 8);
+    oldUser.password = hashedPassword;
+  } else {
+    oldUser.password = oldUser.password;
+  }
   oldUser.nombre = user.nombre;
   oldUser.apellido = user.apellido;
   oldUser.email = user.email;
   oldUser.dni = user.dni;
   oldUser.usuariotipo = user.usuariotipo;
   oldUser.usuario = user.usuario;
-  oldUser.password = hashedPassword;
+
   oldUser.tipodni = user.tipodni;
   oldUser.estadocuenta = user.estadocuenta;
   oldUser.empresa = user.empresa;
