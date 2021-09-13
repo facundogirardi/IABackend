@@ -26,17 +26,19 @@ exports.getEmpresas = async function (req, res, next) {
 
 exports.createEmpresa = async function (req, res, next) {
   // Req.Body contains the form submit values.
-  var Empresa = [{
-    nombre: req.body.nombre,
-    codigopago: req.body.codigopago,
-    cuitEmpresa: req.body.cuitEmpresa,
-    importe: req.body.importe,
-    mes: req.body.mes,
-    fechaVencimiento: req.body.fechaVencimiento,
-    estado: req.body.estado,
-    cuit: req.body.cuit,
-  }];
-  
+  var Empresa = [
+    {
+      nombre: req.body.nombre,
+      codigopago: req.body.codigopago,
+      cuitEmpresa: req.body.cuitEmpresa,
+      importe: req.body.importe,
+      mes: req.body.mes,
+      fechaVencimiento: req.body.fechaVencimiento,
+      estado: req.body.estado,
+      cuit: req.body.cuit,
+    },
+  ];
+
   try {
     // Calling the Service function with the new object from the Request Body
     var createdEmpresa = await EmpresaService.createEmpresa(req.body);

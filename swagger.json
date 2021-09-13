@@ -19,35 +19,71 @@
     {
       "name": "Empresas",
       "description": "Endpoints para manejo de empresas"
+    },
+    {
+      "name": "Usuarios",
+      "description": "Endpoints para manejo de usuarios "
     }
   ],
   "consumes": ["application/json"],
   "produces": ["application/json"],
 
   "paths": {
-    "/altaempresa": {
+    "/getUsuarioCuit": {
       "post": {
-        "tags": ["Empresas"],
-        "summary": "Alta de cuotas",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "tags": ["Usuarios"],
+        "summary": "Obtengo usuario especifico por CUIT de usuario",
 
+        "requestBody": {
+          "description": "El campo CUIT el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/cuit"
+              }
+            }
+          }
+        },
         "produces": ["application/json"],
         "responses": {
-          "201": {
-            "description": "Usuario generado correctamente",
+          "200": {
+            "description": "Usuario obtenido correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
           "400": {
-            "description": "Error al querer generar el usuario"
+            "description": "Error al querer obtener el usuario"
+          }
+        }
+      }
+    },
+    "/altaempresa": {
+      "post": {
+        "tags": ["Empresas"],
+        "summary": "Alta de cuotas",
+        "requestBody": {
+          "description": "Alta de cuotas, para pago de servicios",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Empresaupdate"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Alta efectuada correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer dar de alta la cuota"
           }
         }
       }
@@ -56,15 +92,7 @@
       "get": {
         "tags": ["Empresas"],
         "summary": "Obtencion de cuotas",
-        "description": "Recupero todos las cuotas de pago",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "description": "Recupero todos las cuotas de pago y sus estados",
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -79,55 +107,10 @@
         }
       }
     },
-    "/getEmpresaCUITEmpresa": {
-      "post": {
-        "tags": ["Empresas"],
-        "summary": "Obtengo la cuit por Empresa especifico",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "requestBody": {
-          "description": "El campo CuitEmpresa el indice de busqueda",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/cuitEmpresa"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Cupon obtenido correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer obtener el cupon"
-          }
-        }
-      }
-    },
     "/getEmpresaPAGO": {
       "post": {
         "tags": ["Empresas"],
-        "summary": "Obtengo usuario especifico por CBU de caja de ahorro",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Obtengo estado de pago especifico por Cupon de Pago",
         "requestBody": {
           "description": "El campo Codigopago el indice de busqueda",
           "required": true,
@@ -156,17 +139,10 @@
     "/getEmpresaCUIT": {
       "post": {
         "tags": ["Empresas"],
-        "summary": "Obtengo cupon por Cuit de usuario especifico",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Obtengo cupon de pago especifico por CUIT de usuario",
+
         "requestBody": {
-          "description": "El campo Cuit el indice de busqueda",
+          "description": "El campo CUIT el indice de busqueda",
           "required": true,
           "content": {
             "application/json": {
@@ -179,13 +155,13 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Cuenta actualizada correctamente",
+            "description": "Cupon obtenido correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
           "400": {
-            "description": "Error al querer actualizar la cuenta"
+            "description": "Error al querer obtener el cupon"
           }
         }
       }
@@ -194,14 +170,6 @@
       "put": {
         "tags": ["Empresas"],
         "summary": "Actualizacion de cuotas",
-        "parameters": [
-          {
-            "name": "x-access-token",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "requestBody": {
           "description": "Actualizo estado de cuotas",
           "required": true,
@@ -216,13 +184,13 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Usuario actualizado correctamente",
+            "description": "Cuota actualizada correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
           "400": {
-            "description": "Error al querer actualizar el usuario"
+            "description": "Error al querer actualizar la cuota"
           }
         }
       }
