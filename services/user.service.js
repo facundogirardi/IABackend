@@ -153,12 +153,13 @@ exports.updateUserP = async function (user) {
   }
 
   //Edit the User Object
-  var passwordIsValido = bcrypt.compareSync(user.password, oldUser.password);
-  if (!passwordIsValido) {
+  console.log("password ingresada", user.password);
+  console.log("password en base de datos", oldUser.password);
+  if (user.password === oldUser.password) {
+    oldUser.password = oldUser.password;
+  } else {
     var hashedPassword = bcrypt.hashSync(user.password, 8);
     oldUser.password = hashedPassword;
-  } else {
-    oldUser.password = oldUser.password;
   }
   oldUser.nombre = user.nombre;
   oldUser.apellido = user.apellido;
