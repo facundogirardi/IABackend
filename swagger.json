@@ -59,6 +59,35 @@
         }
       }
     },
+    "/updateusercbu": {
+      "put": {
+        "tags": ["Usuarios"],
+        "summary": "Depositos a cuenta",
+        "requestBody": {
+          "description": "Deposito de sueldos, Caja de ahorro : numerocajaca. Cuenta Corriente : numerocajacc",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Usuarioaupdate"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Cuota actualizada correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer actualizar la cuota"
+          }
+        }
+      }
+    },
     "/altaempresa": {
       "post": {
         "tags": ["Empresas"],
@@ -88,36 +117,18 @@
         }
       }
     },
-    "/getempresas": {
-      "get": {
-        "tags": ["Empresas"],
-        "summary": "Obtencion de cuotas",
-        "description": "Recupero todos las cuotas de pago y sus estados",
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Empresas obtenidas correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer obtener las empresas"
-          }
-        }
-      }
-    },
-    "/getEmpresaPAGO": {
+
+    "/getEmpresaESTADO": {
       "post": {
         "tags": ["Empresas"],
-        "summary": "Obtengo estado de pago especifico por Cupon de Pago",
+        "summary": "Obtengo estado de pago especifico por estado de pago",
         "requestBody": {
-          "description": "El campo Codigopago el indice de busqueda",
+          "description": "El campo Estado el indice de busqueda, 'Pago parcial' 'Pago total' ",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/codigopago"
+                "$ref": "#/definitions/estado"
               }
             }
           }
@@ -219,9 +230,9 @@
         }
       }
     },
-    "codigopago": {
+    "estado": {
       "properties": {
-        "codigopago": {
+        "estado": {
           "type": "string"
         }
       }
@@ -233,65 +244,6 @@
           "type": "string"
         },
         "password": {
-          "type": "string"
-        }
-      }
-    },
-    "Usuario": {
-      "type": "object",
-      "properties": {
-        "nombre": {
-          "type": "string"
-        },
-        "apellido": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "usuario": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "usuariotipo": {
-          "type": "integer"
-        },
-        "tipodni": {
-          "type": "string"
-        },
-        "dni": {
-          "type": "string"
-        },
-        "empresa": {
-          "type": "string"
-        },
-        "nacimiento": {
-          "type": "string"
-        },
-        "telefono": {
-          "type": "string"
-        },
-        "cuit": {
-          "type": "string"
-        },
-        "calle": {
-          "type": "string"
-        },
-        "altura": {
-          "type": "string"
-        },
-        "ciudad": {
-          "type": "string"
-        },
-        "piso": {
-          "type": "string"
-        },
-        "provincia": {
-          "type": "string"
-        },
-        "depto": {
           "type": "string"
         }
       }
@@ -325,6 +277,87 @@
         }
       }
     },
+    "Usuarioaupdate": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "apellido": {
+          "type": "string"
+        },
+        "tipodni": {
+          "type": "string"
+        },
+        "dni": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "estadocuenta": {
+          "type": "integer"
+        },
+        "usuario": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "usuariotipo": {
+          "type": "integer"
+        },
+        "empresa": {
+          "type": "string"
+        },
+        "nacimiento": {
+          "type": "string"
+        },
+        "telefono": {
+          "type": "string"
+        },
+        "cuit": {
+          "type": "string"
+        },
+        "calle": {
+          "type": "string"
+        },
+        "ciudad": {
+          "type": "string"
+        },
+        "piso": {
+          "type": "string"
+        },
+        "cbu": {
+          "type": "integer"
+        },
+        "cbuCC": {
+          "type": "integer"
+        },
+        "nrocuenta": {
+          "type": "integer"
+        },
+        "numerocajacc": {
+          "type": "integer"
+        },
+        "balancecc": {
+          "type": "integer"
+        },
+        "numerocajaca": {
+          "type": "integer"
+        },
+        "balanceca": {
+          "type": "integer"
+        },
+        "provincia": {
+          "type": "string"
+        },
+        "depto": {
+          "type": "string"
+        }
+      }
+    },
+
     "Empresaupdate": {
       "type": "object",
       "properties": {

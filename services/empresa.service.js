@@ -108,8 +108,8 @@ exports.getEmpresaCUIT = async function (query, page, limit) {
   }
 };
 
-// Recupero Usuario por codigoPago
-exports.getEmpresaPAGO = async function (query, page, limit) {
+// Recupero Usuario por estado
+exports.getEmpresaESTADO = async function (query, page, limit) {
   var options = {
     page,
     limit,
@@ -120,7 +120,7 @@ exports.getEmpresaPAGO = async function (query, page, limit) {
     return Empresas;
   } catch (e) {
     console.log("error servicio", e);
-    throw Error("Error en el paginado de las Usuario por CodigoPago");
+    throw Error("Error en el paginado de las Usuario por estado");
   }
 };
 

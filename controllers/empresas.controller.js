@@ -121,12 +121,12 @@ exports.getEmpresaCUIT = async function (req, res, next) {
 };
 
 // Traigo empresa por codigo Pago
-exports.getEmpresaPAGO = async function (req, res, next) {
+exports.getEmpresaESTADO = async function (req, res, next) {
   var page = req.query.page ? req.query.page : 1;
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
-    codigopago: req.body.codigopago,
+    estado: req.body.estado,
   };
 
   try {
@@ -136,13 +136,13 @@ exports.getEmpresaPAGO = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Empresas,
-        message: "Error al querer obtener el codigopago",
+        message: "Error al querer obtener el estado",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Empresas,
-        message: "codigopago obtenido correctamente",
+        message: "estado obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
