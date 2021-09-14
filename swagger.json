@@ -21,6 +21,10 @@
       "description": "Endpoints para manejo de empresas"
     },
     {
+      "name": "Movimientos",
+      "description": "Endpoints para manejo de alta de movimientos"
+    },
+    {
       "name": "Usuarios",
       "description": "Endpoints para manejo de usuarios "
     }
@@ -59,12 +63,12 @@
         }
       }
     },
-    "/updateusercbu": {
+    "/updateUserCUIT": {
       "put": {
         "tags": ["Usuarios"],
         "summary": "Depositos a cuenta",
         "requestBody": {
-          "description": "Deposito de sueldos, Caja de ahorro : numerocajaca. Cuenta Corriente : numerocajacc",
+          "description": "Deposito de sueldos en Caja de ahorro, 'cuit' es campo de busqueda y 'balanceca', la cuenta de deposito",
           "required": true,
           "content": {
             "application/json": {
@@ -77,13 +81,13 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Cuota actualizada correctamente",
+            "description": "Deposito realizado correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
           "400": {
-            "description": "Error al querer actualizar la cuota"
+            "description": "Error al querer realizar el deposito"
           }
         }
       }
@@ -117,7 +121,35 @@
         }
       }
     },
-
+    "/createMovimiento": {
+      "post": {
+        "tags": ["Movimientos"],
+        "summary": "Generacion de movimientos",
+        "requestBody": {
+          "description": "Generacion de movimientos, para visualizacion del usuario en HB",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/altamovimiento"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Movimiento efectuado correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer dar de alta el movimiento"
+          }
+        }
+      }
+    },
     "/getEmpresaESTADO": {
       "post": {
         "tags": ["Empresas"],
@@ -209,6 +241,25 @@
   },
 
   "definitions": {
+    "altamovimiento": {
+      "properties": {
+        "tipomovimiento": {
+          "type": "string"
+        },
+        "importe": {
+          "type": "string"
+        },
+        "importeCC": {
+          "type": "string"
+        },
+        "importeCA": {
+          "type": "string"
+        },
+        "usuario": {
+          "type": "string"
+        }
+      }
+    },
     "id": {
       "properties": {
         "id": {
