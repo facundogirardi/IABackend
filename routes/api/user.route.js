@@ -28,6 +28,7 @@ router.get("/getempresas", EmpresaController.getEmpresas);
 router.put("/updateEmpresa", EmpresaController.updateEmpresa);
 router.post("/getEmpresaCUIT", EmpresaController.getEmpresaCUIT);
 router.post("/getEmpresaESTADO", EmpresaController.getEmpresaESTADO);
+router.post("/getEmpresaPAGO", EmpresaController.getEmpresaPAGO);
 router.post("/getEmpresaCUITEmpresa", EmpresaController.getEmpresaCUITEmpresa);
 
 router.post("/getEmpresasID", EmpresaController.getEmpresasID);
