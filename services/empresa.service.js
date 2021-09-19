@@ -33,7 +33,7 @@ exports.createEmpresa = async function (empresa) {
     codigopago: empresa.codigopago,
     cuitEmpresa: empresa.cuitEmpresa,
     importe: empresa.importe,
-    mes: empresa.mes,
+    descripcion: empresa.descripcion,
     fechaVencimiento: empresa.fechaVencimiento,
     estado: empresa.estado,
     cuit: empresa.cuit,
@@ -78,7 +78,7 @@ if (!oldEmpresa) {
   oldEmpresa.codigopago = empresa.codigopago
   oldEmpresa.cuitEmpresa = empresa.cuitEmpresa
   oldEmpresa.importe = empresa.importe
-  oldEmpresa.mes = empresa.mes
+  oldEmpresa.descripcion = empresa.descripcion
   oldEmpresa.fechaVencimiento = empresa.fechaVencimiento
   oldEmpresa.estado = empresa.estado
   oldEmpresa.cuit = empresa.cuit

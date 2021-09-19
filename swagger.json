@@ -314,8 +314,8 @@
         "importe": {
           "type": "integer"
         },
-        "mes": {
-          "type": "integer"
+        "descripcion": {
+          "type": "string"
         },
         "fechavencimiento": {
           "type": "integer"
@@ -424,8 +424,8 @@
         "importe": {
           "type": "integer"
         },
-        "mes": {
-          "type": "integer"
+        "descripcion": {
+          "type": "string"
         },
         "fechavencimiento": {
           "type": "string"

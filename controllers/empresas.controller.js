@@ -32,7 +32,7 @@ exports.createEmpresa = async function (req, res, next) {
       codigopago: req.body.codigopago,
       cuitEmpresa: req.body.cuitEmpresa,
       importe: req.body.importe,
-      mes: req.body.mes,
+      descripcion: req.body.descripcion,
       fechaVencimiento: req.body.fechaVencimiento,
       estado: req.body.estado,
       cuit: req.body.cuit,
@@ -67,7 +67,7 @@ exports.updateEmpresa = async function (req, res, next) {
     codigopago: req.body.codigopago ? req.body.codigopago : null,
     cuitEmpresa: req.body.cuitEmpresa ? req.body.cuitEmpresa : null,
     importe: req.body.importe ? req.body.importe : null,
-    mes: req.body.mes ? req.body.mes : null,
+    descripcion: req.body.descripcion ? req.body.descripcion : null,
     fechaVencimiento: req.body.fechaVencimiento
       ? req.body.fechaVencimiento
       : null,
