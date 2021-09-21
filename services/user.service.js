@@ -62,9 +62,9 @@ exports.createUser = async function (user) {
     ),
     nrocuenta: random.int((min = 0), (max = 9999999999)),
     numerocajacc: random.int((min = 0), (max = 9999999999)),
-    balancecc: 0,
+    balancecc: 0.00,
     numerocajaca: random.int((min = 0), (max = 9999999999)),
-    balanceca: 0,
+    balanceca: 0.00,
   });
   try {
     // Saving the User
