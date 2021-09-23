@@ -153,8 +153,6 @@ exports.updateUserP = async function (user) {
   }
 
   //Edit the User Object
-  console.log("password ingresada", user.password);
-  console.log("password en base de datos", oldUser.password);
   if (user.password === oldUser.password) {
     oldUser.password = oldUser.password;
   } else {
