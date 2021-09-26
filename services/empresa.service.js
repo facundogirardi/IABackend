@@ -35,8 +35,7 @@ exports.createEmpresa = async function (empresa) {
     importe: empresa.importe,
     descripcion: empresa.descripcion,
     fechaVencimiento: empresa.fechaVencimiento,
-    estado: empresa.estado,
-    cuit: empresa.cuit,
+    estado: "No pagado",
     date: new Date(),
   });
 
@@ -81,7 +80,6 @@ if (!oldEmpresa) {
   oldEmpresa.descripcion = empresa.descripcion
   oldEmpresa.fechaVencimiento = empresa.fechaVencimiento
   oldEmpresa.estado = empresa.estado
-  oldEmpresa.cuit = empresa.cuit
 
   try {
 
@@ -89,22 +87,6 @@ if (!oldEmpresa) {
     return savedEmpresa;
   } catch (e) {
     throw Error("And Error occured while updating the Empresa");
-  }
-};
-
-// Recupero Usuario por Cuit
-exports.getEmpresaCUIT = async function (query, page, limit) {
-  var options = {
-    page,
-    limit,
-  };
-
-  try {
-    var Empresas = await Empresa.paginate(query, options);
-    return Empresas;
-  } catch (e) {
-    console.log("error servicio", e);
-    throw Error("Error en el paginado de las Usuario por CBU");
   }
 };
 

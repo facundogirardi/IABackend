@@ -3,6 +3,7 @@ var router = express.Router();
 var UserController = require("../../controllers/users.controller");
 var EmpresaController = require("../../controllers/empresas.controller");
 var MovimientoController = require("../../controllers/movements.controller");
+var MantenimientoController = require("../../controllers/mantenimientos.controller");
 var Authorization = require("../../auth/authorization");
 
 // Authorize each API with middleware and map to the Controller Functions
@@ -26,7 +27,6 @@ router.post("/getUsuarioCuit", UserController.getUsuarioCuit);
 router.post("/altaempresa", EmpresaController.createEmpresa);
 router.get("/getempresas", EmpresaController.getEmpresas);
 router.put("/updateEmpresa", EmpresaController.updateEmpresa);
-router.post("/getEmpresaCUIT", EmpresaController.getEmpresaCUIT);
 router.post("/getEmpresaESTADO", EmpresaController.getEmpresaESTADO);
 router.post("/getEmpresaPAGO", EmpresaController.getEmpresaPAGO);
 router.post("/getEmpresaCUITEmpresa", EmpresaController.getEmpresaCUITEmpresa);
@@ -36,6 +36,11 @@ router.post("/getEmpresasID", EmpresaController.getEmpresasID);
 router.post("/registromovimiento", MovimientoController.createMovimiento);
 router.get("/getmovimientos", MovimientoController.getMovimientos);
 router.post("/getMovimientoUsuario", MovimientoController.getMovimientoUsuario);
+
+router.get("/getMantenimientos", MantenimientoController.getMantenimientos);
+router.put("/updateMantenimiento", MantenimientoController.updateMantenimiento);
+router.post("/getMantenimientoClave", MantenimientoController.getMantenimientoClave);
+
 
 // Export the Router
 module.exports = router;

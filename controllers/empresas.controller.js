@@ -35,7 +35,6 @@ exports.createEmpresa = async function (req, res, next) {
       descripcion: req.body.descripcion,
       fechaVencimiento: req.body.fechaVencimiento,
       estado: req.body.estado,
-      cuit: req.body.cuit,
     },
   ];
 
@@ -72,7 +71,6 @@ exports.updateEmpresa = async function (req, res, next) {
       ? req.body.fechaVencimiento
       : null,
     estado: req.body.estado ? req.body.estado : null,
-    cuit: req.body.cuit ? req.body.cuit : null,
   };
 
   try {
@@ -87,36 +85,6 @@ exports.updateEmpresa = async function (req, res, next) {
     return res
       .status(400)
       .json({ status: 400, message: "Error al querer actualizar el empresa" });
-  }
-};
-
-// Traigo empresa por CUIT
-exports.getEmpresaCUIT = async function (req, res, next) {
-  var page = req.query.page ? req.query.page : 1;
-  var limit = req.query.limit ? req.query.limit : 1000;
-
-  var filtro = {
-    cuit: req.body.cuit,
-  };
-
-  try {
-    var Empresas = await EmpresaService.getEmpresaCUIT(filtro, page, limit);
-
-    if (Empresas.total === 0)
-      return res.status(201).json({
-        status: 201,
-        data: Empresas,
-        message: "Error al querer obtener el cuit",
-      });
-    else
-      return res.status(200).json({
-        status: 200,
-        data: Empresas,
-        message: "cuit obtenido correctamente",
-      });
-  } catch (e) {
-    console.log(e);
-    return res.status(400).json({ status: 400, message: e.message });
   }
 };
 
