@@ -52,7 +52,7 @@ exports.createEmpresa = async function (req, res, next) {
       .json({ status: 400, message: "Error al querer generar el empresa" });
   }
 };
-
+        
 exports.updateEmpresa = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.codigopago) {

@@ -30,7 +30,6 @@ router.put("/updateEmpresa", EmpresaController.updateEmpresa);
 router.post("/getEmpresaESTADO", EmpresaController.getEmpresaESTADO);
 router.post("/getEmpresaPAGO", EmpresaController.getEmpresaPAGO);
 router.post("/getEmpresaCUITEmpresa", EmpresaController.getEmpresaCUITEmpresa);
-
 router.post("/getEmpresasID", EmpresaController.getEmpresasID);
 
 router.post("/registromovimiento", MovimientoController.createMovimiento);
@@ -39,8 +38,72 @@ router.post("/getMovimientoUsuario", MovimientoController.getMovimientoUsuario);
 
 router.get("/getMantenimientos", MantenimientoController.getMantenimientos);
 router.put("/updateMantenimiento", MantenimientoController.updateMantenimiento);
-router.post("/getMantenimientoClave", MantenimientoController.getMantenimientoClave);
+router.post(
+  "/getMantenimientoClave",
+  MantenimientoController.getMantenimientoClave
+);
 
+
+
+const fs = require('fs');
+const multer = require('multer');
+
+
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb+srv://admin:admin@cluster0.pfxg4.mongodb.net/";
+
+const csv=require('csvtojson')
+
+const path = require('path');
+let reqPath = path.join(__dirname, '../../'); 
+global.__basedir = reqPath;
+
+console.log(reqPath) 
+  
+// -> Multer Upload Storage
+const storage = multer.diskStorage({
+ destination: (req, file, cb) => {
+    cb(null, __basedir + '/uploads/')
+ },
+ filename: (req, file, cb) => {
+    cb(null, file.fieldname + "-" + Date.now() + "-" + file.originalname)
+ }
+});
+ 
+const upload = multer({storage: storage});
+ 
+// -> Express Upload RestAPIs
+router.post('/uploadfile', upload.single("uploadfile"), (req, res) =>{
+    importCsv(__basedir + '/uploads/' + req.file.filename);
+    res.json({
+        'msg': 'File uploaded/import successfully!', 'file': req.file
+    });
+});
+ 
+// -> Import CSV File to MongoDB database
+function importCsv(filePath){
+    csv()
+        .fromFile(filePath)
+        .then((jsonObj)=>{
+            // Insert Json-Object to MongoDB
+            MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
+                if (err) throw err;
+                let dbo = db.db("Banco");
+                dbo.collection("empresas").insertMany(jsonObj, (err, res) => {
+                   if (err) throw err;
+                   console.log("Number of documents inserted: " + res.insertedCount);
+                   /**
+                       Number of documents inserted: 5
+                   */
+                   db.close();
+                });
+            });
+			
+            fs.unlinkSync(filePath);
+        })
+}
+ 
+ 
 
 // Export the Router
 module.exports = router;
