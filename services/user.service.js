@@ -41,7 +41,7 @@ exports.createUser = async function (user) {
     usuariotipo: user.usuariotipo,
     password: hashedPassword,
     tipodni: user.tipodni,
-    estadocuenta: 2, // cuenta activa
+    estadocuenta: 3, // cuenta para cambio de pass
     empresa: user.empresa,
     nacimiento: user.nacimiento,
     telefono: user.telefono,
