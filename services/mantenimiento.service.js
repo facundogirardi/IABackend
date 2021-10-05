@@ -45,6 +45,7 @@ exports.updateMantenimiento = async function (mantenimiento) {
   oldMantenimiento.descubiertoF = mantenimiento.descubiertoF;
   oldMantenimiento.mantenimientoJ = mantenimiento.mantenimientoJ;
   oldMantenimiento.descubiertoJ = mantenimiento.descubiertoJ;
+  oldMantenimiento.interes = mantenimiento.interes;
 
   try {
     var savedMantenimiento = await oldMantenimiento.save();

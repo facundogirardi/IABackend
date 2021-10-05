@@ -6,6 +6,7 @@ var SchemaTypes = mongoose.Schema.Types;
 var MantenimientoSchema = new mongoose.Schema({
   clave: String,
   mantenimientoF: String,
+  interes: String,
   descubiertoF: String,
   mantenimientoJ: String,
   descubiertoJ: String,

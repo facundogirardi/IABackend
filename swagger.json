@@ -20,13 +20,10 @@
       "name": "Empresas",
       "description": "Endpoints para manejo de empresas"
     },
+
     {
-      "name": "Movimientos",
-      "description": "Endpoints para manejo de alta de movimientos"
-    },
-    {
-      "name": "Usuarios",
-      "description": "Endpoints para manejo de usuarios "
+      "name": "Clearing Bancario",
+      "description": "Endpoints para manejo del clearing "
     }
   ],
   "consumes": ["application/json"],
@@ -35,7 +32,7 @@
   "paths": {
     "/getUsuarioCuit": {
       "post": {
-        "tags": ["Usuarios"],
+        "tags": ["Clearing Bancario"],
         "summary": "Obtengo usuario especifico por CUIT de usuario",
 
         "requestBody": {
@@ -65,7 +62,7 @@
     },
     "/updateUserCUIT": {
       "put": {
-        "tags": ["Usuarios"],
+        "tags": ["Clearing Bancario"],
         "summary": "Depositos a cuenta",
         "requestBody": {
           "description": "Deposito de sueldos en Caja de ahorro, 'cuit' es campo de busqueda y 'balanceca', la cuenta de deposito",
@@ -121,35 +118,7 @@
         }
       }
     },
-    "/createMovimiento": {
-      "post": {
-        "tags": ["Movimientos"],
-        "summary": "Generacion de movimientos",
-        "requestBody": {
-          "description": "Generacion de movimientos, para visualizacion del usuario en HB",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/altamovimiento"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "201": {
-            "description": "Movimiento efectuado correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer dar de alta el movimiento"
-          }
-        }
-      }
-    },
+     
     "/getEmpresaESTADO": {
       "post": {
         "tags": ["Empresas"],
@@ -214,7 +183,7 @@
         "tags": ["Empresas"],
         "summary": "Actualizacion de cuotas",
         "requestBody": {
-          "description": "Actualizo estado de cuotas",
+          "description": "Actualizo estado de cuotas, el campo 'codigopago' es el indice",
           "required": true,
           "content": {
             "application/json": {
@@ -241,25 +210,6 @@
   },
 
   "definitions": {
-    "altamovimiento": {
-      "properties": {
-        "tipomovimiento": {
-          "type": "string"
-        },
-        "importe": {
-          "type": "string"
-        },
-        "importeCC": {
-          "type": "string"
-        },
-        "importeCA": {
-          "type": "string"
-        },
-        "usuario": {
-          "type": "string"
-        }
-      }
-    },
     "id": {
       "properties": {
         "id": {

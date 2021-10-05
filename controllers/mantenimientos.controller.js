@@ -42,6 +42,7 @@ exports.updateMantenimiento = async function (req, res, next) {
     descubiertoF: req.body.descubiertoF ? req.body.descubiertoF : null,
     mantenimientoJ: req.body.mantenimientoJ ? req.body.mantenimientoJ : null,
     descubiertoJ: req.body.descubiertoJ ? req.body.descubiertoJ : null,
+    interes: req.body.interes ? req.body.interes : null,
   };
 
   try {
