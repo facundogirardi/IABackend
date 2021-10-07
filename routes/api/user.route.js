@@ -3,6 +3,7 @@ var router = express.Router();
 var UserController = require("../../controllers/users.controller");
 var EmpresaController = require("../../controllers/empresas.controller");
 var MovimientoController = require("../../controllers/movements.controller");
+var SueldoController = require("../../controllers/sueldos.controller");
 var MantenimientoController = require("../../controllers/mantenimientos.controller");
 var Authorization = require("../../auth/authorization");
 
@@ -25,12 +26,15 @@ router.post("/getusersUsuario", UserController.getUsuarioUsuario);
 router.post("/getUsuarioCuit", UserController.getUsuarioCuit);
 
 router.post("/altaempresa", EmpresaController.createEmpresa);
+router.post("/altaempresaM", EmpresaController.createEmpresaM);
 router.get("/getempresas", EmpresaController.getEmpresas);
 router.put("/updateEmpresa", EmpresaController.updateEmpresa);
 router.post("/getEmpresaESTADO", EmpresaController.getEmpresaESTADO);
 router.post("/getEmpresaPAGO", EmpresaController.getEmpresaPAGO);
 router.post("/getEmpresaCUITEmpresa", EmpresaController.getEmpresaCUITEmpresa);
 router.post("/getEmpresasID", EmpresaController.getEmpresasID);
+
+router.post("/altasueldo", SueldoController.createSueldo);
 
 router.post("/registromovimiento", MovimientoController.createMovimiento);
 router.get("/getmovimientos", MovimientoController.getMovimientos);

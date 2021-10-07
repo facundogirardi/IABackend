@@ -17,10 +17,17 @@
   ],
   "tags": [
     {
-      "name": "Empresas",
-      "description": "Endpoints para manejo de empresas"
+      "name": "Empresas - PagoServicios",
+      "description": "Endpoints para manejo pago de servicios"
     },
-
+    {
+      "name": "Empresas - PagoSueldos",
+      "description": "Endpoints para manejo pago de sueldos"
+    },
+    {
+      "name": "Empresas - DebitoAutomatico",
+      "description": "Endpoints para manejo debitos automaticos"
+    },
     {
       "name": "Clearing Bancario",
       "description": "Endpoints para manejo del clearing "
@@ -30,76 +37,17 @@
   "produces": ["application/json"],
 
   "paths": {
-    "/getUsuarioCuit": {
+    "/altaempresaM": {
       "post": {
-        "tags": ["Clearing Bancario"],
-        "summary": "Obtengo usuario especifico por CUIT de usuario",
-
+        "tags": ["Empresas - PagoServicios"],
+        "summary": "Alta de cupones de pago",
         "requestBody": {
-          "description": "El campo CUIT el indice de busqueda",
+          "description": "Alta de cupones de pago, para pago de servicios",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/cuit"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Usuario obtenido correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer obtener el usuario"
-          }
-        }
-      }
-    },
-    "/updateUserCUIT": {
-      "put": {
-        "tags": ["Clearing Bancario"],
-        "summary": "Depositos a cuenta",
-        "requestBody": {
-          "description": "Deposito de sueldos en Caja de ahorro, 'cuit' es campo de busqueda y 'balanceca', la cuenta de deposito",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Usuarioaupdate"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Deposito realizado correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer realizar el deposito"
-          }
-        }
-      }
-    },
-    "/altaempresa": {
-      "post": {
-        "tags": ["Empresas"],
-        "summary": "Alta de cuotas",
-        "requestBody": {
-          "description": "Alta de cuotas, para pago de servicios",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Empresaupdate"
+                "$ref": "#/definitions/Empresa"
               }
             }
           }
@@ -107,24 +55,54 @@
         "produces": ["application/json"],
         "responses": {
           "201": {
-            "description": "Alta efectuada correctamente",
+            "description": "Cupon de pago generado correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
           "400": {
-            "description": "Error al querer dar de alta la cuota"
+            "description": "Error al querer dar de alta el cupon"
           }
         }
       }
     },
-     
+
+    "/altasueldoM": {
+      "post": {
+        "tags": ["Empresas - PagoSueldos"],
+        "summary": "Alta de sueldos",
+        "requestBody": {
+          "description": "Alta de sueldos",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Sueldo"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Sueldo de pago generado correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer generar el sueldo"
+          }
+        }
+      }
+    },
+
     "/getEmpresaESTADO": {
       "post": {
-        "tags": ["Empresas"],
+        "tags": ["Empresas - PagoServicios"],
         "summary": "Obtengo estado de pago especifico por estado de pago",
         "requestBody": {
-          "description": "El campo Estado el indice de busqueda, 'Pago parcial' 'Pago total' ",
+          "description": "El campo Estado el indice de busqueda, 'Pago parcial' 'Pago total' 'No pagado' u el estado que hayan colocado en el alta",
           "required": true,
           "content": {
             "application/json": {
@@ -137,29 +115,29 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Cupon obtenido correctamente",
+            "description": "Estado obtenido correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
           "400": {
-            "description": "Error al querer obtener el cupon"
+            "description": "Error al querer obtener el estado"
           }
         }
       }
     },
-    "/getEmpresaCUIT": {
+    "/getEmpresaCUITEmpresa": {
       "post": {
-        "tags": ["Empresas"],
-        "summary": "Obtengo cupon de pago especifico por CUIT de usuario",
+        "tags": ["Empresas - PagoServicios"],
+        "summary": "Obtengo los cupones de pago para una empresa especifica",
 
         "requestBody": {
-          "description": "El campo CUIT el indice de busqueda",
+          "description": "El campo 'cuitEmpresa' el indice de busqueda",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/cuit"
+                "$ref": "#/definitions/cuitEmpresa"
               }
             }
           }
@@ -167,20 +145,20 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Cupon obtenido correctamente",
+            "description": "cuitEmpresa obtenido correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
           },
           "400": {
-            "description": "Error al querer obtener el cupon"
+            "description": "Error al querer obtener el cuitEmpresa"
           }
         }
       }
     },
     "/updateEmpresa": {
       "put": {
-        "tags": ["Empresas"],
+        "tags": ["Empresas - PagoServicios"],
         "summary": "Actualizacion de cuotas",
         "requestBody": {
           "description": "Actualizo estado de cuotas, el campo 'codigopago' es el indice",
@@ -188,7 +166,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/Empresaupdate"
+                "$ref": "#/definitions/Empresa"
               }
             }
           }
@@ -196,7 +174,7 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Cuota actualizada correctamente",
+            "description": "Cupon de pago actualizado correctamente",
             "schema": {
               "$ref": "#/definitions/id"
             }
@@ -217,16 +195,16 @@
         }
       }
     },
-    "cuit": {
+    "cuitEmpresa": {
       "properties": {
-        "cuit": {
+        "cuitEmpresa": {
           "type": "string"
         }
       }
     },
-    "cuitEmpresa": {
+    "cuit": {
       "properties": {
-        "cuitEmpresa": {
+        "cuit": {
           "type": "string"
         }
       }
@@ -249,6 +227,20 @@
         }
       }
     },
+    "Sueldo": {
+      "type": "object",
+      "properties": {
+        "cbu": {
+          "type": "string"
+        },
+        "importe": {
+          "type": "integer"
+        },
+        "descripcion": {
+          "type": "string"
+        }
+      }
+    },
     "Empresa": {
       "type": "object",
       "properties": {
@@ -267,123 +259,10 @@
         "descripcion": {
           "type": "string"
         },
-        "fechavencimiento": {
+        "fechaVencimiento": {
           "type": "integer"
         },
         "estado": {
-          "type": "string"
-        },
-        "cuit": {
-          "type": "string"
-        }
-      }
-    },
-    "Usuarioaupdate": {
-      "type": "object",
-      "properties": {
-        "nombre": {
-          "type": "string"
-        },
-        "apellido": {
-          "type": "string"
-        },
-        "tipodni": {
-          "type": "string"
-        },
-        "dni": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "estadocuenta": {
-          "type": "integer"
-        },
-        "usuario": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "usuariotipo": {
-          "type": "integer"
-        },
-        "empresa": {
-          "type": "string"
-        },
-        "nacimiento": {
-          "type": "string"
-        },
-        "telefono": {
-          "type": "string"
-        },
-        "cuit": {
-          "type": "string"
-        },
-        "calle": {
-          "type": "string"
-        },
-        "ciudad": {
-          "type": "string"
-        },
-        "piso": {
-          "type": "string"
-        },
-        "cbu": {
-          "type": "integer"
-        },
-        "cbuCC": {
-          "type": "integer"
-        },
-        "nrocuenta": {
-          "type": "integer"
-        },
-        "numerocajacc": {
-          "type": "integer"
-        },
-        "balancecc": {
-          "type": "integer"
-        },
-        "numerocajaca": {
-          "type": "integer"
-        },
-        "balanceca": {
-          "type": "integer"
-        },
-        "provincia": {
-          "type": "string"
-        },
-        "depto": {
-          "type": "string"
-        }
-      }
-    },
-
-    "Empresaupdate": {
-      "type": "object",
-      "properties": {
-        "nombre": {
-          "type": "string"
-        },
-        "codigopago": {
-          "type": "string"
-        },
-        "cuitEmpresa": {
-          "type": "string"
-        },
-        "importe": {
-          "type": "integer"
-        },
-        "descripcion": {
-          "type": "string"
-        },
-        "fechavencimiento": {
-          "type": "string"
-        },
-        "estado": {
-          "type": "string"
-        },
-        "cuit": {
           "type": "string"
         }
       }
