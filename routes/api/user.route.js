@@ -34,7 +34,7 @@ router.post("/getEmpresaPAGO", EmpresaController.getEmpresaPAGO);
 router.post("/getEmpresaCUITEmpresa", EmpresaController.getEmpresaCUITEmpresa);
 router.post("/getEmpresasID", EmpresaController.getEmpresasID);
 
-router.post("/altasueldoM", SueldoController.createSueldo);
+router.post("/altasueldoM", SueldoController.createSueldoM);
 
 router.post("/registromovimiento", MovimientoController.createMovimiento);
 router.get("/getmovimientos", MovimientoController.getMovimientos);
