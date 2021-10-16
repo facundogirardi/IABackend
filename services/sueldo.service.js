@@ -56,7 +56,10 @@ exports.createSueldo = async function (sueldo) {
   var newSueldo = new Sueldo({
     cbu: sueldo.cbu,
     importe: sueldo.importe,
-    descripciopn: sueldo.descripcion,
+    descripcion: sueldo.descripcion,
+    fechaPago: sueldo.fechaPago,
+    pagado: "0",
+    cbuEmpresa: sueldo.cbuEmpresa,
     date: new Date(),
   });
 
@@ -97,6 +100,9 @@ exports.updateSueldo = async function (sueldo) {
   oldSueldo.cbu = sueldo.cbu;
   oldSueldo.importe = sueldo.importe;
   oldSueldo.descripcion = sueldo.descripcion;
+  oldSueldo.fechaPago = sueldo.fechaPago;
+  oldSueldo.pagado = sueldo.pagado;
+  oldSueldo.cbuEmpresa = sueldo.cbuEmpresa;
 
   try {
     var savedSueldo = await oldSueldo.save();

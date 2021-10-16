@@ -97,35 +97,7 @@
       }
     },
 
-    "/getEmpresaESTADO": {
-      "post": {
-        "tags": ["Empresas - PagoServicios"],
-        "summary": "Obtengo estado de pago especifico por estado de pago",
-        "requestBody": {
-          "description": "El campo Estado el indice de busqueda, 'Pago parcial' 'Pago total' 'No pagado' u el estado que hayan colocado en el alta",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/estado"
-              }
-            }
-          }
-        },
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Estado obtenido correctamente",
-            "schema": {
-              "$ref": "#/definitions/id"
-            }
-          },
-          "400": {
-            "description": "Error al querer obtener el estado"
-          }
-        }
-      }
-    },
+     
     "/getEmpresaCUITEmpresa": {
       "post": {
         "tags": ["Empresas - PagoServicios"],
@@ -236,6 +208,15 @@
         "importe": {
           "type": "integer"
         },
+        "fechaPago": {
+          "type": "string"
+        },
+        "pagado": {
+          "type": "string"
+        },
+        "cbuEmpresa": {
+          "type": "string"
+        },        
         "descripcion": {
           "type": "string"
         }

@@ -29,8 +29,11 @@ exports.createSueldo = async function (req, res, next) {
   var Sueldo = [
     {
       cbu: req.body.cbu,
+      cbuEmpresa: req.body.cbuEmpresa,
       importe: req.body.importe,
-      descripciopn: req.body.descripcion,
+      pagado: req.body.pagado,
+      fechaPago: req.body.fechaPago,
+      descripcion: req.body.descripcion,
     },
   ];
 
@@ -54,8 +57,11 @@ exports.createSueldoM = async function (req, res, next) {
   var Sueldo = [
     {
       cbu: req.body.cbu,
+      cbuEmpresa: req.body.cbuEmpresa,
       importe: req.body.importe,
-      descripciopn: req.body.descripcion,
+      pagado: req.body.pagado,
+      fechaPago: req.body.fechaPago,
+      descripcion: req.body.descripcion,
     },
   ];
 
@@ -85,7 +91,11 @@ exports.updateSueldo = async function (req, res, next) {
   var Sueldo = {
     cbu: req.body.cbu ? req.body.cbu : null,
     importe: req.body.importe ? req.body.importe : null,
-    descripciopn: req.body.descripcion ? req.body.descripcion : null,
+    descripcion: req.body.descripcion ? req.body.descripcion : null,
+    cbuEmpresa: req.body.cbuEmpresa ? req.body.cbuEmpresa : null,
+    pagado: req.body.pagado ? req.body.pagado : null,
+    fechaPago: req.body.fechaPago ? req.body.fechaPago : null,
+
   };
 
   try {
