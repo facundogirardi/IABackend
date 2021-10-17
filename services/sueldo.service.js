@@ -85,7 +85,7 @@ exports.createSueldo = async function (sueldo) {
 
 exports.updateSueldo = async function (sueldo) {
   var id = { cbu: sueldo.cbu };
-
+  console.log("dddd");
   try {
     //Find the old Sueldo Object by the Id
     var oldSueldo = await Sueldo.findOne(id);
