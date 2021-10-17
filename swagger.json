@@ -238,7 +238,7 @@
           "type": "string"
         },
         "fechaVencimiento": {
-          "type": "integer"
+          "type": "string"
         },
         "estado": {
           "type": "string"
