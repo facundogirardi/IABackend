@@ -13,6 +13,7 @@ var EmpresaSchema = new mongoose.Schema({
   fechaVencimiento: String,
   estado: String,
   cuitEmpresa: String,
+  debito: String,
   date: Date,
 });
 

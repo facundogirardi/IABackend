@@ -61,6 +61,7 @@ exports.createEmpresa = async function (empresa) {
     descripcion: empresa.descripcion,
     fechaVencimiento: empresa.fechaVencimiento,
     estado: "No pagado",
+    debito: empresa.debito,
     date: new Date(),
   });
 
@@ -105,6 +106,7 @@ exports.updateEmpresa = async function (empresa) {
   oldEmpresa.descripcion = empresa.descripcion;
   oldEmpresa.fechaVencimiento = empresa.fechaVencimiento;
   oldEmpresa.estado = empresa.estado;
+  oldEmpresa.debito = empresa.debito;
 
   try {
     var savedEmpresa = await oldEmpresa.save();

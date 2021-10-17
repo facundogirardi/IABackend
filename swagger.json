@@ -17,17 +17,14 @@
   ],
   "tags": [
     {
-      "name": "Empresas - PagoServicios",
+      "name": "Empresas - PagoServicios y DebitoAutomatico",
       "description": "Endpoints para manejo pago de servicios"
     },
     {
       "name": "Empresas - PagoSueldos",
       "description": "Endpoints para manejo pago de sueldos"
     },
-    {
-      "name": "Empresas - DebitoAutomatico",
-      "description": "Endpoints para manejo debitos automaticos"
-    },
+ 
     {
       "name": "Clearing Bancario",
       "description": "Endpoints para manejo del clearing "
@@ -39,10 +36,10 @@
   "paths": {
     "/altaempresaM": {
       "post": {
-        "tags": ["Empresas - PagoServicios"],
+        "tags": ["Empresas - PagoServicios y DebitoAutomatico"],
         "summary": "Alta de cupones de pago",
         "requestBody": {
-          "description": "Alta de cupones de pago, para pago de servicios",
+          "description": "Alta de cupones de pago, para pago de servicios, campo debito en '0' desactivado, en '1' activado",
           "required": true,
           "content": {
             "application/json": {
@@ -100,7 +97,7 @@
      
     "/getEmpresaCUITEmpresa": {
       "post": {
-        "tags": ["Empresas - PagoServicios"],
+        "tags": ["Empresas - PagoServicios y DebitoAutomatico"],
         "summary": "Obtengo los cupones de pago para una empresa especifica",
 
         "requestBody": {
@@ -130,7 +127,7 @@
     },
     "/updateEmpresa": {
       "put": {
-        "tags": ["Empresas - PagoServicios"],
+        "tags": ["Empresas - PagoServicios y DebitoAutomatico"],
         "summary": "Actualizacion de cuotas",
         "requestBody": {
           "description": "Actualizo estado de cuotas, el campo 'codigopago' es el indice",
@@ -244,6 +241,9 @@
           "type": "integer"
         },
         "estado": {
+          "type": "string"
+        },
+        "debito": {
           "type": "string"
         }
       }
