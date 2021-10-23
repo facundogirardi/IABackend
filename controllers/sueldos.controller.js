@@ -29,6 +29,7 @@ exports.createSueldo = async function (req, res, next) {
   var Sueldo = [
     {
       cbu: req.body.cbu,
+      codigo: req.body.codigo,
       cbuEmpresa: req.body.cbuEmpresa,
       importe: req.body.importe,
       pagado: req.body.pagado,
@@ -57,6 +58,7 @@ exports.createSueldoM = async function (req, res, next) {
   var Sueldo = [
     {
       cbu: req.body.cbu,
+      codigo: req.body.codigo,
       cbuEmpresa: req.body.cbuEmpresa,
       importe: req.body.importe,
       pagado: req.body.pagado,
@@ -82,14 +84,16 @@ exports.createSueldoM = async function (req, res, next) {
 
 exports.updateSueldo = async function (req, res, next) {
   // Id is necessary for the update
-  if (!req.body.cbu) {
+   console.log("req.body.codigo", req.body.importe)
+  if (!req.body.codigo) {
     return res
       .status(400)
-      .json({ status: 400, message: "CBU tiene que estar presente" });
+      .json({ status: 400, message: "Codigo tiene que estar presente" });
   }
 
   var Sueldo = {
     cbu: req.body.cbu ? req.body.cbu : null,
+    codigo: req.body.codigo ? req.body.codigo : null,
     importe: req.body.importe ? req.body.importe : null,
     descripcion: req.body.descripcion ? req.body.descripcion : null,
     cbuEmpresa: req.body.cbuEmpresa ? req.body.cbuEmpresa : null,

@@ -5,6 +5,7 @@ require("mongoose-double")(mongoose);
 var SchemaTypes = mongoose.Schema.Types;
 var SueldoSchema = new mongoose.Schema({
   cbu: String,
+  codigo: String,
   cbuEmpresa: String,
   importe: String,
   descripcion: String,

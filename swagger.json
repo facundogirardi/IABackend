@@ -202,6 +202,9 @@
         "cbu": {
           "type": "string"
         },
+        "codigo": {
+          "type": "string"
+        },
         "importe": {
           "type": "integer"
         },

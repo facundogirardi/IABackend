@@ -4,6 +4,7 @@ var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 const random = require("random");
 
+
 // Saving the context of this module inside the _the variable
 _this = this;
 
@@ -55,6 +56,7 @@ exports.createSueldo = async function (sueldo) {
   // Creating a new Mongoose Object by using the new keyword
   var newSueldo = new Sueldo({
     cbu: sueldo.cbu,
+    codigo: random.int((min = 0), (max = 9999999999)),
     importe: sueldo.importe,
     descripcion: sueldo.descripcion,
     fechaPago: sueldo.fechaPago,
@@ -84,8 +86,8 @@ exports.createSueldo = async function (sueldo) {
 };
 
 exports.updateSueldo = async function (sueldo) {
-  var id = { cbu: sueldo.cbu };
-  console.log("dddd");
+  var id = { codigo: sueldo.codigo };
+ console.log("ID ", id)
   try {
     //Find the old Sueldo Object by the Id
     var oldSueldo = await Sueldo.findOne(id);
@@ -98,6 +100,7 @@ exports.updateSueldo = async function (sueldo) {
   }
   //Edit the Sueldo Object
   oldSueldo.cbu = sueldo.cbu;
+  oldSueldo.codigo = sueldo.codigo;
   oldSueldo.importe = sueldo.importe;
   oldSueldo.descripcion = sueldo.descripcion;
   oldSueldo.fechaPago = sueldo.fechaPago;
