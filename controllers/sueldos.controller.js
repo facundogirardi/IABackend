@@ -84,7 +84,6 @@ exports.createSueldoM = async function (req, res, next) {
 
 exports.updateSueldo = async function (req, res, next) {
   // Id is necessary for the update
-   console.log("req.body.codigo", req.body.importe)
   if (!req.body.codigo) {
     return res
       .status(400)
@@ -104,7 +103,6 @@ exports.updateSueldo = async function (req, res, next) {
 
   try {
     var updatedSueldo = await SueldoService.updateSueldo(Sueldo);
-    console.log("error", updatedSueldo);
     return res.status(200).json({
       status: 200,
       data: updatedSueldo,

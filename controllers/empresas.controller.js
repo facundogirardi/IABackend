@@ -35,6 +35,7 @@ exports.createEmpresa = async function (req, res, next) {
       descripcion: req.body.descripcion,
       fechaVencimiento: req.body.fechaVencimiento,
       estado: req.body.estado,
+      cuit: req.body.cuit,
       debito: req.body.debito,
     },
   ];
@@ -65,6 +66,7 @@ exports.createEmpresaM = async function (req, res, next) {
       descripcion: req.body.descripcion,
       fechaVencimiento: req.body.fechaVencimiento,
       estado: req.body.estado,
+      cuit: req.body.cuit,
       debito: req.body.debito,
     },
   ];
@@ -86,6 +88,7 @@ exports.createEmpresaM = async function (req, res, next) {
 
 exports.updateEmpresa = async function (req, res, next) {
   // Id is necessary for the update
+ 
   if (!req.body.codigopago) {
     return res
       .status(400)
@@ -102,6 +105,7 @@ exports.updateEmpresa = async function (req, res, next) {
       ? req.body.fechaVencimiento
       : null,
     estado: req.body.estado ? req.body.estado : null,
+    cuit: req.body.cuit ? req.body.cuit : null,
     debito: req.body.debito ? req.body.debito : null,
   };
 

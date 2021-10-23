@@ -14,6 +14,7 @@ var EmpresaSchema = new mongoose.Schema({
   estado: String,
   cuitEmpresa: String,
   debito: String,
+  cuit: String,
   date: Date,
 });
 

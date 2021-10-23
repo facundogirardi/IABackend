@@ -246,6 +246,9 @@
         "estado": {
           "type": "string"
         },
+        "cuit": {
+          "type": "string"
+        },
         "debito": {
           "type": "string"
         }
