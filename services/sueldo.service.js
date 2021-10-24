@@ -52,6 +52,22 @@ exports.createSueldoM = async function (sueldo) {
   }
 };
 
+// Recupero Usuario por CUIT Empresa
+exports.getSueldoCodigo = async function (query, page, limit) {
+  var options = {
+    page,
+    limit,
+  };
+
+  try {
+    var Sueldos = await Sueldo.paginate(query, options);
+    return Sueldos;
+  } catch (e) {
+    console.log("error servicio", e);
+    throw Error("Error en el paginado de los Usuarios por ese Codigo");
+  }
+};
+
 exports.createSueldo = async function (sueldo) {
   // Creating a new Mongoose Object by using the new keyword
   var newSueldo = new Sueldo({

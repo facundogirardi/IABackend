@@ -2,10 +2,10 @@ var mongoose = require("mongoose");
 var mongoosePaginate = require("mongoose-paginate");
 require("mongoose-double")(mongoose);
  
-var SueldoSchema = new mongoose.Schema({
-  cuit: {type : String, required: [true, 'campo CUIT es requerido']},
-  codigo: {type : String, required: [true, 'campo CODIGO es requerido']},
-  cuitEmpresa: {type : String, required: [true, 'campo CUITEMPRESA es requerido']},
+var TarjetaSchema = new mongoose.Schema({
+  cbu: {type : String, required: [true, 'campo CBU es requerido']},
+  codigotransaccion: {type : String, required: [true, 'campo CODIGOTRANSACCION es requerido']},
+  cbuEmpresa: {type : String, required: [true, 'campo CBUEMPRESA es requerido']},
   importe: {type : String, required: [true, 'campo IMPORTE es requerido']},
   descripcion: {type : String, required: [true, 'campo DESCRIPCION es requerido']},
   fechaPago: {type : String, required: [true, 'campo FECHAPAGO es requerido']},
@@ -14,7 +14,7 @@ var SueldoSchema = new mongoose.Schema({
   
 });
  
-SueldoSchema.plugin(mongoosePaginate);
-const Sueldo = mongoose.model("Sueldo", SueldoSchema);
+TarjetaSchema.plugin(mongoosePaginate);
+const Tarjeta = mongoose.model("Tarjeta", TarjetaSchema);
 
-module.exports = Sueldo;
+module.exports = Tarjeta;

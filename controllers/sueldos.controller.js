@@ -85,6 +85,35 @@ exports.createSueldoM = async function (req, res, next) {
   }
 };
 
+// Traigo Usuario por CODIGO
+exports.getSueldoCodigo = async function (req, res, next) {
+  var page = req.query.page ? req.query.page : 1;
+  var limit = req.query.limit ? req.query.limit : 1000;
+
+  var filtro = {
+    codigo: req.body.codigo,
+  };
+  try {
+    var Sueldos = await SueldoService.getSueldos(filtro, page, limit);
+
+    if (Sueldos.total === 0)
+      return res.status(201).json({
+        status: 201,
+        data: Sueldos,
+        message: "Error al querer obtener el usuario",
+      });
+    else
+      return res.status(200).json({
+        status: 200,
+        data: Sueldos,
+        message: "Usuario obtenido correctamente",
+      });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ status: 400, message: e.message });
+  }
+};
+
 exports.updateSueldo = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.codigo) {
