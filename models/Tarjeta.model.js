@@ -8,7 +8,7 @@ var TarjetaSchema = new mongoose.Schema({
   cbuEmpresa: {type : String, required: [true, 'campo CBUEMPRESA es requerido']},
   importe: {type : String, required: [true, 'campo IMPORTE es requerido']},
   descripcion: {type : String, required: [true, 'campo DESCRIPCION es requerido']},
-  fechaPago: {type : String, required: [true, 'campo FECHAPAGO es requerido']},
+  fechaVencimiento: {type : String, required: [true, 'campo FECHAVENCIMIENTO es requerido']},
   pagado: {type : String, required: [true, 'campo PAGADO es requerido']},
   date: {type : Date}
   

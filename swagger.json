@@ -345,7 +345,7 @@
         "importe": {
           "type": "integer"
         },
-        "fechaPago": {
+        "fechaVencimiento": {
           "type": "string"
         },
         "pagado": {

@@ -59,7 +59,7 @@ exports.createTarjeta = async function (tarjeta) {
     codigotransaccion: random.int((min = 0), (max = 9999999999)),
     importe: tarjeta.importe,
     descripcion: tarjeta.descripcion,
-    fechaPago: tarjeta.fechaPago,
+    fechaVencimiento: tarjeta.fechaVencimiento,
     pagado: "0",
     cuitEmpresa: tarjeta.cuitEmpresa,
     date: new Date(),
@@ -151,7 +151,7 @@ exports.updateTarjeta = async function (tarjeta) {
   oldTarjeta.codigotransaccion = tarjeta.codigotransaccion;
   oldTarjeta.importe = tarjeta.importe;
   oldTarjeta.descripcion = tarjeta.descripcion;
-  oldTarjeta.fechaPago = tarjeta.fechaPago;
+  oldTarjeta.fechaVencimiento = tarjeta.fechaVencimiento;
   oldTarjeta.pagado = tarjeta.pagado;
   oldTarjeta.cuitEmpresa = tarjeta.cuitEmpresa;
 

@@ -33,7 +33,7 @@ exports.createTarjeta = async function (req, res, next) {
       cuitEmpresa: req.body.cuitEmpresa,
       importe: req.body.importe,
       pagado: req.body.pagado,
-      fechaPago: req.body.fechaPago,
+      fechaVencimiento: req.body.fechaVencimiento,
       descripcion: req.body.descripcion,
     },
   ];
@@ -63,7 +63,7 @@ exports.createTarjetaM = async function (req, res, next) {
       cuitEmpresa: req.body.cuitEmpresa,
       importe: req.body.importe,
       pagado: req.body.pagado,
-      fechaPago: req.body.fechaPago,
+      fechaVencimiento: req.body.fechaVencimiento,
       descripcion: req.body.descripcion,
     },
   ];
@@ -187,7 +187,7 @@ exports.updateTarjeta = async function (req, res, next) {
     descripcion: req.body.descripcion ? req.body.descripcion : null,
     cuitEmpresa: req.body.cuitEmpresa ? req.body.cuitEmpresa : null,
     pagado: req.body.pagado ? req.body.pagado : null,
-    fechaPago: req.body.fechaPago ? req.body.fechaPago : null,
+    fechaVencimiento: req.body.fechaVencimiento ? req.body.fechaVencimiento : null,
   };
 
   try {
