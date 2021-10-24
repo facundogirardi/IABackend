@@ -41,9 +41,10 @@ exports.createSueldo = async function (req, res, next) {
   try {
     // Calling the Service function with the new object from the Request Body
     var createdSueldo = await SueldoService.createSueldo(req.body);
-    return res
-      .status(201)
-      .json({ createdSueldo, message: "Sueldo de pago generado correctamente" });
+    return res.status(201).json({
+      createdSueldo,
+      message: "Sueldo de pago generado correctamente",
+    });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     console.log(e);
@@ -52,7 +53,7 @@ exports.createSueldo = async function (req, res, next) {
       .json({ status: 400, message: "Error al querer generar el sueldo" });
   }
 };
-        
+
 exports.createSueldoM = async function (req, res, next) {
   // Req.Body contains the form submit values.
   var Sueldo = [
@@ -70,15 +71,17 @@ exports.createSueldoM = async function (req, res, next) {
   try {
     // Calling the Service function with the new object from the Request Body
     var createdSueldo = await SueldoService.createSueldoM(req.body);
-    return res
-      .status(201)
-      .json({ createdSueldo, message: "Sueldo de pago generado correctamente" });
+    return res.status(201).json({
+      createdSueldo,
+      message: "Sueldo de pago generado correctamente",
+    });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     console.log(e);
     return res
+
       .status(400)
-      .json({ status: 400, message: "Error al querer generar el sueldo" });
+      .json({ status: 400, message: "Error al querer generar el sueldo, verifique los campos" });
   }
 };
 
@@ -98,7 +101,6 @@ exports.updateSueldo = async function (req, res, next) {
     cbuEmpresa: req.body.cbuEmpresa ? req.body.cbuEmpresa : null,
     pagado: req.body.pagado ? req.body.pagado : null,
     fechaPago: req.body.fechaPago ? req.body.fechaPago : null,
-
   };
 
   try {

@@ -4,12 +4,12 @@ require("mongoose-double")(mongoose);
 
 var SchemaTypes = mongoose.Schema.Types;
 var MantenimientoSchema = new mongoose.Schema({
-  clave: String,
-  mantenimientoF: String,
-  interes: String,
-  descubiertoF: String,
-  mantenimientoJ: String,
-  descubiertoJ: String,
+  clave: {type : String, required: [true, 'campo CLAVE es requerido']},
+  mantenimientoF: {type : String, required: [true, 'campo MANTENIMIENTOF es requerido']},
+  interes: {type : String, required: [true, 'campo INTERES es requerido']},
+  descubiertoF: {type : String, required: [true, 'campo DESCUBIERTOF es requerido']},
+  mantenimientoJ: {type : String, required: [true, 'campo MANTENIMIENTOJ es requerido']},
+  descubiertoJ: {type : String, required: [true, 'campo DESCUBIERTOJ es requerido']},
   date: Date,
 });
 

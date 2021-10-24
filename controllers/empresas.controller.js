@@ -45,50 +45,43 @@ exports.createEmpresa = async function (req, res, next) {
     var createdEmpresa = await EmpresaService.createEmpresa(req.body);
     return res
       .status(201)
-      .json({ createdEmpresa, message: "Cupon de pago generado correctamente" });
+      .json({
+        createdEmpresa,
+        message: "Cupon de pago generado correctamente",
+      });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     console.log(e);
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer generar el empresa" });
+      .json({ status: 400, message: "Error al querer generar el empresa, verifique los campos" });
   }
 };
-        
+
 exports.createEmpresaM = async function (req, res, next) {
   // Req.Body contains the form submit values.
-  var Empresa = [
-    {
-      nombre: req.body.nombre,
-      codigopago: req.body.codigopago,
-      cuitEmpresa: req.body.cuitEmpresa,
-      importe: req.body.importe,
-      descripcion: req.body.descripcion,
-      fechaVencimiento: req.body.fechaVencimiento,
-      estado: req.body.estado,
-      cuit: req.body.cuit,
-      debito: req.body.debito,
-    },
-  ];
 
   try {
     // Calling the Service function with the new object from the Request Body
     var createdEmpresa = await EmpresaService.createEmpresaM(req.body);
     return res
       .status(201)
-      .json({ createdEmpresa, message: "Cupon de pago generado correctamente" });
+      .json({
+        createdEmpresa,
+        message: "Cupon de pago generado correctamente",
+      });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     console.log(e);
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer generar el empresa" });
+      .json({ status: 400, message: "Error al querer generar el empresa, verifique los campos" });
   }
 };
 
 exports.updateEmpresa = async function (req, res, next) {
   // Id is necessary for the update
- 
+
   if (!req.body.codigopago) {
     return res
       .status(400)
