@@ -33,6 +33,7 @@ exports.createComercio = async function (req, res, next) {
       cuitEmpresa: req.body.cuitEmpresa,
       importe: req.body.importe,
       fechaPago: req.body.fechaPago,
+      pagado: req.body.pagado,
       descripcion: req.body.descripcion,
     },
   ];
@@ -62,6 +63,7 @@ exports.createComercioM = async function (req, res, next) {
       cuitEmpresa: req.body.cuitEmpresa,
       importe: req.body.importe,
       fechaPago: req.body.fechaPago,
+      pagado: req.body.pagado,
       descripcion: req.body.descripcion,
     },
   ];
@@ -184,6 +186,7 @@ exports.updateComercio = async function (req, res, next) {
     importe: req.body.importe ? req.body.importe : null,
     descripcion: req.body.descripcion ? req.body.descripcion : null,
     cuitEmpresa: req.body.cuitEmpresa ? req.body.cuitEmpresa : null,
+    pagado: req.body.pagado ? req.body.pagado : null,
     fechaPago: req.body.fechaPago ? req.body.fechaPago : null,
   };
 

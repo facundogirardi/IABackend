@@ -9,6 +9,7 @@ var ComercioSchema = new mongoose.Schema({
   importe: {type : String, required: [true, 'campo IMPORTE es requerido']},
   descripcion: {type : String, required: [true, 'campo DESCRIPCION es requerido']},
   fechaPago: {type : String, required: [true, 'campo FECHAPAGO es requerido']},
+  pagado: {type : String, required: [true, 'campo PAGADO es requerido']},
   date: {type : Date}
   
 });

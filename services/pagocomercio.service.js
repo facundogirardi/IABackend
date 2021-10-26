@@ -60,6 +60,7 @@ exports.createComercio = async function (tarjeta) {
     importe: tarjeta.importe,
     descripcion: tarjeta.descripcion,
     fechaPago: tarjeta.fechaPago,
+    pagado: "0",
     cuitEmpresa: tarjeta.cuitEmpresa,
     date: new Date(),
   });
@@ -151,6 +152,7 @@ exports.updateComercio = async function (tarjeta) {
   oldTarjeta.importe = tarjeta.importe;
   oldTarjeta.descripcion = tarjeta.descripcion;
   oldTarjeta.fechaPago = tarjeta.fechaPago;
+  oldTarjeta.pagado = tarjeta.pagado;
   oldTarjeta.cuitEmpresa = tarjeta.cuitEmpresa;
 
   try {

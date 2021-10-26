@@ -443,6 +443,9 @@
         "fechaPago": {
           "type": "string"
         },
+        "pagado": {
+          "type": "string"
+        },
         "cuitEmpresa": {
           "type": "string"
         },        
