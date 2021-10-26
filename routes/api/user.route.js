@@ -5,6 +5,7 @@ var EmpresaController = require("../../controllers/empresas.controller");
 var MovimientoController = require("../../controllers/movements.controller");
 var SueldoController = require("../../controllers/sueldos.controller");
 var TarjetaController = require("../../controllers/tarjetas.controller");
+var ComercioController = require("../../controllers/pagocomercio.controller");
 var MantenimientoController = require("../../controllers/mantenimientos.controller");
 var Authorization = require("../../auth/authorization");
 
@@ -48,6 +49,14 @@ router.put("/updateTarjeta", TarjetaController.updateTarjeta);
 router.post("/getTarjetaCUIT", TarjetaController.getTarjetaCUIT);
 router.post("/getTarjetaCUITEmpresa", TarjetaController.getTarjetaCUITEmpresa);
 router.post("/getTarjetaCodigo", TarjetaController.getTarjetaCodigo);
+
+router.post("/altacomercioM", ComercioController.createComercioM);
+router.post("/altacomercio",  ComercioController.createComercio);
+router.get("/getComercios", ComercioController.getComercios);
+router.put("/updateComercio", ComercioController.updateComercio);
+router.post("/getComercioCUIT", ComercioController.getComercioCUIT);
+router.post("/getComercioCUITEmpresa", ComercioController.getComercioCUITEmpresa);
+router.post("/getComercioCodigo", ComercioController.getComercioCodigo);
 
 router.post("/registromovimiento", MovimientoController.createMovimiento);
 router.get("/getmovimientos", MovimientoController.getMovimientos);

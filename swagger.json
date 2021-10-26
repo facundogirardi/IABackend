@@ -127,7 +127,68 @@
         }
       }
     },
-     
+
+    "/altacomercioM": {
+      "post": {
+        "tags": ["Tarjetas de credito"],
+        "summary": "Alta de pagos para pago a comercios",
+        "requestBody": {
+          "description": "Pago a comercios",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Pagos"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Pago enviado correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer enviar el pago"
+          }
+        }
+      }
+    }, 
+
+    "/getComercioCodigo": {
+      "post": {
+        "tags": ["Tarjetas de credito"],
+        "summary": "Obtengo los consumos por codigo especifico",
+
+        "requestBody": {
+          "description": "El campo 'codigotransaccion' el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/PagoC"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "consumo obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener el consumo"
+          }
+        }
+      }
+    },
+
     "/getEmpresaCUITEmpresa": {
       "post": {
         "tags": ["Empresas - PagoServicios y DebitoAutomatico"],
@@ -274,6 +335,14 @@
         }
       }
     },
+    "PagoC": {
+      "type": "object",
+      "properties": {
+        "codigotransaccion": {
+          "type": "string"
+        }
+      }
+    },
     "SueldosC": {
       "type": "object",
       "properties": {
@@ -349,6 +418,29 @@
           "type": "string"
         },
         "pagado": {
+          "type": "string"
+        },
+        "cuitEmpresa": {
+          "type": "string"
+        },        
+        "descripcion": {
+          "type": "string"
+        }
+      }
+    },
+    "Pagos": {
+      "type": "object",
+      "properties": {
+        "cuit": {
+          "type": "string"
+        },
+        "codigotransaccion": {
+          "type": "string"
+        },
+        "importe": {
+          "type": "integer"
+        },
+        "fechaPago": {
           "type": "string"
         },
         "cuitEmpresa": {
