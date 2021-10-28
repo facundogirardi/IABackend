@@ -56,7 +56,7 @@ exports.createTarjeta = async function (tarjeta) {
   // Creating a new Mongoose Object by using the new keyword
   var newTarjeta = new Tarjeta({
     cuit: tarjeta.cuit,
-    codigotransaccion: random.int((min = 0), (max = 9999999999)),
+    codigotransaccion: tarjeta.codigotransaccion,
     importe: tarjeta.importe,
     descripcion: tarjeta.descripcion,
     fechaVencimiento: tarjeta.fechaVencimiento,
