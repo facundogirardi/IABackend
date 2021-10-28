@@ -98,7 +98,7 @@
       }
     },
 
-    "/altatarjetaM": {
+    "/altatarjeta": {
       "post": {
         "tags": ["Tarjetas de credito"],
         "summary": "Alta de pagos de consumos",
@@ -128,7 +128,7 @@
       }
     },
 
-    "/altacomercioM": {
+    "/altacomercio": {
       "post": {
         "tags": ["Tarjetas de credito"],
         "summary": "Alta de pagos para pago a comercios",

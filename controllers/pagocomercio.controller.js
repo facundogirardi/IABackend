@@ -9,7 +9,7 @@ exports.getComercios = async function (req, res, next) {
   var page = req.query.page ? req.query.page : 1;
   var limit = req.query.limit ? req.query.limit : 10;
   try {
-    var Tarjetas = await TarjetaService.getTarjetas({}, page, limit);
+    var Tarjetas = await TarjetaService.getComercios({}, page, limit);
     // Return the Tarjetas list with the appropriate HTTP password Code and Message.
     return res.status(200).json({
       status: 200,
@@ -40,7 +40,7 @@ exports.createComercio = async function (req, res, next) {
 
   try {
     // Calling the Service function with the new object from the Request Body
-    var createdTarjeta = await TarjetaService.createTarjeta(req.body);
+    var createdTarjeta = await TarjetaService.createComercio(req.body);
     return res.status(201).json({
       createdTarjeta,
       message: "Tarjeta de pago generado correctamente",
@@ -70,7 +70,7 @@ exports.createComercioM = async function (req, res, next) {
 
   try {
     // Calling the Service function with the new object from the Request Body
-    var createdTarjeta = await TarjetaService.createTarjetaM(req.body);
+    var createdTarjeta = await TarjetaService.createComercioM(req.body);
     return res.status(201).json({
       createdTarjeta,
       message: "Tarjeta de pago generado correctamente",
@@ -94,7 +94,7 @@ exports.getComercioCUIT = async function (req, res, next) {
     cuit: req.body.cuit,
   };
   try {
-    var Tarjetas = await TarjetaService.getTarjetas(filtro, page, limit);
+    var Tarjetas = await TarjetaService.getComercios(filtro, page, limit);
 
     if (Tarjetas.total === 0)
       return res.status(201).json({
@@ -123,7 +123,7 @@ exports.getComercioCUITEmpresa = async function (req, res, next) {
     cuitEmpresa: req.body.cuitEmpreesa,
   };
   try {
-    var Tarjetas = await TarjetaService.getTarjetas(filtro, page, limit);
+    var Tarjetas = await TarjetaService.getComercios(filtro, page, limit);
 
     if (Tarjetas.total === 0)
       return res.status(201).json({
@@ -152,7 +152,7 @@ exports.getComercioCodigo = async function (req, res, next) {
     codigotransaccion: req.body.codigotransaccion,
   };
   try {
-    var Tarjetas = await TarjetaService.getTarjetas(filtro, page, limit);
+    var Tarjetas = await TarjetaService.getComercios(filtro, page, limit);
 
     if (Tarjetas.total === 0)
       return res.status(201).json({
@@ -191,7 +191,7 @@ exports.updateComercio = async function (req, res, next) {
   };
 
   try {
-    var updatedTarjeta = await TarjetaService.updateTarjeta(Tarjeta);
+    var updatedTarjeta = await TarjetaService.updateComercio(Tarjeta);
     return res.status(200).json({
       status: 200,
       data: updatedTarjeta,
