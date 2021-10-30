@@ -14,13 +14,13 @@ exports.getComercios = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: Tarjetas,
-      message: "tarjeta obtenidos correctamente",
+      message: "Comercios obtenidos correctamente",
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer obtener los usuarios" });
+      .json({ status: 400, message: "Error al querer obtener los comercios" });
   }
 };
 
@@ -43,14 +43,14 @@ exports.createComercio = async function (req, res, next) {
     var createdTarjeta = await TarjetaService.createComercio(req.body);
     return res.status(201).json({
       createdTarjeta,
-      message: "Tarjeta de pago generado correctamente",
+      message: "Comercio generado correctamente",
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     console.log(e);
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer generar el tarjeta" });
+      .json({ status: 400, message: "Error al querer generar el comercio" });
   }
 };
 
@@ -73,7 +73,7 @@ exports.createComercioM = async function (req, res, next) {
     var createdTarjeta = await TarjetaService.createComercioM(req.body);
     return res.status(201).json({
       createdTarjeta,
-      message: "Tarjeta de pago generado correctamente",
+      message: "Comercio generado correctamente",
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
@@ -81,7 +81,7 @@ exports.createComercioM = async function (req, res, next) {
     return res
 
       .status(400)
-      .json({ status: 400, message: "Error al querer generar el tarjeta, verifique los campos" });
+      .json({ status: 400, message: "Error al querer generar el comercio, verifique los campos" });
   }
 };
 
@@ -100,13 +100,13 @@ exports.getComercioCUIT = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Tarjetas,
-        message: "Error al querer obtener el usuario",
+        message: "Error al querer obtener el comercio por CUIT",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Tarjetas,
-        message: "Usuario obtenido correctamente",
+        message: "Comercio obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
@@ -129,13 +129,13 @@ exports.getComercioCUITEmpresa = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Tarjetas,
-        message: "Error al querer obtener el usuario",
+        message: "Error al querer obtener el comercio",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Tarjetas,
-        message: "Usuario obtenido correctamente",
+        message: "Comercio obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
@@ -158,13 +158,13 @@ exports.getComercioCodigo = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Tarjetas,
-        message: "Error al querer obtener el usuario",
+        message: "Error al querer obtener el comercio, por codigotransaccion",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Tarjetas,
-        message: "Usuario obtenido correctamente",
+        message: "Comercio obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
@@ -177,7 +177,7 @@ exports.updateComercio = async function (req, res, next) {
   if (!req.body.codigotransaccion) {
     return res
       .status(400)
-      .json({ status: 400, message: "Codigo tiene que estar presente" });
+      .json({ status: 400, message: "Codigotransaccion tiene que estar presente" });
   }
 
   var Tarjeta = {
@@ -195,11 +195,11 @@ exports.updateComercio = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: updatedTarjeta,
-      message: "Tarjeta actualizado correctamente",
+      message: "Comercio actualizado correctamente",
     });
   } catch (e) {
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer actualizar el tarjeta" });
+      .json({ status: 400, message: "Error al querer actualizar el Comercio" });
   }
 };

@@ -59,9 +59,9 @@ exports.getMovimientoID = async function (req, res, next) {
       var Movimientos = await MovimientoService.getMovimientos(filtro, page, limit)
 
       if (Movimientos.total === 0)
-          return res.status(201).json({ status: 201, data: Movimientos, message: "Error al querer obtener el movimiento" });
+          return res.status(201).json({ status: 201, data: Movimientos, message: "Error al querer obtener el movimiento por ID" });
       else
-          return res.status(200).json({ status: 200, data: Movimientos, message: "Movimiento obtenido correctamente" });
+          return res.status(200).json({ status: 200, data: Movimientos, message: "Movimiento por ID, obtenido correctamente" });
   } catch (e) {
 
       console.log(e)
@@ -82,7 +82,7 @@ exports.getMovimientoUsuario = async function (req, res, next) {
       var Movimientos = await MovimientoService.getMovimientos(filtro, page, limit)
 
       if (Movimientos.total === 0)
-          return res.status(201).json({ status: 201, data: Movimientos, message: "Error al querer obtener el movimiento" });
+          return res.status(201).json({ status: 201, data: Movimientos, message: "Error al querer obtener el movimiento por usuario" });
       else
           return res.status(200).json({ status: 200, data: Movimientos, message: "Movimiento obtenido correctamente" });
   } catch (e) {

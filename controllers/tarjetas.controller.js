@@ -14,13 +14,13 @@ exports.getTarjetas = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: Tarjetas,
-      message: "tarjeta obtenidos correctamente",
+      message: "tarjeta obtenidas correctamente",
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer obtener los usuarios" });
+      .json({ status: 400, message: "Error al querer obtener los tarjetas" });
   }
 };
 
@@ -100,13 +100,13 @@ exports.getTarjetaCUIT = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Tarjetas,
-        message: "Error al querer obtener el usuario",
+        message: "Error al querer obtener la tarjeta",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Tarjetas,
-        message: "Usuario obtenido correctamente",
+        message: "Tarjeta obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
@@ -129,13 +129,13 @@ exports.getTarjetaCUITEmpresa = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Tarjetas,
-        message: "Error al querer obtener el usuario",
+        message: "Error al querer obtener la tarjeta",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Tarjetas,
-        message: "Usuario obtenido correctamente",
+        message: "Tarjeta obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
@@ -158,13 +158,13 @@ exports.getTarjetaCodigo = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Tarjetas,
-        message: "Error al querer obtener el usuario",
+        message: "Error al querer obtener la tarjeta",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Tarjetas,
-        message: "Usuario obtenido correctamente",
+        message: "Tarjeta obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
@@ -177,7 +177,7 @@ exports.updateTarjeta = async function (req, res, next) {
   if (!req.body.codigotransaccion) {
     return res
       .status(400)
-      .json({ status: 400, message: "Codigo tiene que estar presente" });
+      .json({ status: 400, message: "Codigotransaccion, tiene que estar presente" });
   }
 
   var Tarjeta = {

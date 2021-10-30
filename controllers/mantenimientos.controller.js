@@ -18,13 +18,13 @@ exports.getMantenimientos = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: Mantenimientos,
-      message: "Mantenimiento obtenidos correctamente",
+      message: "Mantenimiento obtenido correctamente",
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer obtener los usuarios" });
+      .json({ status: 400, message: "Error al querer obtener el mantenimiento" });
   }
 };
 
@@ -33,7 +33,7 @@ exports.updateMantenimiento = async function (req, res, next) {
   if (!req.body.clave) {
     return res
       .status(400)
-      .json({ status: 400, message: "Clave tiene que estar presente" });
+      .json({ status: 400, message: "El campo 'Clave' tiene que estar presente" });
   }
 
   var Mantenimiento = {
@@ -51,7 +51,7 @@ exports.updateMantenimiento = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: updatedMantenimiento,
-      message: "Mantenimiento actualizada correctamente",
+      message: "Mantenimiento actualizado correctamente",
     });
   } catch (e) {
     return res
@@ -83,13 +83,13 @@ exports.getMantenimientoClave = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Mantenimientos,
-        message: "Error al querer obtener el Clave",
+        message: "Error al querer obtener el mantenimeinto, por Clave",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Mantenimientos,
-        message: "Clave obtenido correctamente",
+        message: "Mantenimiento por clave, obtenido correctamente",
       });
   } catch (e) {
     console.log(e);

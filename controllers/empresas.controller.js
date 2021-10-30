@@ -14,13 +14,13 @@ exports.getEmpresas = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: Empresas,
-      message: "empresa obtenidos correctamente",
+      message: "Cupones de Pago obtenidos correctamente",
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer obtener los usuarios" });
+      .json({ status: 400, message: "Error al querer obtener los cupones de Pago" });
   }
 };
 
@@ -54,7 +54,7 @@ exports.createEmpresa = async function (req, res, next) {
     console.log(e);
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer generar el empresa, verifique los campos" });
+      .json({ status: 400, message: "Error al querer generar el cupon de pago, verifique los campos" });
   }
 };
 
@@ -75,7 +75,7 @@ exports.createEmpresaM = async function (req, res, next) {
     console.log(e);
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer generar el empresa, verifique los campos" });
+      .json({ status: 400, message: "Error al querer generar el cupon de pago, verifique los campos" });
   }
 };
 
@@ -85,9 +85,8 @@ exports.updateEmpresa = async function (req, res, next) {
   if (!req.body.codigopago) {
     return res
       .status(400)
-      .json({ status: 400, message: "Nombre tiene que estar presente" });
+      .json({ status: 400, message: "El campo 'codigopago' tiene que estar presente" });
   }
-
   var Empresa = {
     nombre: req.body.nombre ? req.body.nombre : null,
     codigopago: req.body.codigopago ? req.body.codigopago : null,
@@ -101,7 +100,7 @@ exports.updateEmpresa = async function (req, res, next) {
     cuit: req.body.cuit ? req.body.cuit : null,
     debito: req.body.debito ? req.body.debito : null,
   };
-
+ 
   try {
     var updatedEmpresa = await EmpresaService.updateEmpresa(Empresa);
     console.log("error", updatedEmpresa);
@@ -113,7 +112,7 @@ exports.updateEmpresa = async function (req, res, next) {
   } catch (e) {
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer actualizar el empresa" });
+      .json({ status: 400, message: "Error al querer actualizar el cupon de pago" });
   }
 };
 
@@ -133,13 +132,13 @@ exports.getEmpresaESTADO = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Empresas,
-        message: "Error al querer obtener el estado",
+        message: "Error al querer obtener el cupon de pago, por ESTADO",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Empresas,
-        message: "Estado obtenido correctamente",
+        message: "cupon de pago obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
@@ -163,13 +162,13 @@ exports.getEmpresaPAGO = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Empresas,
-        message: "Error al querer obtener el codigopago",
+        message: "Error al querer obtener el cupon de pago, por CODIGOPAGO",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Empresas,
-        message: "codigopago obtenido correctamente",
+        message: "cupon de pago obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
@@ -196,13 +195,13 @@ exports.getEmpresaCUITEmpresa = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Empresas,
-        message: "Error al querer obtener el cuitEmpresa",
+        message: "Error al querer obtener el cupon de pago, por cuitEmpresa",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Empresas,
-        message: "cuitEmpresa obtenido correctamente",
+        message: "cupon de pago obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
@@ -225,13 +224,13 @@ exports.getEmpresasID = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Reporte,
-        message: "No existe la empresa por ID",
+        message: "No existe la el cupon de pago por ese ID",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Reporte,
-        message: "Empresa por ID recuperada exitosamente",
+        message: "cupon de pago por ID recuperado exitosamente",
       });
   } catch (e) {
     console.log(e);

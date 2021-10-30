@@ -14,13 +14,13 @@ exports.getSueldos = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: Sueldos,
-      message: "sueldo obtenidos correctamente",
+      message: "sueldos obtenidos correctamente",
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     return res
       .status(400)
-      .json({ status: 400, message: "Error al querer obtener los usuarios" });
+      .json({ status: 400, message: "Error al querer obtener los sueldos" });
   }
 };
 
@@ -100,13 +100,13 @@ exports.getSueldoCodigo = async function (req, res, next) {
       return res.status(201).json({
         status: 201,
         data: Sueldos,
-        message: "Error al querer obtener el usuario",
+        message: "Error al querer obtener el sueldo",
       });
     else
       return res.status(200).json({
         status: 200,
         data: Sueldos,
-        message: "Usuario obtenido correctamente",
+        message: "Sueldo obtenido correctamente",
       });
   } catch (e) {
     console.log(e);
