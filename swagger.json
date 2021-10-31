@@ -481,9 +481,6 @@
         "cuit": {
           "type": "string"
         },
-        "nroCuenta": {
-          "type": "string"
-        },
         "debito": {
           "type": "string"
         }

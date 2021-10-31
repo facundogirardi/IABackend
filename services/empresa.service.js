@@ -63,7 +63,6 @@ exports.createEmpresa = async function (empresa) {
     estado: "No pagado",
     debito: empresa.debito,
     cuit: empresa.cuit,
-    nroCuenta: empresa.nroCuenta,
     date: new Date(),
   });
 
@@ -110,7 +109,6 @@ exports.updateEmpresa = async function (empresa) {
   oldEmpresa.estado = empresa.estado;
   oldEmpresa.cuit = empresa.cuit;
   oldEmpresa.debito = empresa.debito;
-  oldEmpresa.nroCuenta = empresa.nroCuenta;
 
   try {
     var savedEmpresa = await oldEmpresa.save();

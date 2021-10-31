@@ -13,7 +13,6 @@ var EmpresaSchema = new mongoose.Schema({
   cuitEmpresa: {type : String, required: [true, 'campo CUITEMPRESA es requerido']},
   debito: {type : String, required: [true, 'campo DEBITO es requerido']},
   cuit: {type : String, required: [true, 'campo CUIT es requerido']},
-  nroCuenta: {type : String, required: [true, 'campo NUMERO DE CUENTA es requerido']},
   date: Date,
 });
 
