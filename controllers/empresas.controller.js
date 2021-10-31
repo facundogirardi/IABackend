@@ -37,6 +37,7 @@ exports.createEmpresa = async function (req, res, next) {
       estado: req.body.estado,
       cuit: req.body.cuit,
       debito: req.body.debito,
+      nroCuenta: req.body.nroCuenta,
     },
   ];
 
@@ -99,6 +100,7 @@ exports.updateEmpresa = async function (req, res, next) {
     estado: req.body.estado ? req.body.estado : null,
     cuit: req.body.cuit ? req.body.cuit : null,
     debito: req.body.debito ? req.body.debito : null,
+    nroCuenta: req.body.nroCuenta ? req.body.nroCuenta : null,
   };
  
   try {
