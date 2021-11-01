@@ -4,6 +4,7 @@ var UserController = require("../../controllers/users.controller");
 var EmpresaController = require("../../controllers/empresas.controller");
 var MovimientoController = require("../../controllers/movements.controller");
 var SueldoController = require("../../controllers/sueldos.controller");
+var ClearingController = require("../../controllers/clearings.controller");
 var TarjetaController = require("../../controllers/tarjetas.controller");
 var ComercioController = require("../../controllers/pagocomercio.controller");
 var MantenimientoController = require("../../controllers/mantenimientos.controller");
@@ -41,6 +42,13 @@ router.post("/altasueldo", SueldoController.createSueldo);
 router.get("/getSueldos", SueldoController.getSueldos);
 router.put("/updateSueldo", SueldoController.updateSueldo);
 router.get("/getSueldoCodigo", SueldoController.getSueldoCodigo);
+
+router.post("/altaclearingM", ClearingController.createClearingM);
+router.post("/altaclearing", ClearingController.createClearing);
+router.get("/getClearings", ClearingController.getClearings);
+router.get("/getClearingCUITD", ClearingController.getClearingCUITD);
+router.get("/getClearingCUITP", ClearingController.getClearingCUITO);
+router.get("/getClearingCUITO", ClearingController.getClearingCUITP);
 
 router.post("/altatarjetaM", TarjetaController.createTarjetaM);
 router.post("/altatarjeta", TarjetaController.createTarjeta);

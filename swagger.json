@@ -24,7 +24,7 @@
       "name": "Empresas - PagoSueldos",
       "description": "Endpoints para manejo pago de sueldos"
     },
- 
+
     {
       "name": "Clearing Bancario",
       "description": "Endpoints para manejo del clearing "
@@ -156,7 +156,7 @@
           }
         }
       }
-    }, 
+    },
 
     "/getComercioCodigo": {
       "post": {
@@ -251,6 +251,129 @@
       }
     },
 
+    "/altaclearingM": {
+      "post": {
+        "tags": ["Clearing Bancario"],
+        "summary": "Alta de movimientos para clearing",
+        "requestBody": {
+          "description": "Alta de movimientos clearing",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Clearing"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Clearing creado correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer crear el Clearing"
+          }
+        }
+      }
+    },
+
+    "/getClearingCUITD": {
+      "post": {
+        "tags": ["Clearing Bancario"],
+        "summary": "Obtengo movimiento de clearing por CUIT destino",
+
+        "requestBody": {
+          "description": "El campo 'cuitUsuarioD' el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/ClearingD"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Clearing obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener el clearing"
+          }
+        }
+      }
+    },
+
+    "/getClearingCUITO": {
+      "post": {
+        "tags": ["Clearing Bancario"],
+        "summary": "Obtengo movimiento de clearing por CUIT origen",
+
+        "requestBody": {
+          "description": "El campo 'cuitUsuarioO' el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/ClearingO"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Clearing obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener el clearing"
+          }
+        }
+      }
+    },
+
+    "/getClearingCUITP": {
+      "post": {
+        "tags": ["Clearing Bancario"],
+        "summary": "Obtengo movimiento de clearing por CUIT propio (Cuit del banco)",
+
+        "requestBody": {
+          "description": "El campo 'cuitPropio' el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/ClearingP"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Clearing obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener el clearing"
+          }
+        }
+      }
+    },
+
     "/getSueldoCodigo": {
       "post": {
         "tags": ["Empresas - PagoSueldos"],
@@ -335,6 +458,30 @@
         }
       }
     },
+    "ClearingO": {
+      "type": "object",
+      "properties": {
+        "cuitUsuarioO": {
+          "type": "string"
+        }
+      }
+    },
+    "ClearingP": {
+      "type": "object",
+      "properties": {
+        "cuitPropio": {
+          "type": "string"
+        }
+      }
+    },
+    "ClearingD": {
+      "type": "object",
+      "properties": {
+        "cuitUsuarioD": {
+          "type": "string"
+        }
+      }
+    },
     "PagoC": {
       "type": "object",
       "properties": {
@@ -376,6 +523,26 @@
         }
       }
     },
+    "Clearing": {
+      "type": "object",
+      "properties": {
+        "cuitPropio": {
+          "type": "string"
+        },
+        "cuitUsuarioO": {
+          "type": "string"
+        },
+        "cuitUsuarioD": {
+          "type": "integer"
+        },
+        "importe": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        }
+      }
+    },
     "Sueldo": {
       "type": "object",
       "properties": {
@@ -396,7 +563,7 @@
         },
         "cbuEmpresa": {
           "type": "string"
-        },        
+        },
         "descripcion": {
           "type": "string"
         }
@@ -422,7 +589,7 @@
         },
         "cuitEmpresa": {
           "type": "string"
-        },        
+        },
         "descripcion": {
           "type": "string"
         }
@@ -448,7 +615,7 @@
         },
         "cuitEmpresa": {
           "type": "string"
-        },        
+        },
         "descripcion": {
           "type": "string"
         }
