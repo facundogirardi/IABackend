@@ -39,7 +39,7 @@
 
 Para apuntar al Backend de Heroku :
 * Ingresar a ./src/controller/webServices.js
-* comentar la linea <b>const urlApi = "http://localhost:4000/";</b>
+* comentar la linea <b>const urlApi = "http://localhost:5000/";</b>
 
 ## BackEnd
 
@@ -47,7 +47,7 @@ Para apuntar al Backend de Heroku :
 * En la carpeta del proyecto ejecutar <b>npm install</b>
 * <b>cd</b> .\IA-Grupo1-Backend\
 * Ejecutar <b>npm start</b> o <b>nodemon ./app.js </b> (Requiere tener instalado el nodemon*)
-* Se levantará en local <b>http://localhost:4000/</b>
+* Se levantará en local <b>http://localhost:5000/</b>
 * Tambien se encuentra hosteado en Heroku <b>https://iabackend.herokuapp.com/</b>
 
 ## Base de Datos
@@ -58,7 +58,7 @@ Para apuntar al Backend de Heroku :
 
 ## EndPoints
 
-* Los endpoints se encuentran en el Swagger <b>http://localhost:4000/endpoints/#/</b> o <b>https://iabackend.herokuapp.com/endpoints/#/</b>
+* Los endpoints se encuentran en el Swagger <b>http://localhost:5000/endpoints/#/</b> o <b>https://iabackend.herokuapp.com/endpoints/#/</b>
 
 ## Recursos
 

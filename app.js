@@ -86,7 +86,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:4000");
+  res.header("Access-Control-Allow-Origin", "http://localhost:5000");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -106,7 +106,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Setup server port
-var port = process.env.PORT || 4000;
+var port = process.env.PORT || 5000;
 // Escuchar en el puerto
 app.listen(port, () => {
   console.log("Servidor Backend del Banco en el puerto ", port);
