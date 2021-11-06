@@ -71,6 +71,7 @@ router.get("/getmovimientos", MovimientoController.getMovimientos);
 router.post("/getMovimientoUsuario", MovimientoController.getMovimientoUsuario);
 
 router.get("/getMantenimientos", MantenimientoController.getMantenimientos);
+router.post("/createMatenimiento", MantenimientoController.createMatenimiento);
 router.put("/updateMantenimiento", MantenimientoController.updateMantenimiento);
 router.post(
   "/getMantenimientoClave",

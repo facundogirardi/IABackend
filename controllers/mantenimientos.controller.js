@@ -28,6 +28,26 @@ exports.getMantenimientos = async function (req, res, next) {
   }
 };
 
+exports.createMatenimiento = async function (req, res, next) {
+  // Req.Body contains the form submit values.
+
+  try {
+    // Calling the Service function with the new object from the Request Body
+    var createdMatenimiento = await MantenimientoService.createMatenimiento(req.body);
+    return res.status(201).json({
+      createdMatenimiento,
+      message: "Mantenimiento creado correctamente",
+    });
+  } catch (e) {
+    //Return an Error Response Message with Code and the Error Message.
+    console.log(e);
+    return res
+
+      .status(400)
+      .json({ status: 400, message: "Error al querer crear el mantenimiento, verifique los campos" });
+  }
+};
+
 exports.updateMantenimiento = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.clave) {
