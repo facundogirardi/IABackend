@@ -45,10 +45,10 @@ router.get("/getSueldoCodigo", SueldoController.getSueldoCodigo);
 
 router.post("/altaclearingM", ClearingController.createClearingM);
 router.post("/altaclearing", ClearingController.createClearing);
-router.get("/getClearings", ClearingController.getClearings);
-router.get("/getClearingCUITD", ClearingController.getClearingCUITD);
-router.get("/getClearingCUITP", ClearingController.getClearingCUITO);
-router.get("/getClearingCUITO", ClearingController.getClearingCUITP);
+router.post("/getClearings", ClearingController.getClearings);
+router.post("/getClearingCUITD", ClearingController.getClearingCUITD);
+router.post("/getClearingCUITP", ClearingController.getClearingCUITP);
+router.post("/getClearingCUITO", ClearingController.getClearingCUITO);
 
 router.post("/altatarjetaM", TarjetaController.createTarjetaM);
 router.post("/altatarjeta", TarjetaController.createTarjeta);
