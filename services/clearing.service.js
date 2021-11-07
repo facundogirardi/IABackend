@@ -100,6 +100,23 @@ exports.getClearingCBUP = async function (query, page, limit) {
   }
 };
 
+
+// Recupero Usuario por CBU Empresa
+exports.getClearingCodigo = async function (query, page, limit) {
+  var options = {
+    page,
+    limit,
+  };
+
+  try {
+    var Clearings = await Clearing.paginate(query, options);
+    return Clearings;
+  } catch (e) {
+    console.log("error servicio", e);
+    throw Error("Error en el paginado de los Usuarios por ese Codigo");
+  }
+};
+
 exports.createClearing = async function (clearing) {
   // Creating a new Mongoose Object by using the new keyword
   var newClearing = new Clearing({

@@ -146,6 +146,35 @@ exports.getClearingCBUO = async function (req, res, next) {
   }
 };
 
+// Traigo Usuario por CODIGO
+exports.getClearingCodigo = async function (req, res, next) {
+  var page = req.query.page ? req.query.page : 1;
+  var limit = req.query.limit ? req.query.limit : 1000;
+
+  var filtro = {
+    codigo: req.body.codigo,
+  };
+  try {
+    var Clearings = await ClearingService.getClearings(filtro, page, limit);
+
+    if (Clearings.total === 0)
+      return res.status(201).json({
+        status: 201,
+        data: Clearings,
+        message: "Error al querer obtener el clearing",
+      });
+    else
+      return res.status(200).json({
+        status: 200,
+        data: Clearings,
+        message: "Clearing obtenido correctamente",
+      });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ status: 400, message: e.message });
+  }
+};
+
 exports.updateClearing = async function (req, res, next) {
   // Id is necessary for the update
 

@@ -281,6 +281,38 @@
       }
     },
 
+
+    "/getClearingCodigo": {
+      "post": {
+        "tags": ["Clearing Bancario"],
+        "summary": "Obtengo movimiento de clearing por Codigo unico",
+
+        "requestBody": {
+          "description": "El campo 'codigo' el indice de busqueda",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/ClearingC"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Clearing obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener el clearing"
+          }
+        }
+      }
+    },
+
     "/getClearingCBUD": {
       "post": {
         "tags": ["Clearing Bancario"],
@@ -478,6 +510,14 @@
       "type": "object",
       "properties": {
         "cbuUsuarioD": {
+          "type": "string"
+        }
+      }
+    },
+    "ClearingC": {
+      "type": "object",
+      "properties": {
+        "codigo": {
           "type": "string"
         }
       }
