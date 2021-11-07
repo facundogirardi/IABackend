@@ -543,6 +543,9 @@
         },
         "pagado": {
           "type": "string"
+        },
+        "codigo": {
+          "type": "string"
         }
       }
     },

@@ -109,6 +109,7 @@ exports.createClearing = async function (clearing) {
     importe: clearing.importe,
     descripcion: clearing.descripcion,
     pagado: clearing.pagado,
+    codigo: clearing.codigo,
     date: new Date(),
  
 

@@ -46,6 +46,7 @@ router.get("/getSueldoCodigo", SueldoController.getSueldoCodigo);
 router.post("/altaclearingM", ClearingController.createClearingM);
 router.post("/altaclearing", ClearingController.createClearing);
 router.post("/getClearings", ClearingController.getClearings);
+router.put("/updateClearing", ClearingController.updateClearing);
 router.post("/getClearingCBUD", ClearingController.getClearingCBUD);
 router.post("/getClearingCBUP", ClearingController.getClearingCBUP);
 router.post("/getClearingCBUO", ClearingController.getClearingCBUO);

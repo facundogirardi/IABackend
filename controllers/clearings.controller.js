@@ -34,9 +34,9 @@ exports.createClearing = async function (req, res, next) {
       importe: req.body.importe,
       descripcion: req.body.descripcion,
       pagado: req.body.pagado,
+      codigo: req.body.codigo,
     },
   ];
-
 
   try {
     // Calling the Service function with the new object from the Request Body
@@ -64,6 +64,7 @@ exports.createClearingM = async function (req, res, next) {
       importe: req.body.importe,
       descripcion: req.body.descripcion,
       pagado: req.body.pagado,
+      codigo: req.body.codigo,
     },
   ];
 
@@ -80,7 +81,10 @@ exports.createClearingM = async function (req, res, next) {
     return res
 
       .status(400)
-      .json({ status: 400, message: "Error al querer generar el clearing, verifique los campos" });
+      .json({
+        status: 400,
+        message: "Error al querer generar el clearing, verifique los campos",
+      });
   }
 };
 
@@ -113,7 +117,6 @@ exports.getClearingCBUD = async function (req, res, next) {
   }
 };
 
-
 // Traigo Usuario por CODIGO
 exports.getClearingCBUO = async function (req, res, next) {
   var page = req.query.page ? req.query.page : 1;
@@ -143,6 +146,41 @@ exports.getClearingCBUO = async function (req, res, next) {
   }
 };
 
+exports.updateClearing = async function (req, res, next) {
+  // Id is necessary for the update
+
+  if (!req.body.codigo) {
+    return res
+      .status(400)
+      .json({
+        status: 400,
+        message: "El campo 'codigo' tiene que estar presente",
+      });
+  }
+  var Empresa = {
+    cbuPropio: req.body.cbuPropio ? req.body.cbuPropio : null,
+    cbuUsuarioO: req.body.cbuUsuarioO ? req.body.cbuUsuarioO : null,
+    cbuUsuarioD: req.body.cbuUsuarioD ? req.body.cbuUsuarioD : null,
+    importe: req.body.importe ? req.body.importe : null,
+    descripcion: req.body.descripcion ? req.body.descripcion : null,
+    pagado: req.body.pagado ? req.body.pagado : null,
+    codigo: req.body.codigo ? req.body.codigo : null,
+  };
+
+  try {
+    var updatedClearing = await ClearingService.updateClearing(Empresa);
+    console.log("error", updatedClearing);
+    return res.status(200).json({
+      status: 200,
+      data: updatedClearing,
+      message: "Clearing actualizado correctamente",
+    });
+  } catch (e) {
+    return res
+      .status(400)
+      .json({ status: 400, message: "Error al querer actualizar el clearing" });
+  }
+};
 
 // Traigo Usuario por CODIGO
 exports.getClearingCBUP = async function (req, res, next) {
