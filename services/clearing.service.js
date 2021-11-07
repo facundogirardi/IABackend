@@ -108,6 +108,7 @@ exports.createClearing = async function (clearing) {
     cbuUsuarioD: clearing.cbuUsuarioD,
     importe: clearing.importe,
     descripcion: clearing.descripcion,
+    pagado: clearing.pagado,
     date: new Date(),
  
 

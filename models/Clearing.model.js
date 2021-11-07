@@ -8,6 +8,7 @@ var ClearingSchema = new mongoose.Schema({
   cbuUsuarioD: {type : String, required: [true, 'campo cbuUsuarioD es requerido']},
   importe: {type : String, required: [true, 'campo importe es requerido']},
   descripcion: {type : String, required: [true, 'campo descripcion es requerido']},
+  pagado: {type : String, required: [true, 'campo pagado es requerido']},
   date: {type : Date}
 
 });

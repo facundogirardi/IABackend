@@ -33,6 +33,7 @@ exports.createClearing = async function (req, res, next) {
       cbuUsuarioD: req.body.cbuUsuarioD,
       importe: req.body.importe,
       descripcion: req.body.descripcion,
+      pagado: req.body.pagado,
     },
   ];
 
@@ -62,6 +63,7 @@ exports.createClearingM = async function (req, res, next) {
       cbuUsuarioD: req.body.cbuUsuarioD,
       importe: req.body.importe,
       descripcion: req.body.descripcion,
+      pagado: req.body.pagado,
     },
   ];
 
