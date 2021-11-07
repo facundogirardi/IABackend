@@ -52,8 +52,8 @@ exports.createClearingM = async function (clearing) {
   }
 };
 
-// Recupero Usuario por CUIT Empresa
-exports.getClearingCUID = async function (query, page, limit) {
+// Recupero Usuario por CBU Empresa
+exports.getClearingCBUD = async function (query, page, limit) {
   var options = {
     page,
     limit,
@@ -68,8 +68,8 @@ exports.getClearingCUID = async function (query, page, limit) {
   }
 };
 
-// Recupero Usuario por CUIT Empresa
-exports.getClearingCUIO = async function (query, page, limit) {
+// Recupero Usuario por CBU Empresa
+exports.getClearingCBUO = async function (query, page, limit) {
   var options = {
     page,
     limit,
@@ -84,8 +84,8 @@ exports.getClearingCUIO = async function (query, page, limit) {
   }
 };
 
-// Recupero Usuario por CUIT Empresa
-exports.getClearingCUIP = async function (query, page, limit) {
+// Recupero Usuario por CBU Empresa
+exports.getClearingCBUP = async function (query, page, limit) {
   var options = {
     page,
     limit,
@@ -103,9 +103,9 @@ exports.getClearingCUIP = async function (query, page, limit) {
 exports.createClearing = async function (clearing) {
   // Creating a new Mongoose Object by using the new keyword
   var newClearing = new Clearing({
-    cuitPropio: clearing.cuitPropio,
-    cuitUsuarioO: clearing.cuitUsuarioO,
-    cuitUsuarioD: clearing.cuitUsuarioD,
+    cbuPropio: clearing.cbuPropio,
+    cbuUsuarioO: clearing.cbuUsuarioO,
+    cbuUsuarioD: clearing.cbuUsuarioD,
     importe: clearing.importe,
     descripcion: clearing.descripcion,
     date: new Date(),

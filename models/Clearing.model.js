@@ -3,9 +3,9 @@ var mongoosePaginate = require("mongoose-paginate");
 require("mongoose-double")(mongoose);
  
 var ClearingSchema = new mongoose.Schema({
-  cuitPropio: {type : String, required: [true, 'campo cuitPropio es requerido']},
-  cuitUsuarioO: {type : String, required: [true, 'campo cuitUsuarioO es requerido']},
-  cuitUsuarioD: {type : String, required: [true, 'campo cuitUsuarioD es requerido']},
+  cbuPropio: {type : String, required: [true, 'campo cbuPropio es requerido']},
+  cbuUsuarioO: {type : String, required: [true, 'campo cbuUsuarioO es requerido']},
+  cbuUsuarioD: {type : String, required: [true, 'campo cbuUsuarioD es requerido']},
   importe: {type : String, required: [true, 'campo importe es requerido']},
   descripcion: {type : String, required: [true, 'campo descripcion es requerido']},
   date: {type : Date}

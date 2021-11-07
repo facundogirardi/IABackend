@@ -28,9 +28,9 @@ exports.createClearing = async function (req, res, next) {
   // Req.Body contains the form submit values.
   var Clearing = [
     {
-      cuitPropio: req.body.cuitPropio,
-      cuitUsuarioO: req.body.cuitUsuarioO,
-      cuitUsuarioD: req.body.cuitUsuarioD,
+      cbuPropio: req.body.cbuPropio,
+      cbuUsuarioO: req.body.cbuUsuarioO,
+      cbuUsuarioD: req.body.cbuUsuarioD,
       importe: req.body.importe,
       descripcion: req.body.descripcion,
     },
@@ -57,9 +57,9 @@ exports.createClearingM = async function (req, res, next) {
   // Req.Body contains the form submit values.
   var Clearing = [
     {
-      cuitPropio: req.body.cuitPropio,
-      cuitUsuarioO: req.body.cuitUsuarioO,
-      cuitUsuarioD: req.body.cuitUsuarioD,
+      cbuPropio: req.body.cbuPropio,
+      cbuUsuarioO: req.body.cbuUsuarioO,
+      cbuUsuarioD: req.body.cbuUsuarioD,
       importe: req.body.importe,
       descripcion: req.body.descripcion,
     },
@@ -83,12 +83,12 @@ exports.createClearingM = async function (req, res, next) {
 };
 
 // Traigo Usuario por CODIGO
-exports.getClearingCUITD = async function (req, res, next) {
+exports.getClearingCBUD = async function (req, res, next) {
   var page = req.query.page ? req.query.page : 1;
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
-    cuitUsuarioD: req.body.cuitUsuarioD,
+    cbuUsuarioD: req.body.cbuUsuarioD,
   };
   try {
     var Clearings = await ClearingService.getClearings(filtro, page, limit);
@@ -113,12 +113,12 @@ exports.getClearingCUITD = async function (req, res, next) {
 
 
 // Traigo Usuario por CODIGO
-exports.getClearingCUITO = async function (req, res, next) {
+exports.getClearingCBUO = async function (req, res, next) {
   var page = req.query.page ? req.query.page : 1;
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
-    cuitUsuarioO: req.body.cuitUsuarioO,
+    cbuUsuarioO: req.body.cbuUsuarioO,
   };
   try {
     var Clearings = await ClearingService.getClearings(filtro, page, limit);
@@ -143,12 +143,12 @@ exports.getClearingCUITO = async function (req, res, next) {
 
 
 // Traigo Usuario por CODIGO
-exports.getClearingCUITP = async function (req, res, next) {
+exports.getClearingCBUP = async function (req, res, next) {
   var page = req.query.page ? req.query.page : 1;
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
-    cuitPropio: req.body.cuitPropio,
+    cbuPropio: req.body.cbuPropio,
   };
   try {
     var Clearings = await ClearingService.getClearings(filtro, page, limit);

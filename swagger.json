@@ -281,13 +281,13 @@
       }
     },
 
-    "/getClearingCUITD": {
+    "/getClearingCBUD": {
       "post": {
         "tags": ["Clearing Bancario"],
-        "summary": "Obtengo movimiento de clearing por CUIT destino",
+        "summary": "Obtengo movimiento de clearing por CBU destino",
 
         "requestBody": {
-          "description": "El campo 'cuitUsuarioD' el indice de busqueda",
+          "description": "El campo 'cbuUsuarioD' el indice de busqueda",
           "required": true,
           "content": {
             "application/json": {
@@ -312,13 +312,13 @@
       }
     },
 
-    "/getClearingCUITO": {
+    "/getClearingCBUO": {
       "post": {
         "tags": ["Clearing Bancario"],
-        "summary": "Obtengo movimiento de clearing por CUIT origen",
+        "summary": "Obtengo movimiento de clearing por CBU origen",
 
         "requestBody": {
-          "description": "El campo 'cuitUsuarioO' el indice de busqueda",
+          "description": "El campo 'cbuUsuarioO' el indice de busqueda",
           "required": true,
           "content": {
             "application/json": {
@@ -343,13 +343,13 @@
       }
     },
 
-    "/getClearingCUITP": {
+    "/getClearingCBUP": {
       "post": {
         "tags": ["Clearing Bancario"],
-        "summary": "Obtengo movimiento de clearing por CUIT propio (Cuit del banco)",
+        "summary": "Obtengo movimiento de clearing por CBU propio (CBU del banco)",
 
         "requestBody": {
-          "description": "El campo 'cuitPropio' el indice de busqueda",
+          "description": "El campo 'cbuPropio' el indice de busqueda",
           "required": true,
           "content": {
             "application/json": {
@@ -461,7 +461,7 @@
     "ClearingO": {
       "type": "object",
       "properties": {
-        "cuitUsuarioO": {
+        "cbuUsuarioO": {
           "type": "string"
         }
       }
@@ -469,7 +469,7 @@
     "ClearingP": {
       "type": "object",
       "properties": {
-        "cuitPropio": {
+        "cbuPropio": {
           "type": "string"
         }
       }
@@ -477,7 +477,7 @@
     "ClearingD": {
       "type": "object",
       "properties": {
-        "cuitUsuarioD": {
+        "cbuUsuarioD": {
           "type": "string"
         }
       }
@@ -526,13 +526,13 @@
     "Clearing": {
       "type": "object",
       "properties": {
-        "cuitPropio": {
+        "cbuPropio": {
           "type": "string"
         },
-        "cuitUsuarioO": {
+        "cbuUsuarioO": {
           "type": "string"
         },
-        "cuitUsuarioD": {
+        "cbuUsuarioD": {
           "type": "integer"
         },
         "importe": {
