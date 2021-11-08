@@ -7,7 +7,7 @@ _this = this;
 exports.getTarjetas = async function (req, res, next) {
   // Check the existence of the query parameters, If doesn't exists assign a default value
   var page = req.query.page ? req.query.page : 1;
-  var limit = req.query.limit ? req.query.limit : 10;
+  var limit = req.query.limit ? req.query.limit : 1000;
   try {
     var Tarjetas = await TarjetaService.getTarjetas({}, page, limit);
     // Return the Tarjetas list with the appropriate HTTP password Code and Message.
