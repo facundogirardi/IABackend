@@ -186,7 +186,7 @@ exports.updateClearing = async function (req, res, next) {
         message: "El campo 'codigo' tiene que estar presente",
       });
   }
-  var Empresa = {
+  var Clearing = {
     cbuPropio: req.body.cbuPropio ? req.body.cbuPropio : null,
     cbuUsuarioO: req.body.cbuUsuarioO ? req.body.cbuUsuarioO : null,
     cbuUsuarioD: req.body.cbuUsuarioD ? req.body.cbuUsuarioD : null,
@@ -197,7 +197,7 @@ exports.updateClearing = async function (req, res, next) {
   };
 
   try {
-    var updatedClearing = await ClearingService.updateClearing(Empresa);
+    var updatedClearing = await ClearingService.updateClearing(Clearing);
     console.log("error", updatedClearing);
     return res.status(200).json({
       status: 200,

@@ -67,6 +67,37 @@ exports.getClearingCBUD = async function (query, page, limit) {
   }
 };
 
+exports.updateClearing = async function (clearing) {
+  var id = { codigo: clearing.codigo };
+
+  try {
+    //Find the old Empresa Object by the Id
+    var oldClearing = await Clearing.findOne(id);
+  } catch (e) {
+    throw Error("Error occured while Finding the Clearing");
+  }
+  // If no old Empresa Object exists return false
+  if (!oldClearing) {
+    return false;
+  }
+
+  //Edit the Empresa Object
+  oldClearing.cbuPropio = clearing.cbuPropio;
+  oldClearing.cbuUsuarioO = clearing.cbuUsuarioO;
+  oldClearing.cbuUsuarioD = clearing.cbuUsuarioD;
+  oldClearing.importe = clearing.importe;
+  oldClearing.descripcion = clearing.descripcion;
+  oldClearing.pagado = clearing.pagado;
+  oldClearing.codigo = clearing.codigo;
+
+  try {
+    var savedEmpresa = await oldClearing.save();
+    return savedEmpresa;
+  } catch (e) {
+    throw Error("And Error occured while updating the Clearing");
+  }
+};
+
 // Recupero Usuario por CBU Empresa
 exports.getClearingCBUO = async function (query, page, limit) {
   var options = {
@@ -99,7 +130,6 @@ exports.getClearingCBUP = async function (query, page, limit) {
   }
 };
 
-
 // Recupero Usuario por CBU Empresa
 exports.getClearingCodigo = async function (query, page, limit) {
   var options = {
@@ -127,8 +157,6 @@ exports.createClearing = async function (clearing) {
     pagado: clearing.pagado,
     codigo: clearing.codigo,
     date: new Date(),
- 
-
   });
 
   try {
@@ -150,4 +178,3 @@ exports.createClearing = async function (clearing) {
     throw Error("Error while Creating Clearing");
   }
 };
-
