@@ -41,11 +41,11 @@ router.post("/altasueldoM", SueldoController.createSueldoM);
 router.post("/altasueldo", SueldoController.createSueldo);
 router.get("/getSueldos", SueldoController.getSueldos);
 router.put("/updateSueldo", SueldoController.updateSueldo);
-router.get("/getSueldoCodigo", SueldoController.getSueldoCodigo);
+router.post("/getSueldoCodigo", SueldoController.getSueldoCodigo);
 
 router.post("/altaclearingM", ClearingController.createClearingM);
 router.post("/altaclearing", ClearingController.createClearing);
-router.post("/getClearings", ClearingController.getClearings);
+router.get("/getClearings", ClearingController.getClearings);
 router.post("/getClearingCodigo", ClearingController.getClearingCodigo);
 router.put("/updateClearing", ClearingController.updateClearing);
 router.post("/getClearingCBUD", ClearingController.getClearingCBUD);

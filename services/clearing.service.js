@@ -4,7 +4,6 @@ var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 const random = require("random");
 
-
 // Saving the context of this module inside the _the variable
 _this = this;
 
