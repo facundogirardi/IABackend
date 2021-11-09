@@ -198,7 +198,7 @@ exports.updateClearing = async function (req, res, next) {
 
   try {
     var updatedClearing = await ClearingService.updateClearing(Clearing);
-    console.log("error", updatedClearing);
+ 
     return res.status(200).json({
       status: 200,
       data: updatedClearing,

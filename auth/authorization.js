@@ -13,7 +13,7 @@ var authorization = function (req, res, next) {
         res.status(500).send(msg);
 
     let sec = process.env.SECRET;
-    //console.log("secret",sec)
+ 
     jwt.verify(token, sec, function (err, decoded) {
         var msg = {auth: false, message: 'Failed to authenticate token.'};
         if (err)

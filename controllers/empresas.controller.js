@@ -103,7 +103,7 @@ exports.updateEmpresa = async function (req, res, next) {
  
   try {
     var updatedEmpresa = await EmpresaService.updateEmpresa(Empresa);
-    console.log("error", updatedEmpresa);
+ 
     return res.status(200).json({
       status: 200,
       data: updatedEmpresa,

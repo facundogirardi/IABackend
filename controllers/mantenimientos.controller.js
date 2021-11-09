@@ -67,7 +67,7 @@ exports.updateMantenimiento = async function (req, res, next) {
 
   try {
     var updatedMantenimiento =  await MantenimientoService.updateMantenimiento(Mantenimiento);
-    console.log("error", updatedMantenimiento);
+ 
     return res.status(200).json({
       status: 200,
       data: updatedMantenimiento,
