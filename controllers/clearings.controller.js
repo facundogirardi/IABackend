@@ -1,4 +1,5 @@
 var ClearingService = require("../services/clearing.service");
+var UserService = require("../services/user.service");
 
 // Saving the context of this module inside the _the variable
 _this = this;
@@ -69,22 +70,35 @@ exports.createClearingM = async function (req, res, next) {
   ];
 
   try {
-    // Calling the Service function with the new object from the Request Body
+    
+    var page = req.query.page ? req.query.page : 1;
+    var limit = req.query.limit ? req.query.limit : 1000;
+
+    var filtro = {
+      cbu: req.body.cbuUsuarioD,
+    };
+    var verifyClearing = await UserService.getUsers(filtro, page, limit);
+
+    if (verifyClearing.total === 0)
+      return res.status(400).json({
+        status: 400,
+        data: verifyClearing,
+        message: "Error al querer obtener el clearing, usuario inexistente",
+      });
+    else
     var createdClearing = await ClearingService.createClearingM(req.body);
-    return res.status(201).json({
-      createdClearing,
-      message: "Clearing de pago generado correctamente",
-    });
+      return res.status(200).json({
+        status: 200,
+        data: createdClearing,
+        message: "Clearing generado correctamente",
+      });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     console.log(e);
-    return res
-
-      .status(400)
-      .json({
-        status: 400,
-        message: "Error al querer generar el clearing, verifique los campos",
-      });
+    return res.status(400).json({
+      status: 400,
+      message: "Error al querer generar el clearing, verifique los campos",
+    });
   }
 };
 
@@ -179,12 +193,10 @@ exports.updateClearing = async function (req, res, next) {
   // Id is necessary for the update
 
   if (!req.body.codigo) {
-    return res
-      .status(400)
-      .json({
-        status: 400,
-        message: "El campo 'codigo' tiene que estar presente",
-      });
+    return res.status(400).json({
+      status: 400,
+      message: "El campo 'codigo' tiene que estar presente",
+    });
   }
   var Clearing = {
     cbuPropio: req.body.cbuPropio ? req.body.cbuPropio : null,
@@ -198,7 +210,7 @@ exports.updateClearing = async function (req, res, next) {
 
   try {
     var updatedClearing = await ClearingService.updateClearing(Clearing);
- 
+
     return res.status(200).json({
       status: 200,
       data: updatedClearing,
