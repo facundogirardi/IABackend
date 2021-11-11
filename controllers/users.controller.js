@@ -81,7 +81,7 @@ exports.getUsuarioCBU = async function (req, res, next) {
     var Users = await UserService.getUsers(filtro, page, limit);
 
     if (Users.total === 0)
-      return res.status(400).json({
+      return res.status(201).json({
         status: 400,
         data: Users,
         message: "Error al querer obtener el usuario",
