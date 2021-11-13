@@ -118,6 +118,38 @@ exports.updateEmpresa = async function (empresa) {
   }
 };
 
+exports.updateEmpresaM = async function (empresa) {
+  var id = { codigopago: empresa.codigopago };
+
+  try {
+    //Find the old Empresa Object by the Id
+    var oldEmpresa = await Empresa.findOne(id);
+  } catch (e) {
+    throw Error("Error occured while Finding the Empresa");
+  }
+  // If no old Empresa Object exists return false
+  if (!oldEmpresa) {
+    return false;
+  }
+  //Edit the Empresa Object
+  oldEmpresa.nombre = empresa.nombre;
+  oldEmpresa.codigopago = empresa.codigopago;
+  oldEmpresa.cuitEmpresa = empresa.cuitEmpresa;
+  oldEmpresa.importe = empresa.importe;
+  oldEmpresa.descripcion = empresa.descripcion;
+  oldEmpresa.fechaVencimiento = empresa.fechaVencimiento;
+  oldEmpresa.estado = empresa.estado;
+  oldEmpresa.cuit = empresa.cuit;
+  oldEmpresa.debito = empresa.debito;
+
+  try {
+    var savedEmpresa = await oldEmpresa.save();
+    return savedEmpresa;
+  } catch (e) {
+    throw Error("And Error occured while updating the Empresa");
+  }
+};
+
 // Recupero Usuario por estado
 exports.getEmpresaESTADO = async function (query, page, limit) {
   var options = {

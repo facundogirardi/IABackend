@@ -32,6 +32,7 @@ router.post("/altaempresa", EmpresaController.createEmpresa);
 router.post("/altaempresaM", EmpresaController.createEmpresaM);
 router.get("/getempresas", EmpresaController.getEmpresas);
 router.put("/updateEmpresa", EmpresaController.updateEmpresa);
+router.put("/updateEmpresaM", EmpresaController.updateEmpresaM);
 router.post("/getEmpresaESTADO", EmpresaController.getEmpresaESTADO);
 router.post("/getEmpresaPAGO", EmpresaController.getEmpresaPAGO);
 router.post("/getEmpresaCUITEmpresa", EmpresaController.getEmpresaCUITEmpresa);

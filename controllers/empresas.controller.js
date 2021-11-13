@@ -116,6 +116,43 @@ exports.updateEmpresa = async function (req, res, next) {
   }
 };
 
+exports.updateEmpresaM = async function (req, res, next) {
+  // Id is necessary for the update
+
+  if (!req.body.codigopago) {
+    return res
+      .status(400)
+      .json({ status: 400, message: "El campo 'codigopago' tiene que estar presente" });
+  }
+  var Empresa = {
+    nombre: req.body.nombre ? req.body.nombre : null,
+    codigopago: req.body.codigopago ? req.body.codigopago : null,
+    cuitEmpresa: req.body.cuitEmpresa ? req.body.cuitEmpresa : null,
+    importe: req.body.importe ? req.body.importe : null,
+    descripcion: req.body.descripcion ? req.body.descripcion : null,
+    fechaVencimiento: req.body.fechaVencimiento
+      ? req.body.fechaVencimiento
+      : null,
+    estado: req.body.estado ? req.body.estado : null,
+    cuit: req.body.cuit ? req.body.cuit : null,
+    debito: req.body.debito ? req.body.debito : null,
+  };
+ 
+  try {
+    var updatedEmpresa = await EmpresaService.updateEmpresaM(Empresa);
+ 
+    return res.status(200).json({
+      status: 200,
+      data: updatedEmpresa,
+      message: "Cupon de pago actualizado correctamente",
+    });
+  } catch (e) {
+    return res
+      .status(400)
+      .json({ status: 400, message: "Error al querer actualizar el cupon de pago" });
+  }
+};
+
 // Traigo empresa por codigo Pago
 exports.getEmpresaESTADO = async function (req, res, next) {
   var page = req.query.page ? req.query.page : 1;
