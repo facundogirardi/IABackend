@@ -25,13 +25,9 @@ var UserSchema = new mongoose.Schema({
   cbuCC: Number,
   nrocuenta: Number,
   numerocajacc: Number,
-  balancecc: {
-    type: SchemaTypes.Double,
-  },
+  balancecc: String,
   numerocajaca: Number,
-  balanceca: {
-    type: SchemaTypes.Double,
-  },
+  balanceca: String,
   provincia: String,
   depto: String,
   date: Date,

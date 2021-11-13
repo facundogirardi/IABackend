@@ -87,7 +87,6 @@ exports.updateClearing = async function (clearing) {
   oldClearing.cbuUsuarioD = clearing.cbuUsuarioD;
   oldClearing.importe = clearing.importe;
   oldClearing.descripcion = clearing.descripcion;
-  oldClearing.pagado = clearing.pagado;
   oldClearing.codigo = clearing.codigo;
 
   try {
@@ -154,7 +153,6 @@ exports.createClearing = async function (clearing) {
     cbuUsuarioD: clearing.cbuUsuarioD,
     importe: clearing.importe,
     descripcion: clearing.descripcion,
-    pagado: clearing.pagado,
     codigo: clearing.codigo,
     date: new Date(),
   });

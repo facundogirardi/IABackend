@@ -1,5 +1,6 @@
 var ClearingService = require("../services/clearing.service");
 var UserService = require("../services/user.service");
+var MovimientoService = require("../services/movement.service");
 
 // Saving the context of this module inside the _the variable
 _this = this;
@@ -34,7 +35,6 @@ exports.createClearing = async function (req, res, next) {
       cbuUsuarioD: req.body.cbuUsuarioD,
       importe: req.body.importe,
       descripcion: req.body.descripcion,
-      pagado: req.body.pagado,
       codigo: req.body.codigo,
     },
   ];
@@ -64,13 +64,11 @@ exports.createClearingM = async function (req, res, next) {
       cbuUsuarioD: req.body.cbuUsuarioD,
       importe: req.body.importe,
       descripcion: req.body.descripcion,
-      pagado: req.body.pagado,
       codigo: req.body.codigo,
     },
   ];
 
   try {
-    
     var page = req.query.page ? req.query.page : 1;
     var limit = req.query.limit ? req.query.limit : 1000;
 
@@ -85,13 +83,49 @@ exports.createClearingM = async function (req, res, next) {
         data: verifyClearing,
         message: "Error al querer obtener el clearing, usuario inexistente",
       });
-    else
-    var createdClearing = await ClearingService.createClearingM(req.body);
-      return res.status(200).json({
-        status: 200,
-        data: createdClearing,
-        message: "Clearing generado correctamente",
-      });
+    else var createdClearing = await ClearingService.createClearingM(req.body);
+
+    // Traigo usuario destino
+    var cbuUsuarioD = {
+      cbu: req.body.cbuUsuarioD,
+    };
+    var usuarioD = await UserService.getUsuarioCBU(cbuUsuarioD, page, limit);
+
+    usuarioD.docs[0].balanceca = parseInt(usuarioD.docs[0].balanceca) + parseInt(req.body.importe);
+
+    var MovimientoD = {
+      tipomovimiento: "Transferencia Externa - " + req.body.descripcion,
+      importe: req.body.importe,
+      importeCA: usuarioD.docs[0].balanceca + "",
+      importeCC: usuarioD.docs[0].balancecc + "",
+      usuario: usuarioD.docs[0].usuario,
+    };
+    var mantenimientoD = await MovimientoService.createMovimiento(MovimientoD);
+    var updateD = await UserService.updateUserCBU(usuarioD.docs[0]);
+
+    // Traigo usuario propio
+    var cbuPropio = {
+      cbu: req.body.cbuPropio,
+    };
+    var usuarioP = await UserService.getUsuarioCBUCC(cbuPropio, page, limit);
+
+    usuarioP.docs[0].balanceca = parseInt(usuarioP.docs[0].balanceca) - parseInt(req.body.importe);
+
+    var MovimientoP = {
+      tipomovimiento: "Transferencia Externa - " + req.body.descripcion,
+      importe: req.body.importe,
+      importeCA: usuarioP.docs[0].balanceca + "",
+      importeCC: usuarioP.docs[0].balancecc + "",
+      usuario: usuarioP.docs[0].usuario,
+    };
+    var mantenimientoP = await MovimientoService.createMovimiento(MovimientoP);
+    var updateP = await UserService.updateUserCBU(usuarioP.docs[0]);
+
+    return res.status(200).json({
+      status: 200,
+      data: createdClearing,
+      message: "Clearing generado correctamente",
+    });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     console.log(e);
@@ -204,7 +238,6 @@ exports.updateClearing = async function (req, res, next) {
     cbuUsuarioD: req.body.cbuUsuarioD ? req.body.cbuUsuarioD : null,
     importe: req.body.importe ? req.body.importe : null,
     descripcion: req.body.descripcion ? req.body.descripcion : null,
-    pagado: req.body.pagado ? req.body.pagado : null,
     codigo: req.body.codigo ? req.body.codigo : null,
   };
 
