@@ -154,16 +154,17 @@ exports.updateEmpresaM = async function (req, res, next) {
 };
 
 // Traigo empresa por codigo Pago
-exports.getEmpresaESTADO = async function (req, res, next) {
+exports.getEmpresaESTADOCUIT = async function (req, res, next) {
   var page = req.query.page ? req.query.page : 1;
   var limit = req.query.limit ? req.query.limit : 1000;
 
   var filtro = {
     estado: req.body.estado,
+    cuit: req.body.cuit,
   };
 
   try {
-    var Empresas = await EmpresaService.getEmpresaESTADO(filtro, page, limit);
+    var Empresas = await EmpresaService.getEmpresaESTADOCUIT(filtro, page, limit);
 
     if (Empresas.total === 0)
       return res.status(201).json({

@@ -1,4 +1,5 @@
 var TarjetaService = require("../services/tarjeta.service");
+var UserService = require("../services/user.service");
 
 // Saving the context of this module inside the _the variable
 _this = this;
@@ -39,8 +40,22 @@ exports.createTarjeta = async function (req, res, next) {
   ];
 
   try {
+    var page = req.query.page ? req.query.page : 1;
+    var limit = req.query.limit ? req.query.limit : 1000;
+
+    var filtro = {
+      cuit: req.body.cuit,
+    };
+    var verifyClearing = await UserService.getUsuarioCuit(filtro, page, limit);
+
+    if (verifyClearing.total === 0)
+      return res.status(400).json({
+        status: 400,
+        data: verifyClearing,
+        message: "Error al querer obtener el clearing, usuario inexistente",
+      });
     // Calling the Service function with the new object from the Request Body
-    var createdTarjeta = await TarjetaService.createTarjeta(req.body);
+    else var createdTarjeta = await TarjetaService.createTarjeta(req.body);
     return res.status(201).json({
       createdTarjeta,
       message: "Tarjeta de pago generado correctamente",
@@ -78,10 +93,10 @@ exports.createTarjetaM = async function (req, res, next) {
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
     console.log(e);
-    return res
-
-      .status(400)
-      .json({ status: 400, message: "Error al querer generar el tarjeta, verifique los campos" });
+    return res.status(400).json({
+      status: 400,
+      message: "Error al querer generar el tarjeta, verifique los campos",
+    });
   }
 };
 
@@ -175,19 +190,24 @@ exports.getTarjetaCodigo = async function (req, res, next) {
 exports.updateTarjeta = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.codigotransaccion) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Codigotransaccion, tiene que estar presente" });
+    return res.status(400).json({
+      status: 400,
+      message: "Codigotransaccion, tiene que estar presente",
+    });
   }
 
   var Tarjeta = {
     cuit: req.body.cuit ? req.body.cuit : null,
-    codigotransaccion: req.body.codigotransaccion ? req.body.codigotransaccion : null,
+    codigotransaccion: req.body.codigotransaccion
+      ? req.body.codigotransaccion
+      : null,
     importe: req.body.importe ? req.body.importe : null,
     descripcion: req.body.descripcion ? req.body.descripcion : null,
     cuitEmpresa: req.body.cuitEmpresa ? req.body.cuitEmpresa : null,
     pagado: req.body.pagado ? req.body.pagado : null,
-    fechaVencimiento: req.body.fechaVencimiento ? req.body.fechaVencimiento : null,
+    fechaVencimiento: req.body.fechaVencimiento
+      ? req.body.fechaVencimiento
+      : null,
   };
 
   try {

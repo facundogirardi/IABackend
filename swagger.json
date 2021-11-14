@@ -281,7 +281,6 @@
       }
     },
 
-
     "/getClearingCodigo": {
       "post": {
         "tags": ["Clearing Bancario"],
@@ -464,6 +463,35 @@
           }
         }
       }
+    },
+    "/getEmpresaESTADOCUIT": {
+      "post": {
+        "tags": ["Empresas - PagoServicios y DebitoAutomatico"],
+        "summary": "Verificar estado de Pagos",
+        "requestBody": {
+          "description": "obtengo estado de cuotas, el campo 'cuit' y 'estado en 'Pago total' es el indice",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/EstadoCuit"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Cupon de pago obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener la cuota"
+          }
+        }
+      }
     }
   },
 
@@ -482,6 +510,17 @@
         }
       }
     },
+    "EstadoCuit": {
+      "properties": {
+        "cuit": {
+          "type": "string"
+        },
+        "estado": {
+          "type": "string"
+        }
+      }
+    },
+
     "TarjetasC": {
       "type": "object",
       "properties": {
@@ -579,9 +618,6 @@
           "type": "string"
         },
         "descripcion": {
-          "type": "string"
-        },
-        "pagado": {
           "type": "string"
         },
         "codigo": {

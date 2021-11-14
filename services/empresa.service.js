@@ -151,7 +151,7 @@ exports.updateEmpresaM = async function (empresa) {
 };
 
 // Recupero Usuario por estado
-exports.getEmpresaESTADO = async function (query, page, limit) {
+exports.getEmpresaESTADOCUIT = async function (query, page, limit) {
   var options = {
     page,
     limit,
