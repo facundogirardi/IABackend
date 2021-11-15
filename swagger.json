@@ -469,7 +469,7 @@
         "tags": ["Empresas - PagoServicios y DebitoAutomatico"],
         "summary": "Verificar estado de Pagos",
         "requestBody": {
-          "description": "obtengo estado de cuotas, el campo 'cuit' y 'estado en 'Pago total' es el indice",
+          "description": "obtengo estado de cuotas, el campo 'cuitEmpresa' y 'estado en 'Pago total' es el indice",
           "required": true,
           "content": {
             "application/json": {
@@ -512,7 +512,7 @@
     },
     "EstadoCuit": {
       "properties": {
-        "cuit": {
+        "cuitEmpresa": {
           "type": "string"
         },
         "estado": {
