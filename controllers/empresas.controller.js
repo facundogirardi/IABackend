@@ -160,7 +160,7 @@ exports.getEmpresaESTADOCUIT = async function (req, res, next) {
 
   var filtro = {
     estado: req.body.estado,
-    cuit: req.body.cuit,
+    cuitEmpresa: req.body.cuitEmpresa,
   };
 
   try {
