@@ -185,6 +185,35 @@ exports.getUsuarioCuit = async function (req, res, next) {
   }
 };
 
+// Traigo Usuario por CUit
+exports.getCuenta = async function (req, res, next) {
+  var page = req.query.page ? req.query.page : 1;
+  var limit = req.query.limit ? req.query.limit : 1000;
+
+  var filtro = {
+    cuit: req.params.id,
+  };
+  try {
+    var Users = await UserService.getUsers(filtro, page, limit);
+
+    if (Users.total === 0)
+      return res.status(201).json({
+        status: 201,
+        cbu: Users.docs[0].cbu,
+        message: "Error al querer obtener el CBU",
+      });
+    else
+      return res.status(200).json({
+        status: 200,
+        cbu: Users.docs[0].cbu,
+        message: "CBU obtenido correctamente",
+      });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ status: 400, message: "Error al querer obtener el CBU" });
+  }
+};
+
 exports.updateUser = async function (req, res, next) {
   // Id is necessary for the update
   if (!req.body.usuario) {

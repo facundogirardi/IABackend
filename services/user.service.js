@@ -398,6 +398,22 @@ exports.getUsuarioCuit = async function (query, page, limit) {
   }
 };
 
+// Recupero Usuario por CBU CC
+exports.getCuenta = async function (query, page, limit) {
+  var options = {
+    page,
+    limit,
+  };
+
+  try {
+    var Users = await User.paginate(query, options);
+    return Users;
+  } catch (e) {
+    console.log("error servicio", e);
+    throw Error("Error en el paginado de las Usuario por Cuit");
+  }
+};
+
 // Recupero Usuario por Usuario
 exports.getUsuarioUsuario = async function (query, page, limit) {
   var options = {

@@ -492,13 +492,51 @@
           }
         }
       }
+    },
+    "/getCuenta": {
+      "post": {
+        "tags": ["Empresas - PagoServicios y DebitoAutomatico"],
+        "summary": "Consultar cuenta",
+        "requestBody": {
+          "description": "obtengo CBU a partir del CUIT",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/cuitp"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Cupon de pago obtenido correctamente",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Error al querer obtener la cuota"
+          }
+        }
+      }
     }
   },
+
+  
 
   "definitions": {
     "id": {
       "properties": {
         "id": {
+          "type": "string"
+        }
+      }
+    },
+    "cuitp": {
+      "properties": {
+        "cuit": {
           "type": "string"
         }
       }

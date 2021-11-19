@@ -27,6 +27,8 @@ router.post("/getusersCBU", UserController.getUsuarioCBU);
 router.post("/getusersCBUCC", UserController.getUsuarioCBUCC);
 router.post("/getusersUsuario", UserController.getUsuarioUsuario);
 router.post("/getUsuarioCuit", UserController.getUsuarioCuit);
+router.post("/getCuenta/:id", UserController.getCuenta);
+
 
 router.post("/altaempresa", EmpresaController.createEmpresa);
 router.post("/altaempresaM", EmpresaController.createEmpresaM);
